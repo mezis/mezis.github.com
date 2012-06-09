@@ -1,1 +1,36 @@
+/* Settings
+
+$serifFontFamily:     Prociono
+$sansFontFamily:      Junction
+$headingsFontFamily:  Raleway
+$baseFontFamily:      $sansFontFamily
+$headingsFontWeight:  bold
+$font_path:           /assets/fonts
+
+/* Load custom web fonts
+
+=add_font_face($face_name, $file_name, $weight: "normal", $style: "normal")
+  @font-face
+    font-family: $face_name
+    src: url('#{$font_path}/#{$file_name}.eot')
+    src: url('#{$font_path}/#{$file_name}.eot?iefix') format("eot"), url('#{$font_path}/#{$file_name}.woff') format("woff"), url('#{$font_path}/#{$file_name}.ttf') format("truetype"), url('#{$font_path}/#{$file_name}.svg') format("svg")
+    font-weight: $weight
+    font-style: $style
+
+
++add_font_face("Junction",        "Junction-webfont")
++add_font_face("Prociono",        "Prociono-Regular-webfont")
++add_font_face("Raleway",         "raleway_thin-webfont")
+
+
+/* Pass control to Bootstrap
+
 @import "bootstrap"
+
+
+/* Layout overrides
+
+p
+  text-align: justify
+h4, h5
+  font-family: $baseFontFamily
