@@ -1,0 +1,11 @@
+#tags
+  %h3 Tags
+
+  {% for tag in page.tags %}
+  tag={{ tag }}
+  {% endfor %}
+
+  {% for tag in site.tags %}
+  sitetag={{ tag.first }} / {{ tag | last | size }}
+  {% endfor %}
+

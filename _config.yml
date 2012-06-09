@@ -1,0 +1,36 @@
+# This is the default format. 
+# For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
+permalink: /:categories/:year/:month/:title 
+
+exclude: [".rvmrc", ".rbenv-version", "README", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock", "index.haml"]
+auto: true
+pygments: true
+
+# Themes are encouraged to use these universal variables 
+# so be sure to set them if your theme uses them.
+#
+title: dec0de.me
+tagline: juliens blog tagline
+author: 
+  name: Julien Letessier
+  email: mezis@dec0de.me
+  github: mezis
+  twitter: mezis_fr
+  linkedin: mezis
+  gravatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb.png
+
+# The production_url is only used when full-domain names are needed
+# such as sitemap.txt 
+# Most places will/should use BASE_PATH to make the urls
+#
+# If you have set a CNAME (pages.github.com) set your custom domain here.
+# Else if you are pushing to username.github.com, replace with your username.
+# Finally if you are pushing to a GitHub project page, include the project name at the end.
+#
+production_url : http://dec0de.me
+
+# Produces an index for related posts.
+lsi: true
+
+# Publishes posts with a future date
+future: false

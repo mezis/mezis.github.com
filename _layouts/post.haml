@@ -1,0 +1,13 @@
+\---
+layout: default
+\---
+.post
+  %h1
+    %a{:href => "{{ BASE_PATH }}{{ page.url }}"} {{ page.title }}
+  {% if page.date %}
+  .date {{ page.date | date_to_string }}
+  {% endif %}
+  .summary
+    {{ page.summary | markdownify }}
+  .content
+    {{ page.content | markdownify }}

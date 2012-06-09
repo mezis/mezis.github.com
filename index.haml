@@ -1,0 +1,21 @@
+\---
+layout: default
+\---
+{% for page in site.posts %}
+.post
+  %h1
+    %a{ :href => "{{ BASE_PATH }}{{ page.url }}" }
+      {{ page.title }}
+  {% if page.date %}
+  .date
+    {{ page.date | date_to_string }}
+  {% endif %}
+  .content
+    {% if page.summary %}
+    %p {{ page.summary }}
+    %p.read
+      %a.yellow-btn{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article
+    {% else %}
+    {{ page.content }}
+    {% endif %}
+{% endfor %}

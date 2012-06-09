@@ -1,0 +1,17 @@
+#sidebar
+  #about
+    %h3 About
+    %img{ :src => "{{ site.author.gravatar }}", :width => 48, :height => 48 }
+    %p
+      A few words about myself.
+    %p
+      Find me on
+      %ul
+        %li
+          %a{:href => "http://github.com/{{ site.author.github }}"} Github
+        %li
+          %a{:href => "http://twitter.com/{{ site.author.twitter }}", :rel => "nofollow", :title => "Follow me on Twitter"} @{{ site.author.twitter }}
+        %li
+          %a{:href => "http://linkedin.com/in/{{ site.author.linkedin }}", :rel => "nofollow", :title => "Find me on LinkedIn"} LinkedIn
+  {% include tags.html %}
+  {% include posts.html %}
