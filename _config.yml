@@ -1,12 +1,14 @@
+destination: _build
+
 # This is the default format. 
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /:categories/:year/:month/:title 
 
-exclude: ["Rakefile", "Gemfile", "Gemfile.lock"]
+exclude: ["Rakefile", "Gemfile", "Gemfile.lock", "haml"]
 auto: true
 pygments: true
 
-# Themes are encouraged to use these universal variables 
+# Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
 #
 title: dec0de.me

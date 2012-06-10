@@ -3,33 +3,37 @@ require 'pry'
 require 'haml'
 require 'listen'
 
-CLOBBER.include('_site')
+CLOBBER.include('_build')
 
-HAML = FileList['{_layouts/,_includes/,}*.haml']
-SASS = FileList['assets/stylesheets/[^_]*.sass']
+HAML = FileList['_source/{_layouts/,_includes/,}*.haml']
+SASS = FileList['_source/assets/stylesheets/[^_]*.sass']
 
-HTML = HAML.ext('.html')
-CSS  = SASS.ext('.css')
-
-CLEAN.include(*HTML)
-CLEAN.include(*CSS)
-
-
-rule '.html' => '.haml' do |t|
-  puts %Q(haml "#{t.source}" -> "#{t.name}")
-  File.open(t.name,'w') do |out|
-    data = File.open(t.source).read
-    out.write Haml::Engine.new(data).render
+HTML = HAML.map do |haml_path|
+  html_path = haml_path.sub(/^_source\//,'').sub(/\.haml$/,'.html')
+  file html_path => haml_path do |t|
+    puts %Q(haml "#{t.prerequisites.first}" -> "#{t.name}")
+    File.open(t.name,'w') do |out|
+      data = File.open(t.prerequisites.first).read
+      out.write Haml::Engine.new(data).render
+    end
   end
+  CLEAN.include(html_path)
+  html_path
 end
 
 
-rule '.css' => '.sass' do |t|
-  sh %Q{compass compile -q -r bootstrap-sass -s nested --images-dir assets/images --sass-dir assets/stylesheets --css-dir assets/stylesheets}
+CSS  = SASS.map do |sass_path|
+  css_path = sass_path.sub(/^_source\//,'').sub(/\.sass$/,'.css')
+  file css_path => sass_path do |t|
+    sh %Q{compass compile -q -r bootstrap-sass -s compressed --sass-dir _source/assets/stylesheets --css-dir assets/stylesheets}
+  end
+  CLEAN.include(css_path)
+  css_path
 end
 
 
-desc "Auto-compile Haml"
+
+desc "Auto-compile Haml to HTML"
 task :watch_haml do
   Thread.new do
     Listen.to('.', :filter => /\.haml$/) do |modified, added, removed|
@@ -43,7 +47,7 @@ task :watch_haml do
 end
 
 
-desc "Auto-compile Sass"
+desc "Auto-compile Sass to CSS"
 task :watch_sass do
   Thread.new do
     Listen.to('.', :filter => /\.sass$/) do |modified, added, removed|
@@ -62,11 +66,11 @@ end
 
 
 desc "Compile Haml files"
-task :haml => HTML
+task :html => HTML
 
 
 desc "Compile Sass files"
-task :sass => CSS
+task :css => CSS
 
 
 desc "Launch preview environment"
@@ -76,7 +80,7 @@ end
 
 
 desc "Build site"
-task :build => (HTML+CSS) do |task, args|
+task :build => [:html,:css] do
   system "jekyll --no-auto"
 end
 
