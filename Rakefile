@@ -3,7 +3,7 @@ require 'pry'
 require 'haml'
 require 'listen'
 
-CLOBBER.include('_build')
+CLOBBER.include('_site')
 
 HAML = FileList['_source/{_layouts/,_includes/,}*.haml']
 SASS = FileList['_source/assets/stylesheets/[^_]*.sass']
@@ -21,7 +21,7 @@ HTML = HAML.map do |haml_path|
 end
 
 
-CSS  = SASS.map do |sass_path|
+CSS = SASS.map do |sass_path|
   css_path = sass_path.sub(/^_source\//,'').sub(/\.sass$/,'.css')
   file css_path => sass_path do |t|
     sh %Q{compass compile -q -r bootstrap-sass -s compressed --sass-dir _source/assets/stylesheets --css-dir assets/stylesheets}
