@@ -1,11 +1,13 @@
 ---
 layout: post
 title: The case of Haml v. Erb
-published: false
+published: true
 tags: ruby web performance
 summary: |
   Is using Haml over plain old Erb just trendy?
-  I think it is while hoping it lasts: I strongly believe Haml is superior in every respect to embedded Ruby---or almost any kind of "embedding" templating engine.
+  It migh be a fad, but I hope it lasts: my opinion is Haml is superior in every respect to embedded Ruby (or almost any kind of "embedding" templating engine) just like Sass and LESS are to CSS.
+
+  Here's why.
 ---
 
 

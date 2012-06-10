@@ -10,7 +10,7 @@ pygments: true
 # so be sure to set them if your theme uses them.
 #
 title: dec0de.me
-tagline: shoutbox for a software engineer
+tagline: "a software engineer's shoutbox"
 author: 
   name: Julien Letessier
   email: mezis@dec0de.me
