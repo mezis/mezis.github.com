@@ -12,10 +12,9 @@ HTML = HAML.map do |haml_path|
   html_path = haml_path.sub(/^_source\//,'').sub(/\.haml$/,'.html')
   file html_path => haml_path do |t|
     puts %Q(haml "#{t.prerequisites.first}" -> "#{t.name}")
-    File.open(t.name,'w') do |out|
-      data = File.open(t.prerequisites.first).read
-      out.write Haml::Engine.new(data).render
-    end
+    data = File.open(t.prerequisites.first).read
+    output = Haml::Engine.new(data).render
+    File.open(t.name,'w') { |out| out.write output }
   end
   CLEAN.include(html_path)
   html_path
@@ -37,7 +36,7 @@ desc "Auto-compile Haml to HTML"
 task :watch_haml do
   Thread.new do
     Listen.to('.', :filter => /\.haml$/) do |modified, added, removed|
-      Rake::Task['haml'].tap do |task|
+      Rake::Task['html'].tap do |task|
         task.prerequisite_tasks.each(&:reenable)
         task.reenable
         task.invoke
@@ -52,7 +51,7 @@ task :watch_sass do
   Thread.new do
     Listen.to('.', :filter => /\.sass$/) do |modified, added, removed|
       begin
-        Rake::Task['sass'].tap do |task|
+        Rake::Task['css'].tap do |task|
           task.prerequisite_tasks.each(&:reenable)
           task.reenable
           task.invoke

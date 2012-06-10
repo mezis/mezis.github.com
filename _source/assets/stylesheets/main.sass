@@ -71,7 +71,7 @@ $linkColor:           $brickRed
 .container-box
   background-color: $backgroundColor
   +box-shadow(rgba(black, .25) 0 0 25px)
-#header, #content, #footer, #sidebar
+#header, #content, #sidebar
   padding: 1em
 #header
   background-color: $headercolor
@@ -172,8 +172,12 @@ a.read
 /* Footer
 
 #footer
-  font-size: smaller
-  color: $darkGray
+  padding-top: 1em
+  +opacity(0.7)
+  p
+    display:     inline
+    font-size:   smaller
+    line-height: 100%
 
 
 /* About section
