@@ -73,7 +73,7 @@ task :css => CSS
 
 
 desc "Launch preview environment"
-task :preview => (HTML + [:watch_haml, :watch_sass]) do
+task :preview => (HTML + CSS + [:watch_haml, :watch_sass]) do
   system "jekyll --auto --server"
 end
 
