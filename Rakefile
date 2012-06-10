@@ -6,7 +6,7 @@ require 'listen'
 CLOBBER.include('_site')
 
 HAML = FileList['{_layouts/,_includes/,}*.haml']
-SASS = FileList['assets/stylesheets/*.sass']
+SASS = FileList['assets/stylesheets/[^_]*.sass']
 
 HTML = HAML.ext('.html')
 CSS  = SASS.ext('.css')
@@ -25,7 +25,7 @@ end
 
 
 rule '.css' => '.sass' do |t|
-  sh %Q{compass compile -q -r bootstrap-sass -s compressed --sass-dir assets/stylesheets --css-dir assets/stylesheets}
+  sh %Q{compass compile -q -r bootstrap-sass -s nested --images-dir assets/images --sass-dir assets/stylesheets --css-dir assets/stylesheets}
 end
 
 
@@ -47,10 +47,14 @@ desc "Auto-compile Sass"
 task :watch_sass do
   Thread.new do
     Listen.to('.', :filter => /\.sass$/) do |modified, added, removed|
-      Rake::Task['sass'].tap do |task|
-        task.prerequisite_tasks.each(&:reenable)
-        task.reenable
-        task.invoke
+      begin
+        Rake::Task['sass'].tap do |task|
+          task.prerequisite_tasks.each(&:reenable)
+          task.reenable
+          task.invoke
+        end
+      rescue Exception => e
+        puts "error: #{e.message}"
       end
     end
   end

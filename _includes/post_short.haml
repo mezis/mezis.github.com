@@ -1,0 +1,20 @@
+.post
+  %span.date
+    {{ page.date | date: "%e %B %Y" }}
+  %ul.taglist
+    {% for tag in page.tags %}
+    %li
+      %span.tag
+        {{ tag }}
+    {% endfor %}
+  .clearfix
+  %h1
+    %a{ :href => "{{ BASE_PATH }}{{ page.url }}" }
+      {{ page.title }}
+  .content
+    {% if page.summary %}
+    {{ page.summary | markdownify }}
+    %a.read{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article →
+    {% else %}
+    {{ page.content | markdownify }}
+    {% endif %}

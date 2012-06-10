@@ -2,7 +2,7 @@
 layout: post
 title: "RFC: Donjon, a credentials server"
 published: true
-tags: foo bar qux
+tags: sysops web security
 summary: |
   "This very evening?" asked Stuart. "This very evening," returned Phileas Fogg.  He took out and consulted a pocket almanac, and added,  "As today is Wednesday, the 2nd of October, I shall be due in London in this very evening.
 ---

@@ -2,11 +2,11 @@
 layout: default
 \---
 .post
+  .date
+    {{ page.date | date: "%e %B %Y" }}
+  .clearfix
   %h1
     %a{:href => "{{ BASE_PATH }}{{ page.url }}"} {{ page.title }}
-  {% if page.date %}
-  .date {{ page.date | date_to_string }}
-  {% endif %}
   .summary
     {{ page.summary | markdownify }}
   .content

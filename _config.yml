@@ -10,7 +10,7 @@ pygments: true
 # so be sure to set them if your theme uses them.
 #
 title: dec0de.me
-tagline: juliens blog tagline
+tagline: shoutbox for a software engineer
 author: 
   name: Julien Letessier
   email: mezis@dec0de.me
@@ -18,6 +18,7 @@ author:
   twitter: mezis_fr
   linkedin: mezis
   gravatar: http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb.png
+  googleplus_id: 114288876263922624168
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -33,4 +34,4 @@ production_url : http://dec0de.me
 lsi: true
 
 # Publishes posts with a future date
-future: false
+future: true

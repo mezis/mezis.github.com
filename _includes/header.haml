@@ -1,0 +1,23 @@
+#header
+  %img{ :src => "{{ site.author.gravatar }}", :width => 48, :height => 48 }
+  %ul.unstyled
+    %li
+      %a{:href => "http://github.com/{{ site.author.github }}", :title => "Find me on Github" }
+        %i.icon-github
+    %li
+      %a{:href => "http://twitter.com/{{ site.author.twitter }}", :title => "Follow me on Twitter" }
+        %i.icon-twitter
+    %li
+      %a{:href => "http://linkedin.com/in/{{ site.author.linkedin }}", :title => "Find me on LinkedIn"}
+        %i.icon-linkedin
+    %li
+      %a{:href => "{{ BASE_PATH }}atom.xml", :title => "Stay updated"}
+        %i.icon-rss
+    %li
+      %a{ :href => "https://plus.google.com/{{ site.author.googleplus_id }}", :title => "Follow me on Google+" }
+        %i.google-plus
+  
+  %a.title{:href => "/"}
+    {{ site.title }}
+  %p.tagline
+    {{ site.tagline }}
