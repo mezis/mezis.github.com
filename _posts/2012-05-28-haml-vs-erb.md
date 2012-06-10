@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The case of Haml v. Erb
-published: true
+published: false
 tags: ruby web performance
 summary: |
   Is using Haml over plain old Erb just trendy?
