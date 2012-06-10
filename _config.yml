@@ -4,7 +4,7 @@ destination: _build
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /:categories/:year/:month/:title 
 
-exclude: ["Rakefile", "Gemfile", "Gemfile.lock", "haml"]
+exclude: ["Rakefile", "Gemfile", "Gemfile.lock", "_source"]
 auto: true
 pygments: true
 

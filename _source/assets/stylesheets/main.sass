@@ -13,6 +13,7 @@ $font_path:           /assets/fonts
 
 $gray:                #aaa
 $lightGray:           lighten($gray, 10%)
+$darkGray:            darken($gray, 15%)
 $lighterOrange:       #fff9f4
 $darkOrange:          #fb9235
 $appleGreen:          #6cd12d
@@ -83,35 +84,6 @@ h4, h5
 h1
   +text-shadow(rgba(black, .15) 0px 2px 3px)
 
-.summary
-  p:first-child
-    @extend .lead // from bootstrap
-    margin-top: 1em
-    text-align: left
-
-a.read
-  display: block
-  float:   right
-
-.post
-  @extend .clearfix
-  @extend .well
-  margin-bottom: 1em
-  .date
-    float: right
-  .taglist
-    float: left
-  h1
-    @extend .clearfix
-    margin-bottom: 1ex
-
-
-#posts
-  li
-    display: inline
-
-
-
 /* Date pills
 
 .post,
@@ -163,6 +135,45 @@ span.tag
       line-height: $iconHeight
     a:hover
       text-decoration: none !important
+
+
+/* Posts
+
+.summary
+  p:first-child
+    @extend .lead // from bootstrap
+    margin-top: 1em
+    text-align: left
+
+a.read
+  display: block
+  float:   right
+
+.post
+  @extend .clearfix
+  @extend .well
+  margin-bottom: 1em
+  .date
+    float: right
+  .taglist
+    float: left
+  h1
+    @extend .clearfix
+    margin-bottom: 1ex
+
+
+/* Post lists
+
+#posts
+  li
+    display: inline
+
+
+/* Footer
+
+#footer
+  font-size: smaller
+  color: $darkGray
 
 
 /* About section
