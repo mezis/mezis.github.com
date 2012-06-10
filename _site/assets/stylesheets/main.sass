@@ -1,0 +1,171 @@
+
+/* Settings - fonts
+
+$serifFontFamily:     Prociono
+$sansFontFamily:      Junction
+$headingsFontFamily:  Raleway
+$baseFontFamily:      $sansFontFamily
+$headingsFontWeight:  bold
+$font_path:           /assets/fonts
+
+
+/* Settings - colors
+
+$gray:                #aaa
+$lightGray:           lighten($gray, 10%)
+$lighterOrange:       #fff9f4
+$darkOrange:          #fb9235
+$appleGreen:          #6cd12d
+$brickRed:            #8e1600
+
+$bodyBackground:      $gray
+$backgroundColor:     #f2f2f2
+$headercolor:         darken($backgroundColor, 3%)
+$linkColor:           $brickRed
+
+
+
+/* Load other libraries
+
+@import "compass/css3"
+@import "bootstrap"
+@import "bootstrap-responsive"
+@import "font-awesome"
+@import "pygments"
+
+
+/* Custom mixins
+
+
+=hyphenate
+  -webkit-hyphens: auto
+  -moz-hyphens:    auto
+  hyphens:         auto
+
+
+=add_font_face($face_name, $file_name, $weight: "normal", $style: "normal")
+  @font-face
+    font-family: $face_name
+    src: url('#{$font_path}/#{$file_name}.eot')
+    src: url('#{$font_path}/#{$file_name}.eot?iefix') format("eot"), url('#{$font_path}/#{$file_name}.woff') format("woff"), url('#{$font_path}/#{$file_name}.ttf') format("truetype"), url('#{$font_path}/#{$file_name}.svg') format("svg")
+    font-weight: $weight
+    font-style: $style
+
+=pill
+  @extend .label
+  font-family: $sansFontFamily
+  font-weight: normal
+  padding-bottom: 1px
+  padding-top: 2px
+
+
+/* Load custom web fonts
+
++add_font_face("Junction",        "Junction-webfont")
++add_font_face("Prociono",        "Prociono-Regular-webfont")
++add_font_face("Raleway",         "raleway_thin-webfont")
+
+/* Layout overrides
+
+.container-box
+  background-color: $backgroundColor
+  +box-shadow(rgba(black, .25) 0 0 25px)
+#header, #content, #footer, #sidebar
+  padding: 1em
+#header
+  background-color: $headercolor
+
+p
+  +hyphenate
+  text-align: justify
+h4, h5
+  font-family: $baseFontFamily
+h1
+  +text-shadow(rgba(black, .15) 0px 2px 3px)
+
+.summary
+  p:first-child
+    @extend .lead // from bootstrap
+    margin-top: 1em
+    text-align: left
+
+a.read
+  display: block
+  float:   right
+
+.post
+  @extend .clearfix
+  @extend .well
+  margin-bottom: 1em
+  .date
+    float: right
+  .taglist
+    float: left
+  h1
+    @extend .clearfix
+    margin-bottom: 1ex
+
+
+#posts
+  li
+    display: inline
+
+
+
+/* Date pills
+
+.post,
+#posts
+  .date
+    +pill
+    background-color: $lightGray
+
+
+/* Tags & tag lists
+
+ul.taglist
+  @extend .clearfix
+  margin-left: 0
+  list-style-type: none
+  li
+    float: left
+
+span.tag
+  +pill
+  &.selected
+    background-color: $textColor
+
+
+/* Header
+
+#header
+  $iconHeight: 48px
+  +text-shadow(rgba(black, .15) 0px 2px 3px)
+
+  .title
+    font-size:    x-large
+    font-family:  $headingsFontFamily
+  .tagline
+    font-size:    large
+    font-family:  $headingsFontFamily
+  img
+    +border-radius(3px)
+    +box-shadow(rgba(black, .15) 0px 2px 3px)
+    float:        right
+    margin-left:  1em
+    height:       $iconHeight
+  ul
+    float:        right
+    margin-left:  1em
+    li
+      display:     inline
+      font-size:   larger
+      line-height: $iconHeight
+    a:hover
+      text-decoration: none !important
+
+
+/* About section
+
+#about
+  font-size: inherit
