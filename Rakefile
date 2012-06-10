@@ -76,7 +76,7 @@ end
 
 
 desc "Build site"
-task :build => HTML do |task, args|
+task :build => (HTML+CSS) do |task, args|
   system "jekyll --no-auto"
 end
 

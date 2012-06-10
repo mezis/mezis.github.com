@@ -1,0 +1,28 @@
+<div class='post'>
+  <span class='date'>
+    {{ page.date | date: "%e %B %Y" }}
+  </span>
+  <ul class='taglist'>
+    {% for tag in page.tags %}
+    <li>
+      <span class='tag'>
+        {{ tag }}
+      </span>
+    </li>
+    {% endfor %}
+  </ul>
+  <div class='clearfix'></div>
+  <h1>
+    <a href='{{ BASE_PATH }}{{ page.url }}'>
+      {{ page.title }}
+    </a>
+  </h1>
+  <div class='content'>
+    {% if page.summary %}
+    {{ page.summary | markdownify }}
+    <a class='read' href='{{ BASE_PATH }}{{ page.url }}'>Read the full article →</a>
+    {% else %}
+    {{ page.content | markdownify }}
+    {% endif %}
+  </div>
+</div>

@@ -31,7 +31,7 @@ author:
 production_url : http://dec0de.me
 
 # Produces an index for related posts.
-lsi: true
+lsi: false
 
 # Publishes posts with a future date
-future: true
+future: false

@@ -1,0 +1,36 @@
+<div id='header'>
+  <img height='48' src='{{ site.author.gravatar }}' width='48' />
+  <ul class='unstyled'>
+    <li>
+      <a href='http://github.com/{{ site.author.github }}' title='Find me on Github'>
+        <i class='icon-github'></i>
+      </a>
+    </li>
+    <li>
+      <a href='http://twitter.com/{{ site.author.twitter }}' title='Follow me on Twitter'>
+        <i class='icon-twitter'></i>
+      </a>
+    </li>
+    <li>
+      <a href='http://linkedin.com/in/{{ site.author.linkedin }}' title='Find me on LinkedIn'>
+        <i class='icon-linkedin'></i>
+      </a>
+    </li>
+    <li>
+      <a href='https://plus.google.com/{{ site.author.googleplus_id }}' title='Follow me on Google+'>
+        <i class='icon-google-plus-sign'></i>
+      </a>
+    </li>
+    <li>
+      <a href='{{ BASE_PATH }}atom.xml' title='Stay updated'>
+        <i class='icon-rss'></i>
+      </a>
+    </li>
+  </ul>
+  <a class='title' href='/'>
+    {{ site.title }}
+  </a>
+  <p class='tagline'>
+    {{ site.tagline }}
+  </p>
+</div>

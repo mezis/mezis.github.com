@@ -98,14 +98,27 @@ a.read
   @extend .well
   margin-bottom: 1em
   .date
-    +pill
     float: right
-    background-color: $lightGray
   .taglist
     float: left
   h1
     @extend .clearfix
     margin-bottom: 1ex
+
+
+#posts
+  li
+    display: inline
+
+
+
+/* Date pills
+
+.post,
+#posts
+  .date
+    +pill
+    background-color: $lightGray
 
 
 /* Tags & tag lists
@@ -131,12 +144,13 @@ span.tag
 
   .title
     font-size:    x-large
-    font-family:    $headingsFontFamily
+    font-family:  $headingsFontFamily
   .tagline
     font-size:    large
-    font-family:    $headingsFontFamily
+    font-family:  $headingsFontFamily
   img
     +border-radius(3px)
+    +box-shadow(rgba(black, .15) 0px 2px 3px)
     float:        right
     margin-left:  1em
     height:       $iconHeight
