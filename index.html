@@ -1,6 +1,8 @@
 ---
 layout: default
 ---
-{% for page in site.posts %}
-{% include post_short.html %}
-{% endfor %}
+<div id='posts'>
+  {% for page in site.posts %}
+  {% include post_short.html %}
+  {% endfor %}
+</div>

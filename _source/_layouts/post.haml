@@ -4,7 +4,6 @@ layout: default
 .post
   .date
     {{ page.date | date: "%e %B %Y" }}
-  .clearfix
   %h1
     %a{:href => "{{ BASE_PATH }}{{ page.url }}"} {{ page.title }}
   .summary

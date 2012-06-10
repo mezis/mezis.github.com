@@ -1,11 +1,11 @@
 
 /* Settings - fonts
 
-$serifFontFamily:     Prociono
-$sansFontFamily:      Junction
-$headingsFontFamily:  Raleway
-$baseFontFamily:      $sansFontFamily
-$headingsFontWeight:  bold
+/* $serifFontFamily:     Prociono
+/* $sansFontFamily:      Junction
+/* $headingsFontFamily:  Raleway
+/* $baseFontFamily:      $sansFontFamily
+/* $headingsFontWeight:  bold
 $font_path:           /assets/fonts
 
 
@@ -14,16 +14,14 @@ $font_path:           /assets/fonts
 $gray:                #aaa
 $lightGray:           lighten($gray, 10%)
 $darkGray:            darken($gray, 15%)
-$lighterOrange:       #fff9f4
-$darkOrange:          #fb9235
-$appleGreen:          #6cd12d
+$lighterGray:         #f4f4f4
 $brickRed:            #8e1600
 
 $bodyBackground:      $gray
-$backgroundColor:     #f2f2f2
+$backgroundColor:     $lighterGray
 $headercolor:         darken($backgroundColor, 3%)
 $linkColor:           $brickRed
-
+$postBackground:      white
 
 
 /* Load other libraries
@@ -56,15 +54,13 @@ $linkColor:           $brickRed
   @extend .label
   font-family: $sansFontFamily
   font-weight: normal
-  padding-bottom: 1px
-  padding-top: 2px
 
 
 /* Load custom web fonts
 
 +add_font_face("Junction",        "Junction-webfont")
-+add_font_face("Prociono",        "Prociono-Regular-webfont")
 +add_font_face("Raleway",         "raleway_thin-webfont")
+
 
 /* Layout overrides
 
@@ -79,10 +75,15 @@ $linkColor:           $brickRed
 p
   +hyphenate
   text-align: justify
-h4, h5
-  font-family: $baseFontFamily
 h1
   +text-shadow(rgba(black, .15) 0px 2px 3px)
+h2
+  line-height:    100%
+  padding-bottom: 2px
+  margin-top:     .66em
+  margin-bottom:  1ex
+  border-bottom:  3px solid transparentize($lightGray, 0.5)
+
 
 /* Date pills
 
@@ -115,24 +116,31 @@ span.tag
   +text-shadow(rgba(black, .15) 0px 2px 3px)
 
   .title
-    font-size:    x-large
-    font-family:  $headingsFontFamily
-  .tagline
-    font-size:    large
-    font-family:  $headingsFontFamily
+    margin-top:     8px
+    float:          left
+    a
+      font-size:    x-large
+      font-family:  $headingsFontFamily
+      font-weight:  lighter
+    p
+      font-size:    large
+      font-family:  $headingsFontFamily
+      font-weight:  lighter
+      margin:       0
   img
     +border-radius(3px)
     +box-shadow(rgba(black, .15) 0px 2px 3px)
-    float:        right
-    margin-left:  1em
-    height:       $iconHeight
+    float:          right
+    margin-left:    2em
+    height:         $iconHeight
   ul
-    float:        right
-    margin-left:  1em
+    float:          right
+    margin-left:    1em
+    margin-bottom:  0
     li
-      display:     inline
-      font-size:   larger
-      line-height: $iconHeight
+      display:      inline
+      font-size:    larger
+      line-height:  $iconHeight
     a:hover
       text-decoration: none !important
 
@@ -140,10 +148,10 @@ span.tag
 /* Posts
 
 .summary
-  p:first-child
-    @extend .lead // from bootstrap
-    margin-top: 1em
-    text-align: left
+  margin-top:    1em
+  margin-bottom: 2em
+  p
+    font-size:   larger
 
 a.read
   display: block
@@ -152,14 +160,13 @@ a.read
 .post
   @extend .clearfix
   @extend .well
-  margin-bottom: 1em
+  background-color: $postBackground
   .date
     float: right
   .taglist
     float: left
   h1
     @extend .clearfix
-    margin-bottom: 1ex
 
 
 /* Post lists
@@ -167,6 +174,8 @@ a.read
 #posts
   li
     display: inline
+  .post
+    margin-bottom: 2em
 
 
 /* Footer
@@ -184,3 +193,4 @@ a.read
 
 #about
   font-size: inherit
+

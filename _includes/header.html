@@ -1,4 +1,12 @@
 <div id='header'>
+  <div class='title'>
+    <a href='/'>
+      {{ site.title }}
+    </a>
+    <p>
+      {{ site.tagline }}
+    </p>
+  </div>
   <img height='48' src='{{ site.author.gravatar }}' width='48' />
   <ul class='unstyled'>
     <li>
@@ -27,10 +35,5 @@
       </a>
     </li>
   </ul>
-  <a class='title' href='/'>
-    {{ site.title }}
-  </a>
-  <p class='tagline'>
-    {{ site.tagline }}
-  </p>
+  <div class='clearfix'></div>
 </div>

@@ -1,4 +1,9 @@
 #header
+  .title
+    %a{:href => "/"}
+      {{ site.title }}
+    %p
+      {{ site.tagline }}
   %img{ :src => "{{ site.author.gravatar }}", :width => 48, :height => 48 }
   %ul.unstyled
     %li
@@ -16,8 +21,5 @@
     %li
       %a{:href => "{{ BASE_PATH }}atom.xml", :title => "Stay updated"}
         %i.icon-rss
+  .clearfix
 
-  %a.title{:href => "/"}
-    {{ site.title }}
-  %p.tagline
-    {{ site.tagline }}
