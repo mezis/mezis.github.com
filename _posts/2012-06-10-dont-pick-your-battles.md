@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Pick your battles (or don't)
-published: true
+published: false
 tags: management
 summary: |
   A colleague of mine recently quoted Ray Dalio, the infamous founder of

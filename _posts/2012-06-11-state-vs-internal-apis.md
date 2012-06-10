@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Using internal APIs rather than state
-published: true
+published: false
 tags: ruby design
 summary: |
   "This very evening?" asked Stuart. "This very evening," returned Phileas Fogg.  He took out and consulted a pocket almanac, and added,  "As today is Wednesday, the 2nd of October, I shall be due in London in this very evening.
