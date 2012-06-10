@@ -2,3 +2,6 @@ _site/*
 .DS_Store
 !.gitkeep
 .sass-cache
+_*/*.html
+*.html
+assets/stylesheets/*.css

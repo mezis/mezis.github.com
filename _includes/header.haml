@@ -11,12 +11,12 @@
       %a{:href => "http://linkedin.com/in/{{ site.author.linkedin }}", :title => "Find me on LinkedIn"}
         %i.icon-linkedin
     %li
+      %a{ :href => "https://plus.google.com/{{ site.author.googleplus_id }}", :title => "Follow me on Google+" }
+        %i.icon-google-plus-sign
+    %li
       %a{:href => "{{ BASE_PATH }}atom.xml", :title => "Stay updated"}
         %i.icon-rss
-    %li
-      %a{ :href => "https://plus.google.com/{{ site.author.googleplus_id }}", :title => "Follow me on Google+" }
-        %i.google-plus
-  
+
   %a.title{:href => "/"}
     {{ site.title }}
   %p.tagline
