@@ -2,7 +2,7 @@
 # For more see: https://github.com/mojombo/jekyll/wiki/Permalinks
 permalink: /:categories/:year/:month/:title 
 
-exclude: [".rvmrc", ".rbenv-version", "README", "README.md", "Rakefile", "changelog.md", "Gemfile", "Gemfile.lock", "index.haml"]
+exclude: ["Rakefile", "Gemfile", "Gemfile.lock"]
 auto: true
 pygments: true
 
