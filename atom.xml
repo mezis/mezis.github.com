@@ -1,6 +1,6 @@
 ---
 layout: nil
-title : Atom Feed
+title: Atom Feed
 ---
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
@@ -15,7 +15,7 @@ title : Atom Feed
     <email>{{ site.author.email }}</email>
   </author>
 
- {% for post in site.posts %}
+  {% for post in site.posts %}
   {% capture read_more_link %}
     <br/><a href="{{ site.production_url }}{{ post.url }}">Read more...</a>
   {% endcapture %}
@@ -26,6 +26,6 @@ title : Atom Feed
     <id>{{ site.production_url }}{{ post.id }}</id>
     <content type="html">{{ post.summary | xml_escape }}{{ read_more_link | xml_escape }}</content>
   </entry>
- {% endfor %}
+  {% endfor %}
  
 </feed>

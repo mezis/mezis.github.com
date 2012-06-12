@@ -1,7 +1,10 @@
-\---
-layout: default
-\---
-
+:plain
+  ---
+  layout: default
+  rss:
+    title: site.title
+    path:  /atom.xml
+  ---
 #posts
   {% for page in site.posts %}
   {% include post_short.html %}
