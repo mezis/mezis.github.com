@@ -65,7 +65,7 @@ Importantly, it also makes you DOM transparently visible in your code—and enfo
 
 In my opinion: if quality and low technical debt are important to you (i.e. if you're working on your company's product and not on consultancy work), and you can accept a slight learning curve, Haml is the way to go.
 
-If your team is inexperienced (or outsourced, or has a high turnover), keep using ERb.
+If your team is inexperienced (or outsourced, or has a high turnover or you can't get them to follow conventions (e.g. use spaces instead of tabs), keep using ERb.
 
 
 Agree? Disagree? This is a hot topic, bordering on flame bait... so feel free to comment!
