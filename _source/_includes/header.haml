@@ -2,9 +2,10 @@
   .title
     %a{:href => "/"}
       {{ site.title }}
-    %p
-      {{ site.tagline }}
-  %img{ :src => "{{ site.author.gravatar }}", :width => 48, :height => 48 }
+      ☛
+      %span
+        {{ site.tagline }}
+  %img{ :src => "{{ site.author.gravatar }}", :width => 32, :height => 32 }
   %ul.unstyled
     %li
       %a{:href => "http://github.com/{{ site.author.github }}", :title => "Find me on Github" }

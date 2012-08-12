@@ -2,12 +2,13 @@
   <div class='title'>
     <a href='/'>
       {{ site.title }}
+      ☛
+      <span>
+        {{ site.tagline }}
+      </span>
     </a>
-    <p>
-      {{ site.tagline }}
-    </p>
   </div>
-  <img height='48' src='{{ site.author.gravatar }}' width='48' />
+  <img height='32' src='{{ site.author.gravatar }}' width='32' />
   <ul class='unstyled'>
     <li>
       <a href='http://github.com/{{ site.author.github }}' title='Find me on Github'>

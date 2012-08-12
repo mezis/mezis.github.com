@@ -24,7 +24,7 @@ end
 CSS = SASS.map do |sass_path|
   css_path = sass_path.sub(/^_source\//,'').sub(/\.sass$/,'.css')
   file css_path => sass_path do |t|
-    sh %Q{compass compile -q -r bootstrap-sass -s compressed --sass-dir _source/assets/stylesheets --css-dir assets/stylesheets}
+    sh %Q{compass compile -r bootstrap-sass -s compressed --sass-dir _source/assets/stylesheets --css-dir assets/stylesheets}
   end
   CLEAN.include(css_path)
   css_path

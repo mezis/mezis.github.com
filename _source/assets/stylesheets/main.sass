@@ -1,34 +1,35 @@
 
 /* Settings - fonts
 
-/* $serifFontFamily:     Prociono
-/* $sansFontFamily:      Junction
-/* $headingsFontFamily:  Raleway
-/* $baseFontFamily:      $sansFontFamily
-/* $headingsFontWeight:  bold
+$serifFontFamily:     Arvo, serif
+$monoFontFamily:      "Anonymous Pro", Menlo, Monaco, monospaced
+/*$sansFontFamily:      "Arvo"
+$baseFontFamily:      $serifFontFamily
 $font_path:           /assets/fonts
-
 
 /* Settings - colors
 
 $gray:                #aaa
 $lightGray:           lighten($gray, 10%)
 $darkGray:            darken($gray, 15%)
+$darkerGray:          darken($gray, 50%)
 $lighterGray:         #f4f4f4
 $brickRed:            #8e1600
+$lightRed:            lighten($brickRed, 50%)
 
-$bodyBackground:      $gray
+$bodyBackground:      $lighterGray
 $backgroundColor:     $lighterGray
 $headercolor:         darken($backgroundColor, 3%)
 $linkColor:           $brickRed
-$postBackground:      white
+/*$postBackground:      white
+$sepColor:            $gray
 
 
 /* Load other libraries
 
 @import "compass/css3"
 @import "bootstrap"
-@import "bootstrap-responsive"
+@import "bootstrap-responsive-no1200px"
 @import "font-awesome"
 @import "pygments"
 
@@ -42,35 +43,13 @@ $postBackground:      white
   hyphens:         auto
 
 
-=add_font_face($face_name, $file_name, $weight: "normal", $style: "normal")
-  @font-face
-    font-family: $face_name
-    src: url('#{$font_path}/#{$file_name}.eot')
-    src: url('#{$font_path}/#{$file_name}.eot?iefix') format("eot"), url('#{$font_path}/#{$file_name}.woff') format("woff"), url('#{$font_path}/#{$file_name}.ttf') format("truetype"), url('#{$font_path}/#{$file_name}.svg') format("svg")
-    font-weight: $weight
-    font-style: $style
-
 =pill
   @extend .label
   font-family: $sansFontFamily
   font-weight: normal
 
 
-/* Load custom web fonts
-
-+add_font_face("Junction",        "Junction-webfont")
-+add_font_face("Raleway",         "raleway_thin-webfont")
-
-
 /* Layout overrides
-
-.container-box
-  background-color: $backgroundColor
-  +box-shadow(rgba(black, .25) 0 0 25px)
-#header, #content, #sidebar
-  padding: 1em
-#header
-  background-color: $headercolor
 
 p
   +hyphenate
@@ -85,14 +64,39 @@ h2
   border-bottom:  3px solid transparentize($lightGray, 0.5)
 
 
+/* General style overrides
+
+a
+  +transition-property(color opacity text-shadow text-decoration)
+  +transition-duration(100ms)
+  text-decoration: none !important
+  &:hover
+    +text-shadow($lightRed 0px 1px 5px)
+
+
+
 /* Date pills
 
-.post,
 #posts
   .date
     +pill
     background-color: $lightGray
 
+/* Date separators
+
+#posts .date-separator,
+.post .date-separator,
+#sidebar .separator
+  border-top: 1pt solid $sepColor
+  margin-top: 2em
+  margin-bottom: 1em
+  span
+    text-align: center
+    color: $sepColor
+    top: -.7em
+    position: relative
+    padding-right: 1em
+    background-color: $backgroundColor
 
 /* Tags & tag lists
 
@@ -111,9 +115,28 @@ span.tag
 
 /* Header
 
+#header-container
+  background-color: $darkerGray
+  padding: 0.5ex 0
+  position: fixed
+  width: 100%
+  z-index: 1
+  +box-shadow(rgba(black, .6) 0px 2px 20px)
+
+#header-sentinel
+  height: 40px
+
 #header
-  $iconHeight: 48px
-  +text-shadow(rgba(black, .15) 0px 2px 3px)
+  $iconHeight: 32px
+
+  /* override default link styling for dark background
+  a
+    color: $lightRed
+    opacity: 0.7
+    &:hover
+      opacity: 1.0
+      text-decoration: none !important
+      +text-shadow(rgba(white, .7) 0px 1px 5px)
 
   .title
     margin-top:     8px
@@ -122,14 +145,10 @@ span.tag
       font-size:    x-large
       font-family:  $headingsFontFamily
       font-weight:  lighter
-    p
-      font-size:    large
-      font-family:  $headingsFontFamily
-      font-weight:  lighter
-      margin:       0
+      span
+        opacity:    0.6
   img
     +border-radius(3px)
-    +box-shadow(rgba(black, .15) 0px 2px 3px)
     float:          right
     margin-left:    2em
     height:         $iconHeight
@@ -141,8 +160,6 @@ span.tag
       display:      inline
       font-size:    larger
       line-height:  $iconHeight
-    a:hover
-      text-decoration: none !important
 
 
 /* Posts
@@ -151,21 +168,18 @@ span.tag
   margin-top:    1em
   margin-bottom: 2em
   p
-    font-size:   larger
-
-a.read
-  display: block
-  float:   right
+    font-style: italic
+  a.read
+    display: block
 
 .post
   @extend .clearfix
-  @extend .well
-  background-color: $postBackground
   .date
-    float: right
+    text-align: center
   .taglist
-    float: left
-  h1
+    float: right
+    text-align: right
+  h3
     @extend .clearfix
 
 

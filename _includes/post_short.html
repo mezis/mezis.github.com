@@ -1,7 +1,9 @@
 <div class='post'>
-  <span class='date'>
-    {{ page.date | date: "%e %B %Y" }}
-  </span>
+  <div class='date-separator'>
+    <span>
+      {{ page.date | date: "%e %B %Y" }}
+    </span>
+  </div>
   <ul class='taglist'>
     {% for tag in page.tags %}
     <li>
@@ -11,12 +13,11 @@
     </li>
     {% endfor %}
   </ul>
-  <div class='clearfix'></div>
-  <h1>
+  <h3>
     <a href='{{ BASE_PATH }}{{ page.url }}'>
       {{ page.title }}
     </a>
-  </h1>
+  </h3>
   <div class='content'>
     {% if page.summary %}
     {{ page.summary | markdownify }}
