@@ -1,7 +1,7 @@
 ---
 layout: post
 title: The case of Haml v. Erb
-published: false
+published: true
 tags: ruby web performance
 summary: |
   Is using Haml over plain old Erb just trendy?
@@ -33,7 +33,7 @@ Here's a [deeper intro](http://rrn.dk/rubys-erb-templating-system).
 
 ### Haml
 
-[Haml] on the other hand, is not a templating language or engine (despite it's website saying so itself). It's a very compact Ruby-based [DSL] that generates HTML.
+[Haml] on the other hand, is not a templating language or templating engine (despite it's website saying so itself), even though the difference is subtle. It's a very compact Ruby-based [DSL] that generates HTML.
 
 Being very closely related to [Sass] and [CoffeeScript], it shares a similar syntax (with significant whitespace).
 
@@ -45,6 +45,8 @@ The example above would look like:
 
 and "compile" to the same snippet of HTML.
 
+Much like Sass takes care of some of the quirks of CSS, HAML abstracts some quirks of HTML: it takes care of closing tags, escaping, and gives a friendlier syntax to generate attributes; for instance.
+
 
 ### Comparison
 
@@ -55,13 +57,16 @@ I think it depends widely on the *type* of project you're working on.
 Erb will be easier to tackle by inexperienced/cheap devs, mostly because it feels similar to what you'll see in PHP or other platforms, hence Hassan's comment above I suppose. 
 (as a side note, significant whitespace is rarely an issue in my experience---only very junior devs still use tabs) 
 
-Haml on the other hand has the advantage of compactness---it's leaner if you will, without being obsure. It's more top-down-readable. It feels like code, and not like a hackity-hack templating engine. It's quicker to write. 
+Haml on the other hand has the advantage of **compactness**---it's leaner if you will, without being obsure. It has roughly a *2:1* character ratio to ERb. It's more top-down-readable. It feels like code, and not like a hackity-hack templating engine. It's way quicker to write. 
 
-Importantly, it also makes you DOM transparently visible in your code. 
+Importantly, it also makes you DOM transparently visible in your code—and enforces it. Let me stress that: HAML guarantees **you won't forget closing tags**.
 
-In my opinion: if quality and low technical debt are important to you (i.e. if you're working on your company's product and not on consultancy work), Haml is the way to go. 
-If your team is inexperienced (or outsourced), keep using Erb.
+In my opinion: if quality and low technical debt are important to you (i.e. if you're working on your company's product and not on consultancy work), and you can accept a slight learning curve, Haml is the way to go.
 
+If your team is inexperienced (or outsourced, or has a high turnover), keep using ERb.
+
+
+Agree? Disagree? This is a hot topic, bordering on flame bait... so feel free to comment!
 
 
 [Sass]: http://sass-lang.com/
