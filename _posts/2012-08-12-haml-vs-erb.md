@@ -18,14 +18,15 @@ If you already know about Haml and ERb, jump straight to the [comparison](#compa
 Embedded Ruby, or ERb for short, is a templating engine with a syntax that'll be familiar to anyone coming form another framework ([PHP], I'm looking at you). That is, it's plain HTML (or whatever the target language is) with little bits of Ruby code, inside special tags, that get interpreted and replaced when the template is processed
 
     <% my_var = 'hello, world' -%>
+    <% id = 'bar' -%>
     <p>
-      <span><%= my_var %></span>
+      <span class="foo" id="<%= id %>"><%= my_var %></span>
     </p>
 
 becomes
 
     <p>
-      <span>hello, world</span>
+      <span class="foo" id="bar">hello, world</span>
     </p>
 
 Here's a [deeper intro](http://rrn.dk/rubys-erb-templating-system).
@@ -40,8 +41,9 @@ Being very closely related to [Sass] and [CoffeeScript], it shares a similar syn
 The example above would look like:
 
     - my_var = 'hello, world'
+    - id = 'bar'
     %p
-      %span= my_var
+      %span.foo{ :id => id }= my_var
 
 and "compile" to the same snippet of HTML.
 
@@ -57,7 +59,7 @@ I think it depends widely on the *type* of project you're working on.
 Erb will be easier to tackle by inexperienced/cheap devs, mostly because it feels similar to what you'll see in PHP or other platforms, hence Hassan's comment above I suppose. 
 (as a side note, significant whitespace is rarely an issue in my experience---only very junior devs still use tabs) 
 
-Haml on the other hand has the advantage of **compactness**---it's leaner if you will, without being obsure. It has roughly a *2:1* character ratio to ERb. It's more top-down-readable. It feels like code, and not like a hackity-hack templating engine. It's way quicker to write. 
+Haml on the other hand has the advantage of **compactness**---it's leaner if you will, without being obsure. It has roughly a **2:1 character ratio** to ERb. It's more top-down-readable. It feels like code, and not like a hackity-hack templating engine. It's way quicker to write. 
 
 Importantly, it also makes you DOM transparently visible in your code—and enforces it. Let me stress that: HAML guarantees **you won't forget closing tags**.
 
