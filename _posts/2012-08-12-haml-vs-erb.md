@@ -56,7 +56,7 @@ ERb has a very slight performance advantage ([1], [2]) over Haml (if using [Erub
 
 I think it depends widely on the *type* of project you're working on. 
 
-Erb will be easier to tackle by inexperienced/cheap devs, mostly because it feels similar to what you'll see in PHP or other platforms, hence Hassan's comment above I suppose. 
+ERb will be easier to tackle by inexperienced devs, mostly because it feels similar to what you'll see in PHP or other platforms, hence Hassan's comment above I suppose. 
 (as a side note, significant whitespace is rarely an issue in my experience---only very junior devs still use tabs) 
 
 Haml on the other hand has the advantage of **compactness**---it's leaner if you will, without being obsure. It has roughly a **2:1 character ratio** to ERb. It's more top-down-readable. It feels like code, and not like a hackity-hack templating engine. It's way quicker to write. 
@@ -65,7 +65,7 @@ Importantly, it also makes you DOM transparently visible in your code—and enfo
 
 In my opinion: if quality and low technical debt are important to you (i.e. if you're working on your company's product and not on consultancy work), and you can accept a slight learning curve, Haml is the way to go.
 
-If your team is inexperienced (or outsourced, or has a high turnover or you can't get them to follow conventions (e.g. use spaces instead of tabs), keep using ERb.
+If your team is inexperienced (or outsourced, or has a high turnover or you can't get them to follow conventions, keep using ERb.
 
 
 Agree? Disagree? This is a hot topic, bordering on flame bait... so feel free to comment!
