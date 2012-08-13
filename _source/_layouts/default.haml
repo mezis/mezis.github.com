@@ -17,18 +17,18 @@
     %script{:src => "/assets/javascripts/main.js",          :type => "text/javascript"}
   %body
     #header-container
-    .container
+      .container
         .row
           .span12
             {% include header.html %}
     #header-sentinel
     .container
-        .row
-          .span8
-            #content
-              {{ content }}
-        .span3.offset1
-            {% include sidebar.html %}
+      .row
+        .span8
+          #content
+            {{ content }}
+      .span3.offset1
+        {% include sidebar.html %}
       .row
         .span12
           {% include footer.html %}

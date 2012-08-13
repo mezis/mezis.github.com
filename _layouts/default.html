@@ -3,7 +3,7 @@
   <head>
     <title>{% if page.title != null %}{{ page.title }}{% else %}{{ site.tagline }}{% endif %} - {{ site.title }}</title>
     <meta content='text/html;charset=UTF-8' http-equiv='content-type' />
-    <meta content='width=device-width, :initial-scale=1.0' name='viewport' />
+    <meta content='width=device-width, initial-scale=1.0' name='viewport' />
     <link href='http://fonts.googleapis.com/css?family=Arvo:400,700,400italic,700italic|Anonymous+Pro:400,400italic,700,700italic' rel='stylesheet' type='text/css' />
     <link href='/assets/stylesheets/main.css' media='all' rel='stylesheet' type='text/css' />
     {% if page.rss %}
@@ -15,7 +15,7 @@
   </head>
   <body>
     <div id='header-container'>
-    <div class='container'>
+      <div class='container'>
         <div class='row'>
           <div class='span12'>
             {% include header.html %}
@@ -25,16 +25,16 @@
     </div>
     <div id='header-sentinel'></div>
     <div class='container'>
-        <div class='row'>
-          <div class='span8'>
-            <div id='content'>
-              {{ content }}
-            </div>
-          </div>
-        <div class='span3 offset1'>
-            {% include sidebar.html %}
+      <div class='row'>
+        <div class='span8'>
+          <div id='content'>
+            {{ content }}
           </div>
         </div>
+      </div>
+      <div class='span3 offset1'>
+        {% include sidebar.html %}
+      </div>
       <div class='row'>
         <div class='span12'>
           {% include footer.html %}

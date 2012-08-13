@@ -3,9 +3,8 @@
     <a href='/'>
       {{ site.title }}
       ☛
-      <span>
-        {{ site.tagline }}
-      </span>
+      <span></span>
+      {{ site.tagline }}
     </a>
   </div>
   <a href='http://en.gravatar.com/mezis' target='_blank'>
@@ -33,7 +32,7 @@
       </a>
     </li>
     <li>
-      <a href="{{ site.production_url | replace:'http','feed' }}/atom.xml" title='Stay updated'>
+      <a href='{{ site.url }}/atom.xml' title='Stay updated'>
         <i class='icon-rss'></i>
       </a>
     </li>
