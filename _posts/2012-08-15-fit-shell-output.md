@@ -1,6 +1,6 @@
 ---
 layout: post
-title: One-liner: fitting output to your terminal
+title: Fitting output to your terminal width
 published: true
 tags: shell
 ---
