@@ -27,11 +27,11 @@ $sepColor:            $gray
 
 /* Load other libraries
 
+@import "font-awesome"
+@import "pygments"
 @import "compass/css3"
 @import "bootstrap"
 @import "bootstrap-responsive-no1200px"
-@import "font-awesome"
-@import "pygments"
 
 
 /* Custom mixins
@@ -44,7 +44,7 @@ $sepColor:            $gray
 
 
 =pill
-  @extend .label
+  @extend .label !optional
   font-family: $sansFontFamily
   font-weight: normal
 
@@ -161,6 +161,24 @@ span.tag
       font-size:    larger
       line-height:  $iconHeight
 
+/* Fix header for tablet/phone sizes
+
+@media (max-width: 767px)
+  #header-container
+    margin-left:   -20px
+    width:          100%
+
+    .container
+      padding-left:   20px
+      padding-right:  20px
+
+    .tagline
+      display: none
+
+@media (max-width: 400px)
+  #header-container
+    .icons
+      display: none
 
 /* Posts
 

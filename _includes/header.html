@@ -2,15 +2,16 @@
   <div class='title'>
     <a href='/'>
       {{ site.title }}
-      ☛
-      <span></span>
-      {{ site.tagline }}
+      <span class='tagline'>
+        ☛
+        {{ site.tagline }}
+      </span>
     </a>
   </div>
   <a href='http://en.gravatar.com/mezis' target='_blank'>
     <img height='32' src='{{ site.author.gravatar }}' width='32' />
   </a>
-  <ul class='unstyled'>
+  <ul class='unstyled icons'>
     <li>
       <a href='http://github.com/{{ site.author.github }}' title='Find me on Github'>
         <i class='icon-github'></i>

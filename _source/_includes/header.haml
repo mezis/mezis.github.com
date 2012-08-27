@@ -2,12 +2,12 @@
   .title
     %a{:href => "/"}
       {{ site.title }}
-      ☛
-      %span
-      {{ site.tagline }}
+      %span.tagline
+        ☛
+        {{ site.tagline }}
   %a{ :href => 'http://en.gravatar.com/mezis', :target => '_blank' }
     %img{ :src => "{{ site.author.gravatar }}", :width => 32, :height => 32 }
-  %ul.unstyled
+  %ul.unstyled.icons
     %li
       %a{:href => "http://github.com/{{ site.author.github }}", :title => "Find me on Github" }
         %i.icon-github
