@@ -16,6 +16,12 @@ title: Atom Feed
   </author>
 
   {% for post in site.posts %}
+  {% capture read_more_link %}
+    <br/><a href="{{ site.production_url }}{{ post.url }}">Read more...</a>
+  {% endcapture %}
+  {% capture tracking_code %}
+    <iframe height="1" width="1" frameborder="0" src="{{ site.production_url }}/tracking.html?utm_medium=rss"></iframe>
+  {% endcapture %}
   <entry>
     <title>{{ post.title }}</title>
     <link href="{{ site.production_url }}{{ post.url }}"/>
@@ -28,6 +34,7 @@ title: Atom Feed
       {% endif %}
       {{ post.content | markdownify | xml_escape }}
       {{ read_more_link | xml_escape }}
+      {{ tracking_code | xml_escape }}
     </content>
   </entry>
   {% endfor %}
