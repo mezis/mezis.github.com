@@ -7,7 +7,7 @@ tags: ruby aws sysops
 
 Be the puppeteer. Order your EC2 instances to start, stop, die, or be created from the command line. Let Guignol deal with DNS mappings and attaching EBS volumes.
 
-Grab the brand-new Guignol with `gem install guignol`, or [check out the code](https://github.com/HouseTrip/guignol).
+Grab the brand-new Guignol with `gem install guignol`, or [check out the docs](https://github.com/HouseTrip/guignol).
 
 What's new:
 
