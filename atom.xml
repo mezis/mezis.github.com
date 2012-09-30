@@ -16,9 +16,6 @@ title: Atom Feed
   </author>
 
   {% for post in site.posts %}
-  {% capture read_more_link %}
-    <br/><a href="{{ site.production_url }}{{ post.url }}">Read more...</a>
-  {% endcapture %}
   <entry>
     <title>{{ post.title }}</title>
     <link href="{{ site.production_url }}{{ post.url }}"/>
@@ -27,9 +24,9 @@ title: Atom Feed
     <content type="html">
       {% if post.summary %}
       {{ post.summary | markdownify | xml_escape }}
-      {% else %}
-      {{ post.content | markdownify | xml_escape }}
+      &lt;hr/&rt;
       {% endif %}
+      {{ post.content | markdownify | xml_escape }}
       {{ read_more_link | xml_escape }}
     </content>
   </entry>
