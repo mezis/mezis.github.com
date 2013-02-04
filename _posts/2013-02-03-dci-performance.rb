@@ -28,7 +28,7 @@ What's worse, it seems that the author inadvertently benchmark the *worst* RVM f
 The following provides a more complete benchmark to show the situation is note quite as black and white, and depends on
 
 - the RVM you're using (make and version); and
-- what method calls you're issuing (base class method or trait method, or method the trait.
+- what method calls you're issuing (base class method or trait method).
 
 
 ### Traits using `#extend`
