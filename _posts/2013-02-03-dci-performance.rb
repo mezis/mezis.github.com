@@ -10,7 +10,11 @@ summary: |
   This article aims to show that object delegation does not have a significant performance advantage over object extension, with the notable exception of MRI Ruby 1.9.2. And delegation actually much, much slower in 1.8.
 --- 
 
-> **TL;DR**: Unless you're Ruby 1.9.2, feel free to implement DCI or runtime traits using `#extend` as the performance hit is absent or small compared to other alternatives.
+
+> **TL;DR** (edited): As emerged in the comments below, there's a potentially enormous [performance hit](https://gist.github.com/mezis/5595024) to using `#extend` as each call flushes the method cache for your whole current Ruby VM, up to and including in Ruby 2.0.0.
+> Of course YMMV.
+
+Orignal **TL;DR**: Unless you're Ruby 1.9.2, feel free to implement DCI or runtime traits using `#extend` as the performance hit is absent or small compared to other alternatives.
 
 One of my [colleagues](https://github.com/hubb) recently pointed me at possible issues with the way we usually implement runtime object traits, as part of the [decorator pattern](http://en.wikipedia.org/wiki/Decorator_pattern) or [DCI](http://en.wikipedia.org/wiki/Data,_Context,_and_Interaction).
 
