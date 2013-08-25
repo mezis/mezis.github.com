@@ -1,13 +1,12 @@
 .post
-  .date-separator
-    %span
+  .post-banner
+    .post-date
       {{ page.date | date: "%e %B %Y" }}
-  %ul.taglist
-    {% for tag in page.tags %}
-    %li
-      %span.tag
+    %ul.taglist
+      {% for tag in page.tags %}
+      %li.tag
         {{ tag }}
-    {% endfor %}
+      {% endfor %}
   %h3
     %a{ :href => "{{ BASE_PATH }}{{ page.url }}" }
       {{ page.title }}

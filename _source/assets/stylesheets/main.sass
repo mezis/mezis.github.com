@@ -1,13 +1,12 @@
 
-/* Settings - fonts
+// Settings - fonts
 
 $serifFontFamily:     Arvo, serif
 $monoFontFamily:      "Anonymous Pro", Menlo, Monaco, monospaced
-/*$sansFontFamily:      "Arvo"
 $baseFontFamily:      $serifFontFamily
 $font_path:           /assets/fonts
 
-/* Settings - colors
+// Settings - colors
 
 $gray:                #aaa
 $lightGray:           lighten($gray, 10%)
@@ -21,11 +20,10 @@ $bodyBackground:      $lighterGray
 $backgroundColor:     $lighterGray
 $headercolor:         darken($backgroundColor, 3%)
 $linkColor:           $brickRed
-/*$postBackground:      white
 $sepColor:            $gray
 
 
-/* Load other libraries
+// Load other libraries
 
 @import "font-awesome"
 @import "pygments"
@@ -34,8 +32,7 @@ $sepColor:            $gray
 @import "bootstrap-responsive-no1200px"
 
 
-/* Custom mixins
-
+// Custom mixins
 
 =hyphenate
   -webkit-hyphens: auto
@@ -43,77 +40,71 @@ $sepColor:            $gray
   hyphens:         auto
 
 
-=pill
-  @extend .label !optional
-  font-family: $sansFontFamily
-  font-weight: normal
-
-
-/* Layout overrides
+// Layout overrides
 
 p
   +hyphenate
-  text-align: justify
+  // text-align: justify
 h1
-  +text-shadow(rgba(black, .15) 0px 2px 3px)
+  // +text-shadow(rgba(black, .15) 0px 2px 3px)
 h2
-  line-height:    100%
-  padding-bottom: 2px
-  margin-top:     .66em
+  line-height:    1
+  margin-top:     1em
   margin-bottom:  1ex
-  border-bottom:  3px solid transparentize($lightGray, 0.5)
+h3
+  line-height:    1
 
 
-/* General style overrides
+// General style overrides
 
 a
-  +transition-property(color opacity text-shadow text-decoration)
+  +transition-property(color opacity)
   +transition-duration(100ms)
   text-decoration: none !important
-  &:hover
-    +text-shadow($lightRed 0px 1px 5px)
+
+code
+  color: inherit
 
 
 
-/* Date pills
+// Date separators
 
-#posts
-  .date
-    +pill
-    background-color: $lightGray
-
-/* Date separators
-
-#posts .date-separator,
-.post .date-separator,
 #sidebar .separator
-  border-top: 1pt solid $sepColor
-  margin-top: 2em
-  margin-bottom: 1em
+  border-top:         1pt solid $sepColor
+  margin-top:         2em
+  margin-bottom:      1em
   span
-    text-align: center
-    color: $sepColor
-    top: -.7em
-    position: relative
-    padding-right: 1em
+    text-align:       center
+    color:            $sepColor
+    top:             -.7em
+    position:         relative
+    padding-right:    1em
     background-color: $backgroundColor
 
-/* Tags & tag lists
+// Post date
 
-ul.taglist
+.post-date
+  color:        $sepColor
+
+// Tags & tag lists
+
+.taglist
+  list-style-type:  none
+  margin-left:      0
+.tag
+  display:          inline
+  color:            $sepColor
+
+// Post banner
+
+.post-banner
   @extend .clearfix
-  margin-left: 0
-  list-style-type: none
-  li
+  .post-date
     float: left
+  .taglist
+    float: right
 
-span.tag
-  +pill
-  &.selected
-    background-color: $textColor
-
-
-/* Header
+// Header
 
 #header-container
   background-color: $darkerGray
@@ -121,22 +112,22 @@ span.tag
   position: fixed
   width: 100%
   z-index: 1
-  +box-shadow(rgba(black, .6) 0px 2px 20px)
+  +box-shadow($bodyBackground 0px 20px 10px)
 
 #header-sentinel
   height: 40px
 
 #header
-  $iconHeight: 32px
+  $iconHeight: 34px
 
-  /* override default link styling for dark background
+  // override default link styling for dark background
   a
     color: $lightRed
     opacity: 0.7
     &:hover
       opacity: 1.0
       text-decoration: none !important
-      +text-shadow(rgba(white, .7) 0px 1px 5px)
+      // +text-shadow(rgba(white, .7) 0px 0px 5px)
 
   .title
     margin-top:     8px
@@ -164,7 +155,7 @@ span.tag
       top:          6px
 
 
-/* Fix header for tablet/phone sizes
+// Fix header for tablet/phone sizes
 
 @media (max-width: 767px)
   #header-container
@@ -184,7 +175,7 @@ span.tag
       display: none
 
 
-/* Posts
+// Posts
 
 .summary
   margin-top:    1em
@@ -196,16 +187,10 @@ span.tag
 
 .post
   @extend .clearfix
-  .date
-    text-align: center
-  .taglist
-    float: right
-    text-align: right
-  h3
-    @extend .clearfix
+  margin-top:     2em
 
 
-/* Post lists
+// Post lists
 
 #posts
   li
@@ -214,7 +199,7 @@ span.tag
     margin-bottom: 2em
 
 
-/* Footer
+// Footer
 
 #footer
   padding-top: 1em
@@ -225,8 +210,8 @@ span.tag
     line-height: 100%
 
 
-/* About section
 
-#about
-  font-size: inherit
+// Disqus style overrides
 
+#disqus_thread
+  margin-top: 4em

@@ -1,18 +1,16 @@
 <div class='post'>
-  <div class='date-separator'>
-    <span>
+  <div class='post-banner'>
+    <div class='post-date'>
       {{ page.date | date: "%e %B %Y" }}
-    </span>
-  </div>
-  <ul class='taglist'>
-    {% for tag in page.tags %}
-    <li>
-      <span class='tag'>
+    </div>
+    <ul class='taglist'>
+      {% for tag in page.tags %}
+      <li class='tag'>
         {{ tag }}
-      </span>
-    </li>
-    {% endfor %}
-  </ul>
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
   <h3>
     <a href='{{ BASE_PATH }}{{ page.url }}'>
       {{ page.title }}
