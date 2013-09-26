@@ -1,32 +1,30 @@
 ---
 layout: default
 ---
-<div class='post'>
-  <div class='date-separator'>
-    <span>
-      {{ page.date | date: "%e %B %Y" }}
-    </span>
-  </div>
-  <h1>
-    {{ page.title }}
-  </h1>
-  <div class='summary'>
-    {{ page.summary | markdownify }}
-  </div>
-  <div class='content'>
-    {{ page.content | markdownify }}
+<div class='dc-post row'>
+  <div class='col-md-3 post-banner'><p>{{ page.date | date: "%e %B %Y" }}</p></div>
+  <div class='col-md-9'>
+    <h1 class='dc-post-title'>
+      {{ page.title }}
+    </h1>
+    <div class='dc-post-summary'>
+      {{ page.summary | markdownify }}
+    </div>
+    <div class='dc-post-content'>
+      {{ page.content | markdownify }}
+    </div>
+    <div id='disqus_thread'></div>
+    <script>
+      var disqus_shortname = 'dec0de';
+      (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    </script>
+    <noscript>
+      Please enable JavaScript to view the
+      <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
+    </noscript>
   </div>
 </div>
-<div id='disqus_thread'></div>
-<script>
-  var disqus_shortname = 'dec0de';
-  (function() {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-  })();
-</script>
-<noscript>
-  Please enable JavaScript to view the
-  <a href='http://disqus.com/?ref_noscript'>comments powered by Disqus.</a>
-</noscript>

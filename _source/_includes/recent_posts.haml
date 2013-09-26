@@ -1,7 +1,6 @@
-#posts
-  %ul.unstyled
-    {% for post in site.posts limit:5 %}
-    %li
-      %span.date {{ post.date | date: "%e %b" }}
-      %a{ :href => "{{ BASE_PATH }}{{ post.url }}" } {{ post.title }}
-    {% endfor %}
+%ul.dc-posts-shortlist
+  {% for post in site.posts limit:5 %}
+  %li
+    %span.dc-short-date {{ post.date | date: "%e %b" }}
+    %a{ :href => "{{ BASE_PATH }}{{ post.url }}" } {{ post.title }}
+  {% endfor %}

@@ -1,10 +1,12 @@
 
-// Settings - fonts
+// Settings - typography
 
-$serifFontFamily:     Arvo, serif
-$monoFontFamily:      "Anonymous Pro", Menlo, Monaco, monospaced
-$baseFontFamily:      $serifFontFamily
-$font_path:           /assets/fonts
+$font-family-serif:     "Roboto Slab", serif
+$font-family-monospace: "Anonymous Pro", Menlo, Monaco, monospaced
+$font-family-base:      $font-family-serif
+$font_path:             /assets/fonts
+// $line-height-base:      1.7
+$font-size-base:        16px
 
 // Settings - colors
 
@@ -16,20 +18,23 @@ $lighterGray:         #f4f4f4
 $brickRed:            #8e1600
 $lightRed:            lighten($brickRed, 50%)
 
-$bodyBackground:      $lighterGray
+$body-bg:             $lighterGray
 $backgroundColor:     $lighterGray
 $headercolor:         darken($backgroundColor, 3%)
-$linkColor:           $brickRed
-$sepColor:            $gray
+$link-color:          $brickRed
+$text-muted:            $gray
+
+// Settings - layout
+
+$nav-link-padding: 5px
 
 
 // Load other libraries
 
-@import "font-awesome"
-@import "pygments"
-@import "compass/css3"
-@import "bootstrap"
-@import "bootstrap-responsive-no1200px"
+@import font-awesome
+@import pygments
+@import compass/css3
+@import bootstrap
 
 
 // Custom mixins
@@ -44,16 +49,20 @@ $sepColor:            $gray
 
 p
   +hyphenate
-  // text-align: justify
-h1
-  // +text-shadow(rgba(black, .15) 0px 2px 3px)
-h2
-  line-height:    1
-  margin-top:     1em
-  margin-bottom:  1ex
-h3
-  line-height:    1
+  text-align: justify
 
+ul
+  list-style-type: circle
+
+figure
+  margin-top:     1em
+  margin-bottom:  1em
+  text-align:     center
+  > figcaption
+    color:          $text-muted
+  > img
+    border:         5px solid white
+    max-width:      100%
 
 // General style overrides
 
@@ -65,149 +74,92 @@ a
 code
   color: inherit
 
+.text-muted a
+  opacity: 0.6
 
 
-// Date separators
+// Sidebar
 
-#sidebar .separator
-  border-top:         1pt solid $sepColor
+#sidebar
+  > :first-child
+    margin-top: 0
+
+
+// Fancy separators
+
+.dc-separator
+  border-top:         1pt solid $text-muted
   margin-top:         2em
   margin-bottom:      1em
   span
-    text-align:       center
-    color:            $sepColor
-    top:             -.7em
     position:         relative
+    text-align:       center
+    color:            $text-muted
+    top:             -.7em
     padding-right:    1em
     background-color: $backgroundColor
+  position:           relative
+  top:                .7em
 
-// Post date
-
-.post-date
-  color:        $sepColor
-
-// Tags & tag lists
-
-.taglist
-  list-style-type:  none
-  margin-left:      0
-.tag
-  display:          inline
-  color:            $sepColor
-
-// Post banner
+// Post metadata
 
 .post-banner
-  @extend .clearfix
-  .post-date
-    float: left
-  .taglist
-    float: right
+  color:        $text-muted
+
+.dc-short-date
+  white-space:  nowrap
 
 // Header
 
-#header-container
-  background-color: $darkerGray
-  padding: 0.5ex 0
-  position: fixed
-  width: 100%
-  z-index: 1
-  +box-shadow($bodyBackground 0px 20px 10px)
-
 #header-sentinel
-  height: 40px
+  height: 90px
 
 #header
-  $iconHeight: 34px
-
-  // override default link styling for dark background
-  a
-    color: $lightRed
-    opacity: 0.7
-    &:hover
-      opacity: 1.0
-      text-decoration: none !important
-      // +text-shadow(rgba(white, .7) 0px 0px 5px)
-
-  .title
-    margin-top:     8px
-    float:          left
-    a
-      font-size:    x-large
-      font-family:  $headingsFontFamily
-      font-weight:  lighter
-      span
-        opacity:    0.6
-  img
-    +border-radius(3px)
-    float:          right
-    margin-left:    2em
-    height:         $iconHeight
-  ul
-    float:          right
-    margin-left:    1em
-    margin-bottom:  0
-    li
-      display:      inline
-      font-size:    larger
-      line-height:  $iconHeight
-      position:     relative
-      top:          6px
+  background-image:  url(http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb.png)
+  background-size:   contain
+  background-repeat: no-repeat
+  padding-left:      $navbar-height + 5px
 
 
-// Fix header for tablet/phone sizes
+.dc-title
+  font-size: larger
 
-@media (max-width: 767px)
-  #header-container
-    margin-left:   -20px
-    width:          100%
-
-    .container
-      padding-left:   20px
-      padding-right:  20px
-
-    .tagline
-      display: none
-
-@media (max-width: 400px)
-  #header-container
-    .icons
-      display: none
+.dc-tagline
+  opacity:    0.6
 
 
 // Posts
 
-.summary
-  margin-top:    1em
-  margin-bottom: 2em
+.dc-post-title
+  margin-top:       0
+
+.dc-post-summary
+  margin-top:       1em
+  margin-bottom:    2em
   p
-    font-style: italic
+    @extend .lead
   a.read
-    display: block
+    display:        block
 
-.post
-  @extend .clearfix
-  margin-top:     2em
-
-
-// Post lists
-
-#posts
+.dc-posts-shortlist
+  padding-left:     0
   li
-    display: inline
-  .post
-    margin-bottom: 2em
+    display:        inline
+    margin-right:   1ex
+
+.dc-post
+  margin-bottom:    4em
 
 
 // Footer
 
 #footer
-  padding-top: 1em
+  padding-top:      2em
+  padding-bottom:   1em
   +opacity(0.7)
   p
-    display:     inline
-    font-size:   smaller
-    line-height: 100%
+    display:        inline
+    font-size:      smaller
 
 
 

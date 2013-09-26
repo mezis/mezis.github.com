@@ -1,19 +1,15 @@
-.post
-  .post-banner
-    .post-date
+.dc-post.row
+  .col-md-3.post-banner
+    %p<>
       {{ page.date | date: "%e %B %Y" }}
-    %ul.taglist
-      {% for tag in page.tags %}
-      %li.tag
-        {{ tag }}
-      {% endfor %}
-  %h3
-    %a{ :href => "{{ BASE_PATH }}{{ page.url }}" }
-      {{ page.title }}
-  .content
-    {% if page.summary %}
-    {{ page.summary | markdownify }}
-    %a.read{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article →
-    {% else %}
-    {{ page.content | markdownify }}
-    {% endif %}
+  .col-md-9
+    %h3.dc-post-title
+      %a{ :href => "{{ BASE_PATH }}{{ page.url }}" }
+        {{ page.title }}
+    .content
+      {% if page.summary %}
+      {{ page.summary | markdownify }}
+      %a.read{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article →
+      {% else %}
+      {{ page.content | markdownify }}
+      {% endif %}

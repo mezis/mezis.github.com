@@ -1,42 +1,21 @@
-<div id='header'>
-  <div class='title'>
-    <a href='/'>
+<nav class='navbar navbar-default navbar-fixed-top' id='header' role='navigation'>
+  <div class='navbar-header dc-title visible-xs visible-sm'>
+    <a class='navbar-brand' href='/'>
       {{ site.title }}
-      <span class='tagline'>
+    </a>
+  </div>
+  <div class='navbar-header dc-title hidden-xs hidden-sm'>
+    <a class='navbar-brand' href='/'>
+      {{ site.title }}
+      <span class='dc-tagline'>
         ☛
         {{ site.tagline }}
       </span>
     </a>
   </div>
-  <a href='http://en.gravatar.com/mezis' target='_blank'>
-    <img height='32' src='{{ site.author.gravatar }}' width='32'>
-  </a>
-  <ul class='unstyled icons'>
-    <li>
-      <a href='http://github.com/{{ site.author.github }}' title='Find me on Github'>
-        <i class='icon-github'></i>
-      </a>
-    </li>
-    <li>
-      <a href='http://twitter.com/{{ site.author.twitter }}' title='Follow me on Twitter'>
-        <i class='icon-twitter'></i>
-      </a>
-    </li>
-    <li>
-      <a href='http://linkedin.com/in/{{ site.author.linkedin }}' title='Find me on LinkedIn'>
-        <i class='icon-linkedin'></i>
-      </a>
-    </li>
-    <li>
-      <a href='https://plus.google.com/{{ site.author.googleplus_id }}' title='Follow me on Google+'>
-        <i class='icon-google-plus-sign'></i>
-      </a>
-    </li>
-    <li>
-      <a href='{{ site.url }}/atom.xml' title='Stay updated'>
-        <i class='icon-rss'></i>
-      </a>
-    </li>
-  </ul>
-  <div class='clearfix'></div>
-</div>
+  <div class='navbar-text navbar-right hidden-xs'><a class='navbar-link' href='http://github.com/{{ site.author.github }}' title='Find me on Github'><i class='icon-github'></i></a></div>
+  <div class='navbar-text navbar-right hidden-xs'><a class='navbar-link' href='http://twitter.com/{{ site.author.twitter }}' title='Follow me on Twitter'><i class='icon-twitter'></i></a></div>
+  <div class='navbar-text navbar-right hidden-xs'><a class='navbar-link' href='http://linkedin.com/in/{{ site.author.linkedin }}' title='Find me on LinkedIn'><i class='icon-linkedin'></i></a></div>
+  <div class='navbar-text navbar-right hidden-xs'><a class='navbar-link' href='https://plus.google.com/{{ site.author.googleplus_id }}' title='Follow me on Google+'><i class='icon-google-plus-sign'></i></a></div>
+  <div class='navbar-text navbar-right hidden-xs'><a class='navbar-link' href='{{ site.url }}/atom.xml' title='Stay updated'><i class='icon-rss'></i></a></div>
+</nav>

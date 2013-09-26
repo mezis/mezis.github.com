@@ -5,7 +5,7 @@ gem 'liquid', '2.2.2'
 
 gem 'haml'
 gem 'compass'
-gem 'bootstrap-sass'
+gem 'bootstrap-sass', git: 'https://github.com/thomas-mcdonald/bootstrap-sass.git'
 
 gem 'rake'
 gem 'pry'

@@ -1,27 +1,29 @@
-#header
-  .title
-    %a{:href => "/"}
+%nav.navbar.navbar-default.navbar-fixed-top#header{ role: 'navigation' }
+
+  .navbar-header.dc-title.visible-xs.visible-sm
+    %a.navbar-brand{:href => "/"}
       {{ site.title }}
-      %span.tagline
+
+  .navbar-header.dc-title.hidden-xs.hidden-sm
+    %a.navbar-brand{:href => "/"}
+      {{ site.title }}
+      %span.dc-tagline
         ☛
         {{ site.tagline }}
-  %a{ :href => 'http://en.gravatar.com/mezis', :target => '_blank' }
-    %img{ :src => "{{ site.author.gravatar }}", :width => 32, :height => 32 }
-  %ul.unstyled.icons
-    %li
-      %a{:href => "http://github.com/{{ site.author.github }}", :title => "Find me on Github" }
-        %i.icon-github
-    %li
-      %a{:href => "http://twitter.com/{{ site.author.twitter }}", :title => "Follow me on Twitter" }
-        %i.icon-twitter
-    %li
-      %a{:href => "http://linkedin.com/in/{{ site.author.linkedin }}", :title => "Find me on LinkedIn"}
-        %i.icon-linkedin
-    %li
-      %a{ :href => "https://plus.google.com/{{ site.author.googleplus_id }}", :title => "Follow me on Google+" }
-        %i.icon-google-plus-sign
-    %li
-      %a{:href => "{{ site.url }}/atom.xml", :title => "Stay updated"}
-        %i.icon-rss
-  .clearfix
+
+  .navbar-text.navbar-right.hidden-xs
+    %a.navbar-link{:href => "http://github.com/{{ site.author.github }}", :title => "Find me on Github" }<>
+      %i.icon-github
+  .navbar-text.navbar-right.hidden-xs
+    %a.navbar-link{:href => "http://twitter.com/{{ site.author.twitter }}", :title => "Follow me on Twitter" }<>
+      %i.icon-twitter
+  .navbar-text.navbar-right.hidden-xs
+    %a.navbar-link{:href => "http://linkedin.com/in/{{ site.author.linkedin }}", :title => "Find me on LinkedIn"}<>
+      %i.icon-linkedin
+  .navbar-text.navbar-right.hidden-xs
+    %a.navbar-link{ :href => "https://plus.google.com/{{ site.author.googleplus_id }}", :title => "Follow me on Google+" }<>
+      %i.icon-google-plus-sign
+  .navbar-text.navbar-right.hidden-xs
+    %a.navbar-link{:href => "{{ site.url }}/atom.xml", :title => "Stay updated"}<>
+      %i.icon-rss
 
