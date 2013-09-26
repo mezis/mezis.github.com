@@ -2,7 +2,7 @@
 layout: post
 title: Where do I put my data?
 published: true
-tags: ruby rails design good pratice
+tags: ruby rails design good_pratice
 summary: |
   Your typical web application doesn't just need data about your customers' accounts and your products' prices.
 
