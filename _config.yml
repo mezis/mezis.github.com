@@ -3,7 +3,8 @@
 permalink: /:categories/:year/:month/:title 
 
 exclude: ["Rakefile", "Gemfile", "Gemfile.lock", "_source"]
-auto: true
+
+markdown: maruku
 pygments: true
 
 # Themes are encouraged to use these universal variables

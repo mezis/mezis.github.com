@@ -74,13 +74,13 @@ task :css => CSS
 
 desc "Launch preview environment"
 task :preview => (HTML + CSS + [:watch_haml, :watch_sass]) do
-  system "jekyll --auto --server"
+  system "jekyll server -w"
 end
 
 
 desc "Build site"
 task :build => [:html,:css] do
-  system "jekyll --no-auto"
+  system "jekyll build"
 end
 
 
