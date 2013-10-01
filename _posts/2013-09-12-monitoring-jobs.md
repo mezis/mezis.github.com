@@ -66,7 +66,9 @@ SQL database behind it) couldn't take it anymore.
 
 Things were as simple as "delaying" method calls:
 
-    WelcomeMailer.delay.deliver_welcome_email(current_user)
+{% highlight ruby %}
+WelcomeMailer.delay.deliver_welcome_email(current_user)
+{% endhighlight %}
 
 Because some jobs are more urgent than others, we started using DelayedJobs
 [priorities](http://rubydoc.info/gems/delayed_job/#Queuing_Jobs): each type
@@ -84,8 +86,10 @@ from all queues.
 
 It quickly becomes natural to do this:
 
-    WelcomeMailer.delay(priority:1).deliver_email(current_user)
-    UnsubscribeMailer.delay(priority:999).deliver_email(current_user)
+{% highlight ruby %}
+WelcomeMailer.delay(priority:1).deliver_email(current_user)
+UnsubscribeMailer.delay(priority:999).deliver_email(current_user)
+{% endhighlight %}
 
 It's served us well, until a little over a year ago.
 
@@ -163,17 +167,23 @@ it complete?**.
 
 Implementing this turns out to be simple. We've added some naming sugar:
 
-    module Delayed::Priority
-      REALTIME = 0
-      MINUTES  = 25
-      HOUR     = 50
-      DAY      = 75
-      WEEK     = 100
-    end
+{% highlight ruby %}
+module Delayed::Priority
+  REALTIME = 0
+  MINUTES  = 25
+  HOUR     = 50
+  DAY      = 75
+  WEEK     = 100
+end
+{% endhighlight %}
 
 and schedule jobs using named urgency bands:
 
-    RememberTheMilkService.new.delay(priority: Delayed::Priority::DAY).run
+{% highlight ruby %}
+RememberTheMilkService.new
+.delay(priority: Delayed::Priority::DAY)
+.run
+{% endhighlight %}
 
 Our DelayedJob-based queue/dispatch subsystem now makes a simple promise: if
 you give me a job with `HOUR` priority, I'll start running it within the
@@ -223,22 +233,27 @@ When none of the queues are stale, it's running under capacity, and some of your
 
 Implementing this turned out to be quite easy:
 
-    schedule.every('10s') do
-      now = Time.now.utc
+{% highlight ruby %}
+schedule.every('10s') do
+  now = Time.now.utc
 
-      Delayed::Priority.constants.each do |priority_name|
-        priority = "Delayed::Priority::#{priority_name}".constantize
+  Delayed::Priority.constants.each do |priority_name|
+    priority = "Delayed::Priority::#{priority_name}".constantize
 
-        earliest_job = Delayed::Job
-          .where(:priority => type, :attempts => 0, :locked_by => nil)
-          .fields(:created_at)
-          .sort(:created_at)
-          .limit(1).first
-        staleness = earliest_job ? earliest_job[:created_at].getutc.to_i : 0
+    earliest_job = Delayed::Job
+      .where(:priority => type, :attempts => 0, :locked_by => nil)
+      .fields(:created_at)
+      .sort(:created_at)
+      .limit(1).first
+    staleness = earliest_job ? 
+      earliest_job[:created_at].getutc.to_i : 
+      0
 
-        STATSD.gauge 'dj.staleness', staleness, tags: ["queue:#{priority_name}"]
-      end
-    end
+    STATSD.gauge 'dj.staleness', staleness,
+      tags: ["queue:#{priority_name}"]
+  end
+end
+{% endhighlight %}
 
 `STATSD` being a Statsd client, in our case courtesy of the datadog gem
 (code simplified for the sake of the discussion).
