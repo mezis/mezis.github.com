@@ -18,5 +18,8 @@ And now for [something completely different](http://www.youtube.com/watch?v=y0fF
 And I declare it's too bad, that it is!' As she said these words her foot slipped, and in another moment, splash!  she was up to her chin in salt water. Her first idea was that she  had somehow fallen into the sea, 'and in that case I can go back by
 
 
-
-
+{% highlight ruby %}
+def foo
+  puts 'foo'
+end
+{% endhighlight %}
