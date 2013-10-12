@@ -11,19 +11,21 @@
         ☛
         {{ site.tagline }}
 
-  .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{href: "http://github.com/{{ site.author.github }}", title: "Find me on Github" }<>
-      %i.icon-github
-  .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{href: "http://twitter.com/{{ site.author.twitter }}", title: "Follow me on Twitter" }<>
-      %i.icon-twitter
-  .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{href: "http://linkedin.com/in/{{ site.author.linkedin }}", title: "Find me on LinkedIn"}<>
-      %i.icon-linkedin
-  .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{ href: "https://plus.google.com/{{ site.author.googleplus_id }}", title: "Follow me on Google+" }<>
-      %i.icon-google-plus-sign
-  .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{href: "{{ site.url }}/atom.xml", title: "Stay updated"}<>
-      %i.icon-rss
+  .hidden-xs
+    .navbar-text.navbar-right
+      %a.navbar-link{href: "http://github.com/{{ site.author.github }}", title: "Find me on Github" }<>
+        %i.icon-github
+    .navbar-text.navbar-right
+      %a.navbar-link{href: "http://twitter.com/{{ site.author.twitter }}", title: "Follow me on Twitter" }<>
+        %i.icon-twitter
+    .navbar-text.navbar-right
+      %a.navbar-link{href: "http://linkedin.com/in/{{ site.author.linkedin }}", title: "Find me on LinkedIn"}<>
+        %i.icon-linkedin
+    .navbar-text.navbar-right
+      %a.navbar-link{ href: "https://plus.google.com/{{ site.author.googleplus_id }}?rel=author", title: "Follow me on Google+", rel: 'author' }<>
+        %i.icon-google-plus-sign
+    .navbar-text.navbar-right
+      %a.navbar-link{href: "{{ site.url }}/atom.xml", title: "Stay updated"}<>
+        %i.icon-rss
+
 
