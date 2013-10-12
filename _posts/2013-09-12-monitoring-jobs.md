@@ -261,7 +261,9 @@ end
 The last bit being cute graphs and setting up alerts, which probably took 15
 minutes overall. Here's a few of the staleness graphs:
 
-<img src="/public/2013-09-12-staleness.png" class="center-image" title="Staleness over time" alt="Staleness over time"/>
+<figure>
+  <img src="/public/2013-09-12-staleness.png" class="dc-picture" alt="Staleness over time"/>
+</figure>
 
 All of us get an email alert if any of these go over 1.
 
@@ -302,12 +304,3 @@ pain points.
 
 Have fun with jobs!
 
-
-<style type="text/css">
-  .center-image {
-    display:    block;
-    margin:     1.4em auto !important;
-    width:      66%;
-    height:     auto;
-  }
-</style>

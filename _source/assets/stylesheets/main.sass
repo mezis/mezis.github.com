@@ -2,7 +2,7 @@
 // Settings - typography
 
 $font-family-serif:     "Roboto Slab", serif
-$font-family-monospace: "Anonymous Pro", Menlo, Monaco, monospaced
+$font-family-monospace: "Lekton", Menlo, Monaco, monospaced
 $font-family-base:      $font-family-serif
 $font_path:             /assets/fonts
 // $line-height-base:      1.7
@@ -22,7 +22,8 @@ $body-bg:             $lighterGray
 $backgroundColor:     $lighterGray
 $headercolor:         darken($backgroundColor, 3%)
 $link-color:          $brickRed
-$text-muted:            $gray
+$text-muted:          $gray
+$code-bg:             transparent
 
 // Settings - layout
 
@@ -58,11 +59,10 @@ figure
   margin-top:     1em
   margin-bottom:  1em
   text-align:     center
-  > figcaption
-    color:          $text-muted
-  > img
-    border:         5px solid white
+  img
     max-width:      100%
+figcaption
+  color:          $text-muted
 
 // General style overrides
 
@@ -72,7 +72,10 @@ a
   text-decoration: none !important
 
 code
-  color: inherit
+  color:            inherit
+  border:           1px solid $lightGray
+  // background-color: transparent
+  font-size:        inherit
 
 .text-muted a
   opacity: 0.6
@@ -149,6 +152,12 @@ code
 
 .dc-post
   margin-bottom:    4em
+
+
+// Figures
+
+.dc-picture
+  border:         5px solid white
 
 
 // Footer
