@@ -1,29 +1,29 @@
 %nav.navbar.navbar-default.navbar-fixed-top#header{ role: 'navigation' }
 
   .navbar-header.dc-title.visible-xs.visible-sm
-    %a.navbar-brand{:href => "/"}
+    %a.navbar-brand{href: "/"}
       {{ site.title }}
 
   .navbar-header.dc-title.hidden-xs.hidden-sm
-    %a.navbar-brand{:href => "/"}
+    %a.navbar-brand{href: "/"}
       {{ site.title }}
       %span.dc-tagline
         ☛
         {{ site.tagline }}
 
   .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{:href => "http://github.com/{{ site.author.github }}", :title => "Find me on Github" }<>
+    %a.navbar-link{href: "http://github.com/{{ site.author.github }}", title: "Find me on Github" }<>
       %i.icon-github
   .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{:href => "http://twitter.com/{{ site.author.twitter }}", :title => "Follow me on Twitter" }<>
+    %a.navbar-link{href: "http://twitter.com/{{ site.author.twitter }}", title: "Follow me on Twitter" }<>
       %i.icon-twitter
   .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{:href => "http://linkedin.com/in/{{ site.author.linkedin }}", :title => "Find me on LinkedIn"}<>
+    %a.navbar-link{href: "http://linkedin.com/in/{{ site.author.linkedin }}", title: "Find me on LinkedIn"}<>
       %i.icon-linkedin
   .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{ :href => "https://plus.google.com/{{ site.author.googleplus_id }}", :title => "Follow me on Google+" }<>
+    %a.navbar-link{ href: "https://plus.google.com/{{ site.author.googleplus_id }}", title: "Follow me on Google+" }<>
       %i.icon-google-plus-sign
   .navbar-text.navbar-right.hidden-xs
-    %a.navbar-link{:href => "{{ site.url }}/atom.xml", :title => "Stay updated"}<>
+    %a.navbar-link{href: "{{ site.url }}/atom.xml", title: "Stay updated"}<>
       %i.icon-rss
 
