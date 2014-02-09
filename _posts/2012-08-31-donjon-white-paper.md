@@ -4,13 +4,19 @@ title: "RFC: Donjon, a credentials server"
 published: true
 tags: sysops web security
 summary: |
-  I've been bugged by the fact that everyone seems pretty content with unencrypted credentials lying around in the codebases of their apps.
+  I've been bugged by the fact that everyone seems pretty content with
+  unencrypted credentials lying around in the codebases of their apps.
 
-  To fix this, some rely on delivering sensitive information (certificate files, passwords) via Puppet, which is overly complicated and doesn't specifically address the handling of credentials.
+  To fix this, some rely on delivering sensitive information (certificate files,
+  passwords) via Puppet, which is overly complicated and doesn't specifically
+  address the handling of credentials.
 
-  Others, because they work with a PaaS, work around it by having a few select people push the keys and passwords to their host---as done with [Heroku](https://devcenter.heroku.com/articles/config-vars)) for instance.
+  Others, because they work with a PaaS, work around it by having a few select
+  people push the keys and passwords to their host---as done with
+  [Heroku](https://devcenter.heroku.com/articles/config-vars)) for instance.
 
-  Here's my take of what (my) ideal credentials management solution would look like: a Heroku-like, distributed and secure credential management tool.
+  Here's my take of what (my) ideal credentials management solution would look
+  like: a Heroku-like, distributed and secure credential management tool.
 
   What's you opinion?
 
@@ -18,26 +24,37 @@ summary: |
 
 ## Envisionment : *donjon*, a simple, standards-based, and secure credentials store for distributed applications
 
-*donjon* is a secure, low-throughput key-value store, built on top of Git (distribution), OpenSSL (encryption) and OpenSSH (authentication and authorisation).
+*donjon* is a secure, low-throughput key-value store, built on top of Git
+(distribution), OpenSSL (encryption) and OpenSSH (authentication and
+authorisation).
 
-The original use case is distributing secrets for 3rd-party applications (think AWS S3) to web applications without storing them in the codebase, or anywhere in plain text.
+The original use case is distributing secrets for 3rd-party applications (think
+AWS S3) to web applications without storing them in the codebase, or anywhere in
+plain text.
 
-Once *donjon* is set up, running a service with an environment containing your credentials is a one-liner (example of a Rack server):
+Once *donjon* is set up, running a service with an environment containing your
+credentials is a one-liner (example of a Rack server):
 
     env `donjon` bundle exec rackup
 
-*donjon* is written in Ruby annd distributed as a Rubygem, but is entirely framework.
+*donjon* is written in Ruby annd distributed as a Rubygem, but is entirely
+framework.
 
 
 ### Issues addressed by *donjon*
 
-The way we manage credentials (S3 keys, MySQL passwords, SSL private keys, etc) tends to be insecure and hard to maintain.
+The way we manage credentials (S3 keys, MySQL passwords, SSL private keys, etc)
+tends to be insecure and hard to maintain.
 
 - Codebases are littered with clear-text credentials in configuration files;
 - Credentials are repeated in multiple projects;
-- Some credentials (SSL certificates for instance) are distributed by a central server (puppet, chef); for "security" these credentials and the corresponding codebase are not versioned;
-- Because of the above, it is difficult to update or distribute credentials across a complex system (multiple services, machines, codebases);
-- We have no way to prevent credentials from being used by a compromised machine/account.
+- Some credentials (SSL certificates for instance) are distributed by a central
+  server (puppet, chef); for "security" these credentials and the corresponding
+  codebase are not versioned;
+- Because of the above, it is difficult to update or distribute credentials
+  across a complex system (multiple services, machines, codebases);
+- We have no way to prevent credentials from being used by a compromised
+  machine/account.
 
 
 
@@ -47,19 +64,25 @@ A credential store is just a key/value store with a few specifics:
 
 - it get read often, by multiple clients services;
 - it rarely gets written to, and then only by humans;
-- it needs to be security-conscious---authorise only specific actors to read or write.
+- it needs to be security-conscious---authorise only specific actors to read or
+  write.
 
-Several if the underlying technical challenges have been solved elsewhere; we're not trying to reinvent the following wheels:
+Several if the underlying technical challenges have been solved elsewhere; we're
+not trying to reinvent the following wheels:
 
-- **authentication and authorisation**: *donjon* uses SSH and/or the system (i.e. filesystem permissions);
-- **privacy**: *donjon* uses OpenSSL public key encryption to encrypt credentials;
-- **version control and distribution**. *donjon* uses Git to store and distribute (encrypted) credentials.
+- **authentication and authorisation**: *donjon* uses SSH and/or the system
+  (i.e. filesystem permissions);
+- **privacy**: *donjon* uses OpenSSL public key encryption to encrypt
+  credentials;
+- **version control and distribution**. *donjon* uses Git to store and
+  distribute (encrypted) credentials.
 
 
 
 ## Installation & Usage
 
-*donjon* installs as a Ruby gem. Assuming a fairly standard Ruby installation, just run:
+*donjon* installs as a Ruby gem. Assuming a fairly standard Ruby installation,
+just run:
 
     $ gem install donjon
     
@@ -121,8 +144,8 @@ Test it by adding a first key.
 
 ### Adding and removing developers
 
-Ask the new developer for his or her SSH identity (public key, usually in `~/.ssh/id_dsa`).
-If necessary they can generate one with 
+Ask the new developer for his or her SSH identity (public key, usually in
+`~/.ssh/id_dsa`).  If necessary they can generate one with 
 
     new-dev$ ssh-keygen -t dsa
 
@@ -155,7 +178,8 @@ Remember to also de-authorise them from your organisation's Github account.
 
 ### Setting up the *donjon* server
 
-A donjon server is just another peer, simply one that can't push to your shared repository.
+A donjon server is just another peer, simply one that can't push to your shared
+repository.
 
 - Set up a `deploy` account on `castle.example.com`, for instance.
 - Create an SSH key for it.
@@ -175,17 +199,22 @@ Remember to set up a `cron(8)` job to update the credentials store regularly:
 
 *donjon* leverages (and trusts) SSH for authentication and authorisation.
 
-If a client doesn't have a repository, it will try to call *donjon* over SSH on another machine.
+If a client doesn't have a repository, it will try to call *donjon* over SSH on
+another machine.
 
-Calling `donjon get my_gey` from a shell (or `donjon.my_key` in Ruby) behaves mostly like calling
+Calling `donjon get my_gey` from a shell (or `donjon.my_key` in Ruby) behaves
+mostly like calling
 
     $ ssh donjon.example.com donjon get my_key
 
-The default server name is `donjon`, in the machine's domain name as provided by Ruby's `Socket.gethostname`.
+The default server name is `donjon`, in the machine's domain name as provided by
+Ruby's `Socket.gethostname`.
 
-You can control the host *donjon* will connect to by setting `DONJON_SERVER` in your environment.
+You can control the host *donjon* will connect to by setting `DONJON_SERVER` in
+your environment.
 
-Remember to setup your server as above, and to allow your client to connect via SSH (using `~/.ssh/authorized_keys` on the server).
+Remember to setup your server as above, and to allow your client to connect via
+SSH (using `~/.ssh/authorized_keys` on the server).
 
 
 
@@ -196,17 +225,21 @@ Remember to setup your server as above, and to allow your client to connect via 
     donjon -- a no-frills credentials store
         
     client ramblings:
-        $ donjon                        same as "donjon get"
-        $ donjon get                    print all available credentials in a format
-                                          suitable for a shell's export and env commands
-        $ donjon get <key>              print the value of a single credential
+        $ donjon                    same as "donjon get".
+        $ donjon get                print all available credentials
+                                    in a format suitable for a shell
+                                    'export' and 'env' commands.
+        $ donjon get <key>          print the value of a single
+                                    credential.
     
     dev/server incantations:
-        $ donjon init [url]             clone the repository to ~/.donjon
-        $ donjon update                 updates the credential store
-        $ donjon set <key> <value>      add a key/value pair to the store ("nil" value deletes)
-                                          repeat to store multiple pairs.
-        $ donjon peer add [name] [key]  authorise a new (human) user for writing
+        $ donjon init [url]         clone the repository to ~/.donjon
+        $ donjon update             updates the credential store
+        $ donjon set <key> <value>  add a key/value pair to the store
+                                    ("nil" value deletes); repeat to
+                                    store multiple pairs.
+        $ donjon peer add [name] [key]
+                authorise a new (human) user for writing
                 
     (the dev commands may commit and push to a Git repository)
 
