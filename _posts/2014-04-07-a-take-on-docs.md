@@ -12,6 +12,9 @@ summary: |
   need minimal documentation.
 ---
 
+_This article was cross-posted from the [HouseTrip dev
+blog](http://dev.housetrip.com/2014/04/07/a-take-on-docs/)._
+
 
 I decided to try to write it down properly after receiving this email from
 [Nilan](https://twitter.com/nilanp):
