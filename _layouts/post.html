@@ -7,9 +7,11 @@ layout: default
     <h1 class='dc-post-title'>
       {{ page.title }}
     </h1>
+    {% if page.summary %}
     <div class='dc-post-summary'>
       {{ page.summary | markdownify }}
     </div>
+    {% endif %}
     <div class='dc-post-content'>
       {{ content }}
     </div>
