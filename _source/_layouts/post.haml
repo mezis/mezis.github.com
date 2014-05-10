@@ -9,8 +9,10 @@
   .col-md-9
     %h1.dc-post-title
       {{ page.title }}
+    {% if page.summary != null %}
     .dc-post-summary
       {{ page.summary | markdownify }}
+    {% endif %}
     .dc-post-content
       {{ content }}
     #disqus_thread
