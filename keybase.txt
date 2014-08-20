@@ -1,0 +1,74 @@
+==================================================================
+https://keybase.io/mezis
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://dec0de.me
+  * I am mezis (https://keybase.io/mezis) on keybase.
+  * I have a public key with fingerprint 18F3 9C07 AF6D 731A 1D3B  04A0 FA02 40E8 5344 1C47
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.4.18"
+        },
+        "key": {
+            "fingerprint": "18f39c07af6d731a1d3b04a0fa0240e853441c47",
+            "host": "keybase.io",
+            "key_id": "FA0240E853441C47",
+            "uid": "e7a03960a9dc5a70719146f36d21f800",
+            "username": "mezis"
+        },
+        "merkle_root": {
+            "ctime": 1408521327,
+            "hash": 
+"463f79ae7310eacf750390d1f56008ae04946b980d89dbc03b7591f2918ff94aeb75741ecb1497cb66ae23196eb324a9fb9b88f100c415010dafcf4d0ae9a42e",
+            "seqno": 41797
+        },
+        "service": {
+            "hostname": "dec0de.me",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1408521389,
+    "expire_in": 157680000,
+    "prev": "ee67f7c1f02917799eb7440c6fa16bbd1660d5e60d510b5dd80f159ce1c85b54",
+    "seqno": 4,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+Comment: GPGTools - http://gpgtools.org
+
+owFdkr9rFEEUx9ckShQEU6UynlsIYjje7M7O7ByCiOg/YBCV4Dk/3iST3O1edjen
+SUhnISnEQv+CFDZK0EY70cYiYCVWthb2aYKgzlwiRJthfnzee9/ve/P09Hg0OXVl
+Yv7TzvTM+LHdHyq6uTf3aiNWpVmLOxux7jksmrArZB/jTryMa0rW2HZlqygNtpfq
+1iEzGw+xql1ZeAratE3yeHM28CHaumIBq0HlQrKY5DYVGri0zPCUSGJSBVSClZBQ
+wDxLKSWacp9zsaybf8rGo5xdZ/ztjauBv37AXxvxq6MH5BJSwUAKozPJgRNBKLMp
+MwmxOUAAa6wOPfVx3dVBbB+r5R52q7IcWdaNC++EQp4lJE24lyPrRR9BWWq5kOjF
+A0pteebLgSE2YwC5RKCCMiVyMLkwSkOqeCaITYR3bgWV6M+cEtSKUMG1YkxikhLB
+UKUJlcIqofLcEgBNSQYEjLTaUgMShaQJev01rhRl3KGEC74ZjtXQaQyyQ8sOnRnU
+4IfUDwGDqmxKXfb89WLTDDrBcLM2CNgDVN2DBC+wq1xh/LSOzpN49L9m5GI2xocD
+V2HXBSLjzPcVINTBYRgBMm65Jha8a86F8J4pBc2sJEwpQxgDk2FYCKjMmBwsyYRG
+ovNMZfSIRa9TLviUtVsoZLNaYbz5+N5ENDUZnTg+Fv5rdOrkmb+fuHUh+tXa3jjH
+9dL+1u7Y9Je3n7+vRG/oztmtj+udb/Trow/Pot/l/vm5n9srt+bVxf37ey/vXnp3
++Qm+v+Nuz7xe3Xs+3PoD
+=nygG
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/mezis
+
+==================================================================
+
