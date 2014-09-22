@@ -82,15 +82,17 @@ confusion between the two approaches.
 
 ### REST/ROA versus RPC/SOA
 
-I'd like to briefly shed some light on what seems to be a common misconception
+I'd like to briefly shed some light on what seems to be a common
+[confusion](http://martinfowler.com/bliki/ServiceOrientedAmbiguity.html)
 in the web engineering community: in my opinion, there is no such thing as a
-RESTful SOA (service-oriented architecture).
+RESTful SOA (service-oriented architecture). At least, not if the SOA in
+question does anything like remote procedure calls.
 
 REST was introduced in the context of the Web and Hypermedia, and supports
 [ROA][roa] (Resource-Oriented Architectures). Conversely, SOA emerged to design
 sunk systems (backends), and while their external (consumer-facing) interface
-may be RESTful, services communicate using RPC-style semantics (possibly over
-HTTP, e.g. using JSON-RPC, which adds to the confusion).
+may be RESTful, services usually communicate using RPC-style semantics (possibly
+over HTTP, e.g. using JSON-RPC, which adds to the confusion).
 
 Martin Fowler's [reference article][fowler-micros] on Microservices seems
 to suggest to express, and split the domain in terms of functions, not concepts.
@@ -145,6 +147,9 @@ Unfortunately, this leaves ROA designers with two options:
 - Using `Cache-Control`: high client memory, low bandwidth, low consistency, low
   latency.
 
+Heroku has a [good
+intro](https://devcenter.heroku.com/articles/increasing-application-performance-with-http-cache-headers)
+on caching with HTTP.
 It's basically a game of: high consistency, low latency, pick one.
 
 
