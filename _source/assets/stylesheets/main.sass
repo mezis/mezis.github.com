@@ -16,7 +16,6 @@ $darkGray:            darken($gray, 15%)
 $darkerGray:          darken($gray, 50%)
 $lighterGray:         #f4f4f4
 $brickRed:            #8e1600
-$lightRed:            lighten($brickRed, 50%)
 
 $body-bg:             $lighterGray
 $backgroundColor:     $lighterGray
@@ -68,7 +67,7 @@ figcaption
 // General style overrides
 
 a
-  +transition-property(color opacity)
+  +transition-property(color)
   +transition-duration(100ms)
   text-decoration: none !important
 
@@ -155,6 +154,10 @@ pre
 
 .dc-post
   margin-bottom:    4em
+
+.dc-post-content
+  a
+    border-bottom: 1px solid rgba($link-color, 0.3)
 
 
 // Figures
