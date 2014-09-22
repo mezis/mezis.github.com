@@ -6,7 +6,7 @@ GIT
       sass (~> 3.2)
 
 GEM
-  remote: http://yarp.dev/
+  remote: http://eu.yarp.io/
   specs:
     RedCloth (4.2.9)
     activesupport (4.1.1)
