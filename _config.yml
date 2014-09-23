@@ -4,7 +4,13 @@ permalink: /:categories/:year/:month/:title
 
 exclude: ["Rakefile", "Gemfile", "Gemfile.lock", "_source"]
 
-markdown: redcarpet
+markdown: kramdown
+kramdown:
+  input:         GFM
+  auto_ids:      true
+  use_coderay:   false
+  hard_wrap:     false
+
 highlighter: pygments
 
 # Themes are encouraged to use these universal variables
