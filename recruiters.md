@@ -12,14 +12,12 @@ years of experience in software, I'm currently preparing my next career move.
 
 The TL,DR is:
 
-> I'm looking for a **Senior Software Engineer** role<br/>
+> I'm looking for a full-time **Senior Software Engineer role**<br/>
 > or a **hands-on
 > Engineering manager / VP / CTO** role, <br/>
 > in a product-focused company doing **Ruby** Go,
 > Node.JS or Python, <br/>
 > and is **telework-friendly**
->
-> (80k£ to 120k£ pa)
 
 Links: [LinkedIn](http://linkedin.com/in/mezis), [PDF
 Resume](http://cl.ly/3C2G3Y06161s), [Calendar](http://doodle.com/mezis)
