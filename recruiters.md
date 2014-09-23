@@ -12,7 +12,7 @@ years of experience in software, I'm currently preparing my next career move.
 
 The TL,DR is:
 
-> I'm looking for a full-time **Senior Software Engineer role**<br/>
+> I'm open to a full-time **Senior Software Engineer role**<br/>
 > or a **hands-on
 > Engineering manager / VP / CTO** role, <br/>
 > in a product-focused company doing **Ruby** Go,
