@@ -4,8 +4,8 @@ permalink: /:categories/:year/:month/:title
 
 exclude: ["Rakefile", "Gemfile", "Gemfile.lock", "_source"]
 
-markdown: kramdown
-pygments: true
+markdown: redcarpet
+highlighter: pygments
 
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
