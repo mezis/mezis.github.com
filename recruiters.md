@@ -23,7 +23,7 @@ Links: [LinkedIn](http://linkedin.com/in/mezis), [PDF
 Resume](http://cl.ly/3C2G3Y06161s), [Calendar](http://doodle.com/mezis)
 
 The rest of this page is a **recruiter brief**. This will hopefully help you
-match my search with what your clients are looking for, and save you time
+match my profile with what your clients are looking for, and save you time
 compared to a phone call!
 
 These notes are about the _ideal_ role I’d consider, as I’d rather not use up
@@ -36,15 +36,14 @@ also get an answer.
 * Senior Software Engineer / Lead Engineer.  I’m quite happy not to be a
   “manager” in spite of my recent professional history, especially if the
   company is small or the product/environment are very exciting.
-  My minimum ask for en engineering role is 80 k£ per annum, gross.
 * I'll consider VP-level roles for team sizes of 10-20, although it's not my
   priority.  The role has to be hands-on and be 50% engineering/architecture
   minimum.
-  My min is 95 k£ pa gross.
 * I don't take pension/healthcare/equity into account when comparing offers (not
   applicable to me).
 * I can be on-site up to 20% of the time (every 5th week). I live in France,
   very close to an international airport.
+* I'm flexible in terms of compensation for the right role.
 
 
 #### The people:
