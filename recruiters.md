@@ -17,7 +17,7 @@ The TL,DR is:
 > Engineering manager / VP / CTO** role, <br/>
 > in a product-focused company doing **Ruby** Go,
 > Node.JS or Python, <br/>
-> and is **telework-friendly**
+> and is **telework-friendly**.
 
 Links: [LinkedIn](http://linkedin.com/in/mezis), [PDF
 Resume](http://cl.ly/3C2G3Y06161s), [Calendar](http://doodle.com/mezis)
