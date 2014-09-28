@@ -5,13 +5,14 @@ title: "RESTful -and- fast: Representational State Notification"
 summary: |
   Adding lightweight state change notifications to the REST architecture style
   can alleviate some of its performance limitations, without violating its
-  principles. It also obviates the temptation to revert from a RESTful, domain-
-  centric resource oriented architecture to an RPC-style, function-centric
-  microservice architecture.
+  principles. It also obviates the temptation to revert from a RESTful,
+  domain-centric resource oriented architecture to an RPC-style,
+  function-centric microservice architecture.
 
   If you care mostly about the solution, feel free to skip to the section
   about [Routemaster](#introducing-routemaster). The beginning of the article
   presents the concepts and rationale.
+
 ---
 
 _This article was cross-posted from the [HouseTrip dev

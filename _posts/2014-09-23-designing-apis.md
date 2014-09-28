@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: Designing APIs in a resource-oriented architecures
+title: Designing APIs in a resource-oriented architecture
 summary: |
   At HouseTrip, we chose to rely on conventions where we could, rather than
   intense documentation, and let the rest of the necessary knowledge propagate
