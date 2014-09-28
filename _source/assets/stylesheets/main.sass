@@ -1,12 +1,15 @@
-
 // Settings - typography
 
 $font-family-serif:     "Roboto Slab", serif
-$font-family-monospace: Consolas, Menlo, monospaced
+$font-family-sans-serif: "Roboto", sans-serif
+$font-family-monospace: "Anonymous Pro", Consolas, Menlo, monospaced
 $font-family-base:      $font-family-serif
+$headings-font-family:  $font-family-sans-serif
 $font_path:             /assets/fonts
-// $line-height-base:      1.7
-$font-size-base:        15px
+$line-height-base:      1.5
+$font-size-base:        17px
+$headings-font-weight:  700
+$headings-line-wight:   1.1
 
 // Settings - colors
 
@@ -17,12 +20,12 @@ $darkerGray:          darken($gray, 50%)
 $lighterGray:         #f4f4f4
 $brickRed:            #8e1600
 
-$body-bg:             $lighterGray
-$backgroundColor:     $lighterGray
-$headercolor:         darken($backgroundColor, 3%)
+$body-bg:             white
+$backgroundColor:     white
+$headercolor:         darken($lightGray, 3%)
 $link-color:          $brickRed
 $text-muted:          $gray
-$code-bg:             transparent
+$code-bg:             $lighterGray
 
 // Settings - layout
 
@@ -32,6 +35,7 @@ $nav-link-padding: 5px
 // Load other libraries
 
 @import font-awesome
+// @import font-uni
 @import pygments
 @import compass/css3
 @import bootstrap
@@ -78,6 +82,7 @@ code
 
 pre
   line-height: 0.98
+  border: none
 
 .text-muted a
   opacity: 0.6
@@ -141,14 +146,14 @@ pre
 .dc-post-summary
   margin-top:       1em
   margin-bottom:    2em
-  > p
-    @extend .lead
+  p, li
+    font-size:      larger
   .read
     display:        block
 
-  > .dc-summary-sidebar
-    text-align: right
-    font-size:  medium
+.dc-summary-sidebar
+  text-align: right
+  font-size:  inherit
 
 .dc-posts-shortlist
   padding-left:     0
