@@ -24,9 +24,9 @@ Resume](http://cl.ly/3C2G3Y06161s), [Calendar](http://doodle.com/mezis)
 
 The rest of this page is a **recruiter brief**. This will hopefully help you
 match my profile with what your clients are looking for, and save you time
-compared to a phone call!
+compared to a phone call.
 
-These notes are about the _ideal_ role I’d consider, as I’d rather not use up
+These notes are about the ideal role I’d consider, as I’d rather not use up
 your time for roles that wouldn’t fit! Most of your initial questions should
 also get an answer.
 
