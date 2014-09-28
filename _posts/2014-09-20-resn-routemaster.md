@@ -30,15 +30,15 @@ makes) into an number of RESTful calls. It's backed by 3 RESTful
 applications: a search engine, an photo repository, and a products
 repository.
 
-                                       ┌────────────┐
-                                    ┌─>│ products   │
-                                    │  └────────────┘
-    ┌────────────┐   ┌────────────┐ │  ┌────────────┐
-    │ mobile app │──>│ façade app │─┼─>│ search     │
-    └────────────┘   └────────────┘ │  └────────────┘
-                                    │  ┌────────────┐
-                                    └─>│ photos     │
-                                       └────────────┘
+                                       +------------+
+                                    +->| products   |
+                                    |  +------------+
+    +------------+   +------------+ |  +------------+
+    | mobile app |-->| façade app |-+->| search     |
+    +------------+   +------------+ |  +------------+
+                                    |  +------------+
+                                    +->| photos     |
+                                       +------------+
 
 When a user performs a search on the native app, it makes 1 request to the
 façade to get a page of search results (20 entries). The façade must make

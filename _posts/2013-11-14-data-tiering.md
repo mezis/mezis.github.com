@@ -19,14 +19,14 @@ I'll use HouseTrip as an example. We're a holiday rental marketplace, and
 information about whether the properties we list are available or not for
 given dates is backed by a table that looks like this:
 
-    ┌────────────────┐
-    │ availabilities │
-    ├────────────────┤
-    │ id             │
-    │ property_id    │
-    │ start_date     │
-    │ end_date       │
-    └────────────────┘
+    +----------------+
+    | availabilities |
+    ├----------------┤
+    | id             |
+    | property_id    |
+    | start_date     |
+    | end_date       |
+    +----------------+
 
 <br/>
 
@@ -93,15 +93,15 @@ and the *back* table.
 
 Conceptually:
 
-                    ┌──────────────────────┐
-            read <- │ availabilities_front │
-                    └──────────────────────┘
-                    ┌──────────────────────┐           
-                    │ availabilities_back  │ <┐ update 
-                    └──────────────────────┘  │         
-                    ┌──────────────────────┐  │
-    read/︎write  <-> │ availabilities       │ ─┘
-                    └──────────────────────┘
+                    +----------------------+
+            read <- | availabilities_front |
+                    +----------------------+
+                    +----------------------+           
+                    | availabilities_back  | <+ update 
+                    +----------------------+  |         
+                    +----------------------+  |
+    read/︎write  <-> | availabilities       | -+
+                    +----------------------+
 
 ### Syncing data
 
