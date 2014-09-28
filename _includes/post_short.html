@@ -9,7 +9,9 @@
     <div class='content'>
       {% if page.summary %}
       {{ page.summary | markdownify }}
-      <a class='read' href='{{ BASE_PATH }}{{ page.url }}'>Read the full article →</a>
+      <p>
+        <a class='read' href='{{ BASE_PATH }}{{ page.url }}'>Read the full article →</a>
+      </p>
       {% else %}
       {{ page.content | markdownify }}
       {% endif %}

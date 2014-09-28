@@ -9,7 +9,8 @@
     .content
       {% if page.summary %}
       {{ page.summary | markdownify }}
-      %a.read{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article →
+      %p
+        %a.read{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article →
       {% else %}
       {{ page.content | markdownify }}
       {% endif %}
