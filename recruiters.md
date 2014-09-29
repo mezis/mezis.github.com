@@ -48,7 +48,7 @@ also get an answer.
 
 #### The people:
 
-* A brilliant management team, an generally a team I can learn from.
+* A brilliant management team; generally a team I can learn from.
 * Values: passionate, honest, open-minded, empathetic.
 * Empowering, prefers “leadership” to “management”, trains others.
 * An existing team of engineers (my experience is working with / leading teams
@@ -58,7 +58,7 @@ also get an answer.
 #### The company:
 
 * Funded, growing.
-* Proven market (they have their first paying customers).
+* Proven market (they have paying customers).
 * Startup or SMB-sized (up to a few hundred people), or similar sized
   independent organisation in a larger company.
 
