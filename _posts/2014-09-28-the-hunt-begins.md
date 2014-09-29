@@ -327,7 +327,7 @@ This means all my free time will be consumed by _the hunt_ for the foreseeable
 future; I'll still answer your comments if any!
 
 
-Oh, and I plan to brush up an machine learning and prototype a neural-network
+Oh, and I plan to brush up on machine learning and prototype a neural-network
 based learn-to-rank engine for HouseTrip in my last month here. I'll definitely
 write about it :)
 
