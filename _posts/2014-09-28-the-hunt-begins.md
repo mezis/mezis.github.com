@@ -64,8 +64,8 @@ recruiting side of this, let's take a peek at the candidate side.
 _Caveat Emptor_: The plural of (my) anecdote is not data---I'm just one data
 point.  I'm also in the almost-unbelievably lucky situation of a
 [highly-demanded craft][demand]: I'm a software engineer. The number
-of us "programmers" is far outstripped by the number of available positions
-(particularly in London, Paris, and of course [the US][gov]).  Given the savoury
+of competent "programmers" is far outstripped by the number of available positions
+(particularly in London, Paris, and of course [the][ars-edu] [US][gov]).  Given the savoury
 anecdotes I've heard from colleagues and
 [read](http://compositecode.com/2014/04/09/ive-officially-sent-this-email-over-100-times-to-recruiters-looking-for-net-developers/)
 in
@@ -333,7 +333,7 @@ write about it :)
 
 Toodeloo!
 
-
+[ars-edu]: http://arstechnica.com/science/2014/09/are-we-producing-too-few-or-too-many-science-and-technology-grads/
 [brief]: http://dec0de.me/recruiters.html
 [demand]: http://www.forbes.com/sites/rebeccabagley/2014/07/01/u-s-businesses-face-global-competition-for-software-talent/
 [gov]: http://www.bls.gov/ooh/computer-and-information-technology/software-developers.htm
