@@ -20,7 +20,7 @@ The TL,DR is:
 > and is **telework-friendly**.
 
 Links: [LinkedIn](http://linkedin.com/in/mezis), [PDF
-Resume](http://cl.ly/3C2G3Y06161s), [Calendar](http://doodle.com/mezis)
+Resume](/public/Julien_Letessier_Resume.pdf), [Calendar](http://doodle.com/mezis)
 
 The rest of this page is a **recruiter brief**. This will hopefully help you
 match my profile with what your clients are looking for, and save you time
