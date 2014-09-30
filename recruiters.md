@@ -15,7 +15,7 @@ The TL,DR is:
 > I'm open to a full-time **Senior Software Engineer role**<br/>
 > or a **hands-on
 > Engineering manager / VP / CTO** role, <br/>
-> in a product-focused company doing **Ruby** Go,
+> in a product-focused company doing **Ruby**, Go, C,
 > Node.JS or Python, <br/>
 > and is **telework-friendly**.
 
