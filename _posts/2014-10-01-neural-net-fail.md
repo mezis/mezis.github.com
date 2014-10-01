@@ -3,7 +3,7 @@ layout: post
 published: true
 title: Neural net training fail
 summary: |
-  So here I ham, having collected test and control samples to train a neural
+  So here I am, having collected test and control samples to train a neural
   network, an measure its predictive power.
 
   But something's fishy: it works well, from the get go.
