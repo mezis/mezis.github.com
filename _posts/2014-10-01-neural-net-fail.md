@@ -15,7 +15,8 @@ more relevant search results on [HouseTrip](http://www.housetrip.com). I use
 behaviour data from our users: simply put, positive events are users who enquire
 on homes, negative events are those who stop at the listing page.  The point
 being to predict, for a given set of search results, which the current user is
-most likely to continue with.
+most likely to continue with. Or in other words, **provide relevant search
+results to users**.
 
 The first test net I tested has my 19 normalised inputs, 9 hidden nodes in 1
 layer, and 2 outputs ("positive" and "negative").
