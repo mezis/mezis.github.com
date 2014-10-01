@@ -18,7 +18,7 @@ being to predict, for a given set of search results, which the current user is
 most likely to continue with. Or in other words, **provide relevant search
 results to users**.
 
-The first test net I tested has my 19 normalised inputs, 9 hidden nodes in 1
+The first test net I tried has my 19 normalised inputs, 9 hidden nodes in 1
 layer, and 2 outputs ("positive" and "negative").
 
 Upon running my very first series of training using
