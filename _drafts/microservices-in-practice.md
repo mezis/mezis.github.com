@@ -1,3 +1,11 @@
+---
+layout: post
+published: true
+title: microservices
+summary: |
+  tbd
+---
+
 @pedrocunha:
 > I raised that point too, but it was agreed that it would be better to wrap
 > these calls in this service in case we want to do anything different with them
