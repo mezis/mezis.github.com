@@ -22,14 +22,5 @@
   %body
     {% include header.html %}
     #header-sentinel
-    .container
-      .row
-        .col-md-8
-          #content
-            {{ content }}
-        .col-md-1
-        .col-md-3
-          {% include sidebar.html %}
-      .row
-        .col-md-12
-          {% include footer.html %}
+    {{ content }}
+    {% include footer.html %}

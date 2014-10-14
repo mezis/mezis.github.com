@@ -6,6 +6,13 @@
     path:  /atom.xml
   ---
 
-{% for page in site.posts %}
+{% include about.html %}
+
+{% for page in site.posts limit:3 %}
 {% include post_short.html %}
+{% endfor %}
+
+#old-posts
+{% for post in site.posts offset:3 %}
+{% include post_mini.html %}
 {% endfor %}

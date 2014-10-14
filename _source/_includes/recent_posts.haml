@@ -1,6 +1,19 @@
-%ul.dc-posts-shortlist
-  {% for post in site.posts limit:5 %}
-  %li
-    %span.dc-short-date {{ post.date | date: "%e %b" }}
-    %a{ :href => "{{ BASE_PATH }}{{ post.url }}" } {{ post.title }}
+.dc-hero-header.dc-recent-posts
+  %a{ :href => "/#old-posts" }<>
+    .container.visible-xs.visible-sm
+      .row
+        .col-md-2
+        .col-md-7<>
+          .dc-post-link-short<>
+            Older posts...
+        .col-md-2
+    .container.visible-md.visible-lg
+      .row
+        .col-md-2<>
+        .col-md-7<>
+          Older posts...
+        .col-md-2
+
+  {% for post in site.posts reversed limit:10 %}
+  {% include post_mini.html %}
   {% endfor %}

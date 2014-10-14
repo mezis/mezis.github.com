@@ -1,0 +1,19 @@
+%a{ :href => "{{ BASE_PATH }}{{ post.url }}" }<>
+  .container.visible-xs.visible-sm<>
+    .row<>
+      .col-md-2<>
+      .col-md-7<>
+        .dc-date.dc-date-short<>
+          {{ post.date | date: "%e %b" }}
+        .dc-post-link-short<>
+          {{ post.title }}
+      .col-md-2<>
+  .container.visible-md.visible-lg<>
+    .row<>
+      .col-md-2<>
+        .dc-date<>
+          {{ post.date | date: "%e %b %Y" }}
+      .col-md-7<>
+        {{ post.title }}
+      .col-md-2<>
+

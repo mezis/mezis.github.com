@@ -1,20 +1,21 @@
-<div class='dc-post row'>
-  <div class='col-md-3 post-banner'><p>{{ page.date | date: "%e %B %Y" }}</p></div>
-  <div class='col-md-9'>
-    <h3 class='dc-post-title'>
-      <a href='{{ BASE_PATH }}{{ page.url }}'>
-        {{ page.title }}
-      </a>
-    </h3>
-    <div class='content'>
-      {% if page.summary %}
-      {{ page.summary | markdownify }}
-      <p>
-        <a class='read' href='{{ BASE_PATH }}{{ page.url }}'>Read the full article →</a>
-      </p>
-      {% else %}
-      {{ page.content | markdownify }}
-      {% endif %}
+<div class='container'>
+  <div class='dc-post row'><div class='col-md-2'>{% include post_meta.html %}</div><div class='col-md-7'>
+      <h3 class='dc-post-title'>
+        <a href='{{ BASE_PATH }}{{ page.url }}'>
+          {{ page.title }}
+        </a>
+      </h3>
+      <div class='content'>
+        {% if page.summary %}
+        {{ page.summary | markdownify }}
+        <p>
+          <a class='read' href='{{ BASE_PATH }}{{ page.url }}'>Read the full article →</a>
+        </p>
+        {% else %}
+        {{ page.content | markdownify }}
+        {% endif %}
+      </div>
     </div>
+    <div class='col-md-2'></div>
   </div>
 </div>

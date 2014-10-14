@@ -1,0 +1,2 @@
+<div class='dc-post-meta'><p class='dc-post-date'>{{ page.date | date: "%e %b %Y" }}</p><p class='text-muted'>{% capture allwords %}{{ page.summary }} {{ page.content }}{% endcapture %}
+{{ allwords | number_of_words | divided_by:150 }} min read</p></div>

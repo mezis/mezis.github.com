@@ -1,0 +1,6 @@
+.dc-post-meta<>
+  %p.dc-post-date<>
+    {{ page.date | date: "%e %b %Y" }}
+  %p.text-muted<>
+    {% capture allwords %}{{ page.summary }} {{ page.content }}{% endcapture %}
+    {{ allwords | number_of_words | divided_by:150 }} min read

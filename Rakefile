@@ -35,20 +35,23 @@ end
 desc "Auto-compile Haml to HTML"
 task :watch_haml do
   Thread.new do
+    Thread.current.abort_on_exception = true
     Listen.to('.', :filter => /\.haml$/) do |modified, added, removed|
       Rake::Task['html'].tap do |task|
         task.prerequisite_tasks.each(&:reenable)
         task.reenable
         task.invoke
       end
-    end
+    end.start
   end
 end
 
 
 desc "Auto-compile Sass to CSS"
 task :watch_sass do
+  puts 'watch_sass'
   Thread.new do
+    Thread.current.abort_on_exception = true
     Listen.to('.', :filter => /\.sass$/) do |modified, added, removed|
       begin
         Rake::Task['css'].tap do |task|
@@ -59,7 +62,7 @@ task :watch_sass do
       rescue Exception => e
         puts "error: #{e.message}"
       end
-    end
+    end.start
   end
 end
 

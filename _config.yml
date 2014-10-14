@@ -4,6 +4,7 @@ permalink: /:categories/:year/:month/:title
 
 exclude: ["Rakefile", "Gemfile", "Gemfile.lock", "_source"]
 
+# markdown: redcarpet
 markdown: kramdown
 kramdown:
   input:         GFM
@@ -42,3 +43,5 @@ lsi: false
 
 # Publishes posts with a future date
 future: false
+draft: false
+

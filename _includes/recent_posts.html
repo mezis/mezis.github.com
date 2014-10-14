@@ -1,8 +1,12 @@
-<ul class='dc-posts-shortlist'>
-  {% for post in site.posts limit:5 %}
-  <li>
-    <span class='dc-short-date'>{{ post.date | date: "%e %b" }}</span>
-    <a href='{{ BASE_PATH }}{{ post.url }}'>{{ post.title }}</a>
-  </li>
+<div class='dc-hero-header dc-recent-posts'><a href='/#old-posts'><div class='container visible-xs visible-sm'>
+    <div class='row'>
+      <div class='col-md-2'></div><div class='col-md-7'><div class='dc-post-link-short'>Older posts...</div></div><div class='col-md-2'></div>
+    </div>
+  </div>
+  <div class='container visible-md visible-lg'>
+    <div class='row'><div class='col-md-2'></div><div class='col-md-7'>Older posts...</div><div class='col-md-2'></div>
+    </div>
+  </div></a>{% for post in site.posts reversed limit:10 %}
+  {% include post_mini.html %}
   {% endfor %}
-</ul>
+</div>

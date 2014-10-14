@@ -4,6 +4,11 @@ rss:
   title: site.title
   path:  /atom.xml
 ---
-{% for page in site.posts %}
+{% include about.html %}
+{% for page in site.posts limit:3 %}
 {% include post_short.html %}
+{% endfor %}
+<div id='old-posts'></div>
+{% for post in site.posts offset:3 %}
+{% include post_mini.html %}
 {% endfor %}

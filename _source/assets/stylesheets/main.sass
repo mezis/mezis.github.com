@@ -30,6 +30,7 @@ $code-bg:             $lighterGray
 // Settings - layout
 
 $nav-link-padding: 5px
+$date-width-small: 4em
 
 
 // Load other libraries
@@ -71,8 +72,8 @@ figcaption
 // General style overrides
 
 a
-  +transition-property(color)
-  +transition-duration(100ms)
+  +transition-property(color,background-color)
+  +transition-duration(150ms)
   text-decoration: none !important
 
 code
@@ -88,48 +89,45 @@ pre
   opacity: 0.6
 
 
-// Sidebar
-
-#sidebar
-  > :first-child
-    margin-top: 0
-
-
-// Fancy separators
-
-.dc-separator
-  border-top:         1pt solid $text-muted
-  margin-top:         2em
-  margin-bottom:      1em
-  span
-    position:         relative
-    text-align:       center
-    color:            $text-muted
-    top:             -.7em
-    padding-right:    1em
-    background-color: $backgroundColor
-  position:           relative
-  top:                .7em
-
 // Post metadata
 
-.post-banner
-  color:        $text-muted
 
-.dc-short-date
-  white-space:  nowrap
+.dc-post-meta
+  p
+    color:        $text-muted
+    white-space:  nowrap
+    @media (max-width: $screen-sm-max)
+      display: inline-block
+      margin-right:   1em 
+      &:after
+        margin-left:  1em
+        content: '❉'
+      &:last-child
+        margin-right: inherit
+        &:after
+          margin-left: inherit
+          content:     none
+    @media (min-width: $screen-md-min)
+      display: block
+
+.dc-date
+  color: $text-muted
 
 // Header
 
 #header-sentinel
-  height: 90px
+  height: $navbar-height
 
 #header
-  background-image:  url(http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb.png)
-  background-size:   contain
-  background-repeat: no-repeat
-  padding-left:      $navbar-height + 5px
-
+  border-color:      $link-color
+  height:            $navbar-height
+  overflow:          hidden
+  a.navbar-brand
+    background-image:  url(http://www.gravatar.com/avatar/88683f31bdf05a8071fb08327b3919cb.png)
+    background-size:   contain
+    background-repeat: no-repeat
+    padding-left:      $navbar-height + 15px
+    
 
 .dc-title
   font-size: larger
@@ -137,6 +135,38 @@ pre
 .dc-tagline
   opacity:    0.6
 
+// Hero header (recent posts)
+
+.dc-hero
+  padding:          2em 0
+  background-color: $link-color
+  color:            $headercolor
+  a
+    color:          $backgroundColor
+    &:hover
+      background-color: $backgroundColor
+      color:            $link-color
+      
+
+.dc-hero-header
+  @extend .dc-hero
+  margin-bottom:    1em
+
+
+// Recent posts
+
+.dc-recent-posts
+  a
+    display:        block
+
+.dc-date-short
+  width:        $date-width-small
+  display:      block
+  float:        left
+
+.dc-post-link-short
+  display:      block
+  padding-left: $date-width-small * 1.1
 
 // Posts
 
@@ -154,12 +184,6 @@ pre
 .dc-summary-sidebar
   text-align: right
   font-size:  inherit
-
-.dc-posts-shortlist
-  padding-left:     0
-  li
-    display:        inline
-    margin-right:   1ex
 
 .dc-post
   margin-bottom:    4em
@@ -194,11 +218,10 @@ pre
 
 // Footer
 
-#footer
+.dc-hero-footer
+  @extend .dc-hero
   font-family:      $font-family-sans-serif
-  padding-top:      2em
-  padding-bottom:   1em
-  +opacity(0.7)
+  margin-top:       1em
   p
     display:        inline
     font-size:      smaller

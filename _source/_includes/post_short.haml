@@ -1,16 +1,17 @@
-.dc-post.row
-  .col-md-3.post-banner
-    %p<>
-      {{ page.date | date: "%e %B %Y" }}
-  .col-md-9
-    %h3.dc-post-title
-      %a{ :href => "{{ BASE_PATH }}{{ page.url }}" }
-        {{ page.title }}
-    .content
-      {% if page.summary %}
-      {{ page.summary | markdownify }}
-      %p
-        %a.read{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article →
-      {% else %}
-      {{ page.content | markdownify }}
-      {% endif %}
+.container
+  .dc-post.row
+    .col-md-2<>
+      {% include post_meta.html %}
+    .col-md-7
+      %h3.dc-post-title
+        %a{ :href => "{{ BASE_PATH }}{{ page.url }}" }
+          {{ page.title }}
+      .content
+        {% if page.summary %}
+        {{ page.summary | markdownify }}
+        %p
+          %a.read{:href => "{{ BASE_PATH }}{{ page.url }}"} Read the full article →
+        {% else %}
+        {{ page.content | markdownify }}
+        {% endif %}
+    .col-md-2
