@@ -220,19 +220,19 @@ learning technique requires three things:
 
 Finding what to learn _on_, i.e. our dataset, is actually tricky.
 In our case, we're lucky enough to have harvested raw user behavioural
-information (using [KissMetrics](https://www.kissmetrics.com/)'s data dumps, and
-imported into [KMDB](https://github.com/HouseTrip/km-db#kmdb)). This contains
-one entry per user and per key page of our transaction funnel (per page, if you
-will).
+information (using [KissMetrics](https://www.kissmetrics.com/)'s anonymized data
+dumps, and imported into [KMDB](https://github.com/HouseTrip/km-db#kmdb)). This
+contains one entry per user and per key page of our transaction funnel (per
+page, if you will).
 
 Which point in the funnel should we learn on? Checkouts (bookings) sounds like
 an obvious place to find "positive" training events: if \\(u\\) has booked
-\\(p\\), we'd want \\(\phi(u,q,p)\\) to be 1 for most values of \\(q\\). Also,
-we wouldn't be able to select good examples for \\(q\\). In other words, which
-are the properties the user chose _not_ to book? Sure, they probably viewed the
-listing page for other properties, but we'd need to be reasonably sure they chose not to
-book because of the property itself, not for some other reason (e.g. finding a
-place with the competition).
+\\(p\\), we'd want \\(\phi(u,q,p)\\) to be 1 for most values of \\(q\\). But we
+wouldn't be able to select good examples for \\(q\\). In other words, which are
+the properties the user chose _not_ to book? Sure, they probably viewed the
+listing page for other properties, but we'd need to be reasonably sure they
+chose not to book because of the property itself, not for some other reason
+(e.g. finding a place with the competition).
 
 Ultimately, we chose our focal point as the point of enquiry (this is where
 users ask the host to confirm availability, which is a preliminary step towards
@@ -290,10 +290,10 @@ sanity check: is this enough data to find a good model of \\(\phi\\)?
 Let's get an order of magnitude of how big the space problem is. For instance,
 each of the _locale_ dimensions has 2 possible values, so the resolution is 2.
 We've observed it's very rare to have parties of more than 8 people, so let's
-say the resolution of that dimension is 8. A property can appear to have low, average, or
-many photos (compared to its number of bedrooms), so let's say the dimension is
-3. The price wan be significantly below, a bit below, a bit above, or
-   significantly above the local market, so let's call that 4.
+say the resolution of that dimension is 8. A property can appear to have low,
+average, or many photos (compared to its number of bedrooms), so let's say the
+dimension is 3. The price wan be significantly below, a bit below, a bit above,
+or significantly above the local market, so let's call that 4.
 
 | dimension    | resolution |
 |--------------|------------|
@@ -327,9 +327,9 @@ We should, however, start putting this to the test.
 
 To keep experimentation realistic, we'll use 1 month of data for training, and
 the following 2 weeks for control.  This isn't exactly by the book (you'd
-normally take one set, and randomly pick
-training and control examples), but the point of all this is to have
-_predictive_ power, i.e. use past observations to predict future behaviour.
+normally take one set, and randomly pick training and control examples), but the
+point of all this is to have _predictive_ power, i.e. use past observations to
+predict future behaviour.
 
 This is the point where you'll probably want to have read one of these two
 books, although I'll do my best to stay legible:
@@ -346,7 +346,7 @@ books, although I'll do my best to stay legible:
 
 If your background is web applications and e-commerce, the green one is probably
 an easier start. If you're an engineer with a strong CS background, go for the
-red one. Both are excellent, as (mostly) is the norm with O'Reilly.
+red one. Both are excellent, as is (mostly) the norm with O'Reilly.
 
 I've done my best to be algorithm agnostic so far, but the title and summary
 gave away the approach anyways, so no surprises here: we're going to use
@@ -420,10 +420,10 @@ In English, we expect our net to have a high \\(o_1\\) when the property
 \\(p_1\\) should rank higher, and vice-versa.
 
 
-Training the network consists in presenting training examples to the network where the
-"truth" is known (i.e. the values of the outputs are known), and running an
-optimization algorithm to determine the weights of the connection between
-functions. Typical algorithms fall in the
+Training the ANN consists in presenting training examples where the "truth" is
+known (i.e. the values of the outputs are known), and running an optimization
+algorithm to determine the weights of the connection between functions. Typical
+algorithms fall in the
 [backpropagation](https://en.wikipedia.org/wiki/Backpropagation) category.
 
 Very fortunately, we don't really need to go much deeper, as the FANN library
@@ -436,12 +436,12 @@ will do all the heavy lifting for us.
 The last piece of the puzzle is for us to measure how well (or poorly) our
 trained networks perform.
 
-Ours is a classification problem:any \\(u,p_1,p_2\\) input should be
-classified as \\(p_1&gt;p_2\\), aka. "negative", or \\(p_1&lt;p_2 \\)), aka.
-"positive". The traditional way to evaluate performance of a classifier is to
-produce a [confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix);
-and to get a single figure for performance, reporting on _accuracy_ (the
-proportion of "correct" predictions).
+Ours is a classification problem: any \\(u,p_1,p_2\\) input should be classified
+as \\(p_1&gt;p_2\\), aka. "negative", or \\(p_1&lt;p_2 \\)), aka.  "positive".
+The traditional way to evaluate performance of a classifier is to produce a
+[confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix); and to get a
+single figure for performance, reporting on _accuracy_ (the proportion of
+"correct" predictions).
 
 To get a sense of whether this would work at all, we train a network with our 28
 inputs (10 for the user, 9 for each property) using the [cascade training
@@ -474,7 +474,7 @@ would be accurate slightly over half the time; which means that a property a
 user would enquire would be ranked above a property they wouldn't slightly over
 half the time.
 
-That doesn't sound too fantstic, but for a machine learning engine on human
+That doesn't sound too fantastic, but for a machine learning engine on human
 data, it's actually quite good! Remember we only need to beat random sorting and
 our original, simpler ranking.
 
@@ -489,14 +489,14 @@ A handful of performance facts:
 
 - importing 2 months of data from various databases in to Redis takes roughly 30
   minutes, and consumes 700MB per month of data.
-- exporting datasets to train on / test on takes ~5 minutes
-- training the 28-input NN using the cascade algorithm takes about 2 hours (note
+- exporting datasets to train or control on takes ~5 minutes per month.
+- training the 28-input ANN using the cascade algorithm takes about 2 hours (note
   that this algorithm also learns how many nodes are needed, and what their
   response function should be; not just the vertex weights).
-- the 28-node NN I mentioned above can make about 120k predictions per second on
-  my machine, which means in the worst case (used as a comparator in a \\(O(n^2)\\)
-  sorting algorithm) it could sort a set of 350 properties in a second. That's
-  not going to cut it.
+- the 28-node ANN I mentioned above can make about 120,000 predictions per
+  second on my machine, which means in the worst case (used as a comparator in a
+  \\(O(n^2)\\) sorting algorithm) it could sort a set of 350 properties in a
+  second. That's not going to cut it.
 
 
 --------------------------------------------------------------------------------
