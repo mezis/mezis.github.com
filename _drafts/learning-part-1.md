@@ -1,6 +1,6 @@
 ---
 layout: post
-published: false
+published: true
 title: Machine-learning a search ranking engine for e-commerce (part 1)
 summary: |
   A large catalog of products can be daunting for users. Providing a very fine
@@ -11,11 +11,10 @@ summary: |
   without checking out.
 
   The key is obviously to provide _relevance_ and _choice_, which is much more
-  complicated than it sounds, as different users may look for different
-  products.
+  complicated than it sounds, as different users may have very different tastes.
 
-  This describes how I explored an AI-based, neural networks solution to
-  relevance ranking.
+  This describes how I explored a machine learning, neural networks based
+  solution to relevance ranking.
 
 ---
 
@@ -38,8 +37,8 @@ dates, and the size of my party, all of which I diligently enter.
   <img src="http://cl.ly/image/01311L0U2k0q/capture%202014-10-14%20at%2009.35.05.png"/>
 </figure>
 
-The search result page (SRP) shows me a nice map and a number of properties. It
-also suggest I refine my search by prompting me to open a filtering panel:
+The search results page (SRP) shows me a nice map and a number of properties. It
+also suggests I refine my search by prompting me to open a filtering panel:
 
 <figure>
   <img src="http://cl.ly/image/2K1p3m011B0z/capture%202014-10-14%20at%2009.32.30.png"/>
@@ -56,10 +55,10 @@ entitled to a customised, tailored experience, right? Right?
 --------------------------------------------------------------------------------
 
 
-Unfortunately it's not that simple.
+Unfortunately... it's not that simple.
 The website does know a few things about me: the place I want to go to, when,
 and the fact I'll be travelling with two other people. It might also know I'm
-using it in English language, from a Swedish IP address (ok, corner case here,
+using it in English language, from a Swedish IP address (Ok, corner case here,
 I'm behind a VPN), and possibly that I've visited before.
 
 But that's really it.
@@ -69,23 +68,23 @@ just 2 bedrooms, not 3); or that I really need my Wifi fix; or whether I'm price
 sensitive.
 
 How can the app make an educated guess about the properties _I_ would like with
-so little information? One answer is, simply, because it knows about other
-people who have booked, some of which may be similar to me in some way---and it
-could leverage that knowledge to tailor results for my benefit (and, well, the
-company's).
+so little information? Well, it does know about other people who have booked in
+the past, some of which may be similar to me in some way---and it could leverage
+that knowledge to tailor results for my benefit (and, well, the company's).
 
 
 --------------------------------------------------------------------------------
 
 
 The very first "ranking engine" at HouseTrip was very simple. We would show
-products that had been bought more often than others higher in the list.
+products higher in the list if they've been booked more often---that is, sort by
+descending number of past purchases.
 
 After all, the feedback from our users was that those products "work", so why
-not? Well, two main issues arose:
+not? Two main issues arose over time:
 
 - sellers (hosts) would game the system by listing multiple product (properties)
-  at once, to boost their ranking;
+  as a single entry, to boost their ranking;
 - new sellers and new products wouldn't stand a fighting chance to ever sell;
 - and of course, this in no way guaranteed that users would see results that
   mattered to them.
@@ -95,11 +94,11 @@ according to a heuristic: our measure (as experts of the domain) of what a
 "good" product was, in general, for users.
 
 The general idea is to combine quantitative information about a given property
-in a wieghted linear formula, the output being the ranking score.
+in a weighted linear formula, the output being the ranking score.
 
-We determined a set of measurable attributes of a property, which we proved to
-correlate to the likelihood of it getting booked. We name \\(p\\) the vector of
-normalized attributes:
+We determined a set of quantitative, measurable attributes of a property, which
+we proved to correlate to the likelihood of it getting booked. We name \\(p\\)
+the vector of normalized attributes:
 
 $$
 p = [p_1, ... p_n]
@@ -116,9 +115,9 @@ $$
 
 The weights were initially defined very informally, as a combination of what _we
 thought_ was important, and how well a particular attribute correlated with the
-odds of conversion.
+odds of purchase (as measured in historical data).
 
-Importantly, we'd remove from the formula any attribute that couldn't be
+Importantly, we'd remove from the formula any attribute that could not be
 measured (for instance, the time-to-confirm for new hosts), which is equivalent
 to assuming a newly listed product is "average" for those attributes. This
 ensured fairness.
@@ -129,7 +128,7 @@ were getting more relevant results on average.
 
 In the following 18 months, we iterated on the secret recipe, adding and
 removing attributes and fiddling with the weights to gain further
-improvements---still in a very scientific manner, but it "worked".
+improvements---still in a very unscientific manner, but it "worked".
 
 The optimisation we performed can actually be considered a manual (and
 error-prone) implementation of a [gradient
@@ -146,6 +145,7 @@ We'd still not be taking _the specific user_ searching for a product into accoun
 
 --------------------------------------------------------------------------------
 
+
 Let's take a step back and formulate the problem we're trying to solve.
 
 We want to show users _relevant_ products _first_. "Relevant" in this context
@@ -155,9 +155,9 @@ user will spend their hard-earned cash on your product.
 So this is really a sorting problem. This reduces to a _comparison_ problem: if
 you can order 2 products, there's a number of well-known
 [algorithms](https://en.wikipedia.org/wiki/Sorting_algorithm#Efficient_sorts)
-that can sort a list of products.
+that can sort an arbitrary-length list of products.
 
-So what we're looking for is a black box that looks like this:
+So what we're aiming for is a black box that looks like this:
 
 
 $$
@@ -169,23 +169,23 @@ $$
 \right.
 $$
 
-where \\(u\\) is a vector of normalised attributes of the user, and \\(p_k\\) 
-of the compared properties.
+where \\(u\\) is a vector of normalised attributes of the user, and \\(p_k\\)
+the attributes of the two compared properties.
 
-Whatever the black box ends up being, it will have a number of challenges to
-face:
+Whatever the black box \\(\phi\\) ends up being, it will have a number of
+challenges to face:
 
-- there is little information about the user. In our context, we only know about
-  their chosen locale, the destination they searched for, the dates at which
-  they want to travel, and the size of their party.
+- there is little known information about the user. In our context, we only know
+  about their chosen locale, the destination they searched for, the dates at
+  which they want to travel, and the size of their party.
 - some of the information we have is continuous (e.g. the price of the
   property); some is discontinuous or discrete (e.g. the party size, number of
   photos), or even non-numerical (the locale, trip dates).
-- the data we can train the black box on will be confusing (4 people travelling
+- the data has inconsistencies: 4 people travelling
   could be two couples, a group of friends, or a family with two children, and
-  have very different expectations).
-- the data is noisy (because the behaviour of individual humans is not very
-  predictable).
+  have very different expectations.
+- the data is noisy: the behaviour of individual humans is not very
+  predictable and has a hefty dose of randomness.
 - there are known non-linear relationships between inputs (\\(u\\), \\(p_k\\))
   and the value of \\(\phi\\): for instance, we know for a fact that price
   sensitivity in some destination is inverted for some locales, or some periods
@@ -213,8 +213,8 @@ $$
 Coming up with a good candidate for \\(\phi\\) with a supervised machine
 learning technique requires three things:
 
-- a dataset of training points, i.e. example instances of \\(u,p_1,p_2\\) where
-  the value of \\(\phi\\) is known;
+- a "ground truth" dataset, i.e. a list of example instances of \\(u,p_1,p_2\\)
+  where the value of \\(\phi\\) is known;
 - an optimization algorithm that generates a candidate based on "training" data;
 - a metric to determine how "good" our candidate is.
 
@@ -430,85 +430,100 @@ Very fortunately, we don't really need to go much deeper, as the FANN library
 will do all the heavy lifting for us.
 
 
+--------------------------------------------------------------------------------
 
 
+The last piece of the puzzle is for us to measure how well (or poorly) our
+trained networks perform.
 
+Ours is a classification problem:any \\(u,p_1,p_2\\) input should be
+classified as \\(p_1&gt;p_2\\), aka. "negative", or \\(p_1&lt;p_2 \\)), aka.
+"positive". The traditional way to evaluate performance of a classifier is to
+produce a [confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix);
+and to get a single figure for performance, reporting on _accuracy_ (the
+proportion of "correct" predictions).
 
-difficulty of choosing 
-- number of hidden layers?
-- number of nodes?
-- activation functions (sigmoid, linear, gaussian?)
+To get a sense of whether this would work at all, we train a network with our 28
+inputs (10 for the user, 9 for each property) using the [cascade training
+algorithm](http://leenissen.dk/fann/html/files/fann_cascade-h.html) and a target
+of 28 hidden neurons (completely random guessing that last figure).
 
+Training, as mentioned above, is done on 1 month of user behaviour data. We
+filter out outliers, e.g. users making way too many enquiries (more than 8),
+users making too few enquiries (1 or 2), keeping only users who have viewed at
+least as many non-enquired properties as they've enquired (ie. offer as many
+positive as negative events), and so on. We then generate all possible pair of
+properties for each user, and the desired output (\\([1,0]\\) or \\([0,1]\\)).
+We also make sure there are exactly as many positive than negative samples
+(otherwise things tend to [fail badly](/2014/10/neural-net-fail/)).
 
-outputs are known
-control -> run on another set (with known outputs), compare the outputs from
-running the network with the known ones
-optimize for accuracy (% of TP+TN)
+We generate a control set in the same fashion, on the 1 month of data following
+our training set.
 
-initial proof-of-concept:
-point-wise instead of pair-wise
+After training, and after running our confusion matrix script on the control
+set, we obtain:
 
-out of the product pages a user has visited, can we predict which ones he'll
-engage with?
+| true positive  | 31.9% |
+| true negative  | 23.8% |
+| false positive | 26.2% |
+| false negative | 18.2% |
+{:.table.table-condensed.dc-table-small}
 
-cascade-trained network
+which means our accuracy on the very first attempt is **55.7%**: our predictor
+would be accurate slightly over half the time; which means that a property a
+user would enquire would be ranked above a property they wouldn't slightly over
+half the time.
 
-layout with 2 output nodes
+That doesn't sound too fantstic, but for a machine learning engine on human
+data, it's actually quite good! Remember we only need to beat random sorting and
+our original, simpler ranking.
 
-So far, I've managed to extract data in a normalised format and I've started
-trials on 2 months of data (august = training set, september = test set /
-control).  Items are generated from the set of users having enquired: each
-enquiry is a "positive" item and each PPP viewed but not enquired on is a
-"negative".
+Running the original, linear scoring-based ranking (\\(\phi_0\\)) on our control
+data yields a surprising result: its accuracy is **44.5%**, which means it
+performs _worse_ than random (we hadn't tweaked it in a while, and usage
+patterns do evolve).
 
-Both the training and test sets have 150k+ training items.  Each item is an
-input vector of 19 elements (information on the user, property, and location),
-and a 1-item output vector (enquired / not enquired).
-
-Using a cascade-trained NN (19 inputs, 30 neurons) as a classification
-predictor, I'm getting 56.4% accuracy on the training set and **55.7% accuracy
-on the control set** — i.e. significantly better than noise.
-
-Just pulled a breakdown (not for the same net):
-
-TP: 31.9%  TN: 23.8%  FP: 26.2%  FN: 18.2%
-Accuracy (TP + TN) = 55.7%
-
-[response/separation graph in email]
-
-In other words, given a user/property combination, it can correctly predict
-whether the user will enquire 55.9% of the time.<br> While not fantastic it's a
-pretty good start — especially considering this is misusing NNs for our purpose:
-the point is not to predict conversions, but sort properties.
-
+So even without further optimisation, our neural network would be a winner!
 
 A handful of performance facts:
 
 - importing 2 months of data from various databases in to Redis takes roughly 30
   minutes, and consumes 700MB per month of data.
 - exporting datasets to train on / test on takes ~5 minutes
-- training the 19-input NN using the cascade algorithm takes about 10min (note
+- training the 28-input NN using the cascade algorithm takes about 2 hours (note
   that this algorithm also learns how many nodes are needed, and what their
   response function should be; not just the vertex weights).
-- the 30-node NN I mentioned above can make about 120k predictions per second on
-  my machine.
+- the 28-node NN I mentioned above can make about 120k predictions per second on
+  my machine, which means in the worst case (used as a comparator in a \\(O(n^2)\\)
+  sorting algorithm) it could sort a set of 350 properties in a second. That's
+  not going to cut it.
 
 
 --------------------------------------------------------------------------------
 
 
-next steps
+At this point we've proven the approach could be viable, although significant
+effort is still required.
 
-refine (tranform inputs as needed, remove inputs which
-may degrade learning)
-try to go beyond that 56% mark
+Eventually this will need to be automated, relatively unsupervised, and _fast_.
+When using ANNs, part of the difficulty (some would say magic) is to pick:
 
-Next step is to give this a go on datasets containing _[user, location
-property1, property2]_ items to predict ordering (where an enquired property has
-a "higher" rank than a non-enquired one).
+- the correct inputs (and transformations thereof)
+- the number of hidden layers
+- the number of nodes
+- their activation functions (sigmoid, linear, gaussian?)
+- the duration of training (number of "epochs")
+- the training error function.
 
-This is an easier problem (classification), and there's more data (all pairs of
-property for a given user), so I'm quite hopeful we'll get even better results.
+Our target is to achieve 60%+ accuracy, and be able to sort even large sets of
+properties (2000+) in a few tens of millisenconds.
+
+In part 2 (coming soon), we'll explore several of this points: expect lots of
+graphs and data!
+
+I hope this article will inspire some engineers to read on, and possibly apply
+advanced techniques to building apps that work even better for consumers!
+
 
 
 
