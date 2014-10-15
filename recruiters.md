@@ -1,7 +1,6 @@
 ---
-layout: default
+layout: standalone
 ---
-
 
 Dear recruiter, hi!
 
