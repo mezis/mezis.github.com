@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: Learning to rank in e-commerce, part 2
+title: Using machine learning to rank search results (part 2)
 summary: |
 
 ---
@@ -11,7 +11,9 @@ used a classifier of positive v negative events
 
 problem is ultimately to _rank_, i.e. sort user, property pairs based on:
 
-    [u,p1] > [u,p2]
+$$
+[u,p1] > [u,p2]
+$$
 
 in proper English, we're trying to answer this question:
 
@@ -21,9 +23,14 @@ in proper English, we're trying to answer this question:
 being true when _u_ engages with _p1_ but not with _p2_, having seen both of their
 pages
 
-    N(u,p1,p2) =
-      true  if [u,p1] > [u,p2]
-      false otherwise
+$$
+\phi(u,p_1,p_2) = \left\{
+\begin{array}{l l}
+1, \text{if } [u,p_2] > [u,p_1]\\
+-1, \text{otherwise}
+\end{array}
+\right.
+$$
 
 "pairwise net"
 
@@ -42,7 +49,9 @@ C(2,5) = 20 pairs each
 
 leap of faith (not doing science here anyways, but engineering), simulate with :
 
-    N(u,p1,p2) := N*(u,p1) > N*(u,p2)
+$$
+\phi(u,p1,p2) := \phi^*(u,p1) > \phi^*(u,p2)
+$$
 
 in English:
 assume than where a point-wise network gives a _higher_ response on _p1_ than
@@ -52,7 +61,7 @@ inconsistency stems form the fact we'll train on something different -
 particular outputs values.
 
 still control on pairwise accuracy
-find the `N*` that provides the best pairwise accuracy
+find the \\(\phi^\*\\) that provides the best pairwise accuracy
 i.e. explore the inputs
 
 then go back to training on a pairwise network

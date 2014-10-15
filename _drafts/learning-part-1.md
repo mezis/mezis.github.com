@@ -1,7 +1,7 @@
 ---
 layout: post
 published: true
-title: Machine-learning a search ranking engine for e-commerce (part 1)
+title: Using machine learning to rank search results (part 1)
 summary: |
   A large catalog of products can be daunting for users. Providing a very fine
   grained filtering of search results can be counter-productive: it leads them
@@ -228,11 +228,12 @@ page, if you will).
 Which point in the funnel should we learn on? Checkouts (bookings) sounds like
 an obvious place to find "positive" training events: if \\(u\\) has booked
 \\(p\\), we'd want \\(\phi(u,q,p)\\) to be 1 for most values of \\(q\\). But we
-wouldn't be able to select good examples for \\(q\\). In other words, which are
-the properties the user chose _not_ to book? Sure, they probably viewed the
-listing page for other properties, but we'd need to be reasonably sure they
-chose not to book because of the property itself, not for some other reason
-(e.g. finding a place with the competition).
+wouldn't be able to select good examples for \\(q\\), because those would be the
+answer to "which are the properties the user chose _not_ to book?" Sure, they
+probably viewed the listing page for other properties, but we'd need to be
+reasonably sure they chose not to book because of the property itself, not for
+some other reason (e.g. they had made their choice already, and were just window
+shopping).
 
 Ultimately, we chose our focal point as the point of enquiry (this is where
 users ask the host to confirm availability, which is a preliminary step towards
@@ -249,7 +250,7 @@ Our dataset is therefore:
   \\(\phi\\) is 1 if \\(p_j\\) was enquired but not \\(p_i\\), and -1 in the
   opposite case.
 
-Wew, that's quite a mouthful. Let's make this a bit more visual. Out dataset is
+Phew, that's quite a mouthful. Let's make this a bit more visual. Out dataset is
 going to be a long list of this kind of data:
 
 | user info  |  left property info  |  right property info  | \\(\phi\\) |
@@ -316,7 +317,7 @@ This means we're looking at one data point every \\(10^{14} / 40\cdot 10^6 ≈
 2.5\cdot 10^6 \\) cell, also known as "not a lot". Plus the data's not just
 sparse, it's likely to not uniformly cover the problem space either.
 
-Practically this necessarily doesn't mean we won't be able to model, but we
+Practically this doesn't necessarily mean we won't be able to model, but we
 shouldn't expect miracles.
 
 We should, however, start putting this to the test.
@@ -349,7 +350,7 @@ an easier start. If you're an engineer with a strong CS background, go for the
 red one. Both are excellent, as is (mostly) the norm with O'Reilly.
 
 I've done my best to be algorithm agnostic so far, but the title and summary
-gave away the approach anyways, so no surprises here: we're going to use
+gave away the approach anyway, so no surprises here: we're going to use
 artificial neural networks (ANNs) to fit a model to our data.
 
 While it's not the most state-of-the-art method out there, it's still [pretty
@@ -444,7 +445,7 @@ single figure for performance, reporting on _accuracy_ (the proportion of
 "correct" predictions).
 
 To get a sense of whether this would work at all, we train a network with our 28
-inputs (10 for the user, 9 for each property) using the [cascade training
+inputs (10 for the user, 9+9 for the properties) using the [cascade training
 algorithm](http://leenissen.dk/fann/html/files/fann_cascade-h.html) and a target
 of 28 hidden neurons (completely random guessing that last figure).
 
@@ -471,7 +472,7 @@ set, we obtain:
 
 which means our accuracy on the very first attempt is **55.7%**: our predictor
 would be accurate slightly over half the time; which means that a property a
-user would enquire would be ranked above a property they wouldn't slightly over
+user would enquire about would be ranked above a property they wouldn't slightly over
 half the time.
 
 That doesn't sound too fantastic, but for a machine learning engine on human

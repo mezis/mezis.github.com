@@ -42,6 +42,7 @@ first engineer, no funding or seed funding: 5-10%
 before series A: 1-2%
 after series A: 0.5%
 http://venturehacks.com/articles/option-pool-shuffle
+http://dondodge.typepad.com/the_next_big_thing/2007/08/how-much-equity.html
 
 know how equity works
 http://www.socalcto.com/2011/09/equity-for-early-employees-in-early.html
