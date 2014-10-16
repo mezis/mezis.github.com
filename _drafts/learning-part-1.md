@@ -22,6 +22,19 @@ _Disclaimer:_ if you're taking this seriously, take scientific advice. I've been
 a scientist in another life, but what follows is really an engineering,
 get-it-done approach to the problem.
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+Jump to:
+[A simplistic ranking engine](#a-simplistic-ranking-engine) |
+[Formulating the ranking problem](#formulating-the-ranking-problem) |
+[Obtaining data](#obtaining-data) |
+[Artificial neural networks](#artificial-neural-networks) |
+[Evaluating performance](#evaluating-performance) |
+[Beyond the proof-of-concept](#beyond-the-proof-of-concept) |
+[Frequently asked questions](#frequently-asked-questions)
+
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
 Let's start with some background on the website I'm building this for.
 
 HouseTrip is a holiday rental site; our products are flats and houses that
@@ -539,7 +552,7 @@ When using ANNs, part of the difficulty (some would say magic) is to pick:
 - the training error function.
 
 Our target is to achieve 60%+ accuracy, and be able to sort even large sets of
-properties (2000+) in a few tens of millisenconds.
+properties (2000+) in a few tens of milliseconds.
 
 In part 2 (coming soon), we'll explore several of this points: expect lots of
 graphs and data!
@@ -567,7 +580,13 @@ advanced techniques to building apps that work even better for consumers!
   to capture diverse user behaviour, and short enough to capture seasonal
   changes in said behaviour.<br/>
   I did test on other months in our source data with very similar results.
-  
+- _Did you investigate different solutions to the same problem? If so, why
+  didn't you pick them?_ Occam's razor, really: explore the simplest solution
+  first. I suppose SVM could be another candidate technique (although it's not
+  good at modeling non-linear relationships). After all, this is an engineering
+  exercise: delivering a solution with reasonable effort and performance. Long
+  story short, I knew from experience that ANNs could possibly help here, and
+  `ruby-fann` was available.
 
 
 
