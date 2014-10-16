@@ -193,11 +193,17 @@ pre
     border-bottom: 1px solid rgba($link-color, 0.3)
 
 .dc-post-content
+  $size:      30px
   hr
-    $size: 30px
-
     border:         none
     height:         $size
+  h5
+    font-style:   italic
+    font-weight:  normal
+    text-align:   center
+  hr, h5
+    margin-top:     25px
+    margin-bottom:  25px
     &:before
       content:      "***"
       height:       $size

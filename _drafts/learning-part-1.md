@@ -73,7 +73,8 @@ the past, some of which may be similar to me in some way---and it could leverage
 that knowledge to tailor results for my benefit (and, well, the company's).
 
 
---------------------------------------------------------------------------------
+
+##### A simplistic ranking engine
 
 
 The very first "ranking engine" at HouseTrip was very simple. We would show
@@ -143,7 +144,8 @@ but has a fundamental issue:
 We'd still not be taking _the specific user_ searching for a product into account.
 
 
---------------------------------------------------------------------------------
+
+##### Formulating the ranking problem
 
 
 Let's take a step back and formulate the problem we're trying to solve.
@@ -163,17 +165,19 @@ So what we're aiming for is a black box that looks like this:
 $$
 \phi(u,p_1,p_2) = \left\{
 \begin{array}{l l}
-1, \text{if } p_2 \text{is more relevant than  } p_1\\
+1, \text{if } p_2 \succ_u p_1\\
 -1, \text{otherwise}
 \end{array}
 \right.
 $$
 
 where \\(u\\) is a vector of normalised attributes of the user, and \\(p_k\\)
-the attributes of the two compared properties.
+the attributes of the two compared properties. The operator \\(\succ_u\\),
+informally means "more relevant than, for user \\(u\\)"; defining it clearly
+will be part of the challenge.
 
-Whatever the black box \\(\phi\\) ends up being, it will have a number of
-challenges to face:
+Whatever the black box \\(\phi\\) ends up being, it will have a number of other,
+data-related challenges to face:
 
 - there is little known information about the user. In our context, we only know
   about their chosen locale, the destination they searched for, the dates at
@@ -207,7 +211,9 @@ $$
 $$
 
 
---------------------------------------------------------------------------------
+
+
+##### Obtaining data
 
 
 Coming up with a good candidate for \\(\phi\\) with a supervised machine
@@ -240,6 +246,13 @@ users ask the host to confirm availability, which is a preliminary step towards
 booking). Think of it as a shortlist: a user browses several properties and opts
 to enquire on a handful.
 
+We can now define our relevance operator more clearly:
+
+- \\(p_1 \succ_u p_2\\) if \\(u\\) enquired about \\(p_1\\) but not \\(p_2\\),
+  and vice-versa;
+- \\(p_1 =\_u p_2\\) if \\(u\\) enquired about both \\(p_1\\) and \\(p_2\\), or
+  neither.
+
 Our dataset is therefore:
 
 - for all users \\(u\\) having enquired on a given day,
@@ -255,9 +268,9 @@ going to be a long list of this kind of data:
 
 | user info  |  left property info  |  right property info  | \\(\phi\\) |
 |------------|----------------------|-----------------------|------------|
-| 1.2  3.4   | 5.6 7.0 8.1 8.2      | 9.3 5.2 4.3 3.9       | -1         |
-| 4.0  2.7   | 7.0 9.0 0.7 0.6      | 0.6 9.5 7.6 3.8       | 1          |
-| 1.3 5.1    | 8.0 9.5 7.3 5.2      | 3.2 4.7 4.7 6.1       | -1         |
+| 0.12 0.34  | 0.56 0.70 0.81 0.82  | 0.93 0.52 0.43 0.39   | -1         |
+| 0.40 0.27  | 0.70 0.90 0.07 0.06  | 0.06 0.95 0.76 0.38   | 1          |
+| 0.13 0.51  | 0.80 0.95 0.73 0.52  | 0.32 0.47 0.47 0.61   | -1         |
 {:.table.table-condensed}
 
 (not the real data, of course)
@@ -323,7 +336,9 @@ shouldn't expect miracles.
 We should, however, start putting this to the test.
 
 
---------------------------------------------------------------------------------
+
+
+##### Artificial neural networks
 
 
 To keep experimentation realistic, we'll use 1 month of data for training, and
@@ -431,18 +446,22 @@ Very fortunately, we don't really need to go much deeper, as the FANN library
 will do all the heavy lifting for us.
 
 
---------------------------------------------------------------------------------
+
+
+##### Evaluating performance
+
 
 
 The last piece of the puzzle is for us to measure how well (or poorly) our
 trained networks perform.
 
-Ours is a classification problem: any \\(u,p_1,p_2\\) input should be classified
-as \\(p_1&gt;p_2\\), aka. "negative", or \\(p_1&lt;p_2 \\)), aka.  "positive".
-The traditional way to evaluate performance of a classifier is to produce a
-[confusion matrix](https://en.wikipedia.org/wiki/Confusion_matrix); and to get a
-single figure for performance, reporting on _accuracy_ (the proportion of
-"correct" predictions).
+Ours is a classification problem: for a given input \\([u,p_1,p_2]\\), we
+classiffy "negative" entries where \\(p_1\succ\_u p_2\\), and "positive" those
+where \\(p_1\prec\_u p_2 \\).  The traditional way to evaluate performance of a
+classifier is to produce a [confusion
+matrix](https://en.wikipedia.org/wiki/Confusion_matrix); and to get a single
+figure for performance, reporting on _accuracy_ (the proportion of "correct"
+predictions).
 
 To get a sense of whether this would work at all, we train a network with our 28
 inputs (10 for the user, 9+9 for the properties) using the [cascade training
@@ -497,10 +516,13 @@ A handful of performance facts:
 - the 28-node ANN I mentioned above can make about 120,000 predictions per
   second on my machine, which means in the worst case (used as a comparator in a
   \\(O(n^2)\\) sorting algorithm) it could sort a set of 350 properties in a
-  second. That's not going to cut it.
+  second. That's not going to cut it: a modern search engine should not take
+  more than 500ms to provide results, and ranking is only part of the problem.
 
 
---------------------------------------------------------------------------------
+
+
+##### Beyond the proof-of-concept
 
 
 At this point we've proven the approach could be viable, although significant
@@ -524,6 +546,28 @@ graphs and data!
 
 I hope this article will inspire some engineers to read on, and possibly apply
 advanced techniques to building apps that work even better for consumers!
+
+
+
+##### Frequently asked questions
+
+
+- _Why do you call your second set a "control set" when the litterature
+  typically says "testing set"?_ <br/>
+  I wanted to emphasize that we're not training our ANN on a
+  random subsample of a given data set and testing its performance on the rest;
+  but rather, using two sets consecutive in time. Unlike other problems where
+  ANNs are applied, ours is more a prediction problem than a modeling problem.
+  Train on the past, control predictions on a known future.
+- _How the machine perform when you use future data but you don't apply the
+  same subset function?_ <br/>
+  This is probably beyond what I wanted to cover in part 1; we could indeed try
+  to learn on periods shorter or longer than a month. My hunch (and the results
+  from part 2) is that, given the volume of data we have, a month is long enough
+  to capture diverse user behaviour, and short enough to capture seasonal
+  changes in said behaviour.<br/>
+  I did test on other months in our source data with very similar results.
+  
 
 
 
