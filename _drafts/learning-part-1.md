@@ -223,6 +223,8 @@ $$
 \right.
 $$
 
+that is, finding a \\(\phi\\) that is more "accurate" than \\(\phi_0\\). We'll
+define accuracy in detail later.
 
 
 
@@ -581,12 +583,13 @@ advanced techniques to building apps that work even better for consumers!
   changes in said behaviour.<br/>
   I did test on other months in our source data with very similar results.
 - _Did you investigate different solutions to the same problem? If so, why
-  didn't you pick them?_ Occam's razor, really: explore the simplest solution
-  first. I suppose SVM could be another candidate technique (although it's not
-  good at modeling non-linear relationships). After all, this is an engineering
-  exercise: delivering a solution with reasonable effort and performance. Long
-  story short, I knew from experience that ANNs could possibly help here, and
-  `ruby-fann` was available.
+  didn't you pick them?_ <br/>
+  Occam's razor, really: explore the simplest solution first. I suppose
+  [SVM](https://en.wikipedia.org/wiki/Support_vector_machine) could be another
+  candidate technique (although it's not good at modeling non-linear
+  relationships). After all, this is an engineering exercise: delivering a
+  solution with reasonable effort and performance. Long story short, I knew from
+  experience that ANNs could possibly help here, and `ruby-fann` was available.
 
 
 
