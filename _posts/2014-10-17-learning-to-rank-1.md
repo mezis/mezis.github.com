@@ -367,7 +367,7 @@ artificial neural networks (ANNs) to fit a model to our data.
 
 If you're never heard of them, an Artificial neural network (ANN) is a function
 which maps a tuple of numbers to another (i.e.  in
-\\(\mathbb{R}^n\to\mathbb{R}^p\\)), can model arbitraly complex data sets with
+\\(\mathbb{R}^n\to\mathbb{R}^p\\)), can model arbitrarily complex data sets with
 arbitrary precision, and has known techniques to fit the model to the data.
 It's also an example of [biomimetism](https://en.wikipedia.org/wiki/Biomimetics)
 as it takes inspiration from the workings of the brain.
