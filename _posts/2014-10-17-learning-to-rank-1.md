@@ -314,8 +314,8 @@ A number of tricks are involved:
   hindering learning).
 
 We import all this into Redis, using a custom library called _pythia_ (bonus
-points if you get the clunky allusion). We may or may not open-source it, but in
-all likelihood, we won't if it ends up working super well, sorry.
+points if you get the clunky allusion). Hopefully we'll clean it up enough to
+open source it.
 
 At this point we feel like we have a solid set of data: roughly 1,500,000 entries
 per month, or just under 40 million entries points total. Let's run a little
