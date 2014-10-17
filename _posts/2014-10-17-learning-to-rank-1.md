@@ -40,10 +40,10 @@ Let's start with some background on the website I'm building this for.
 HouseTrip is a holiday rental site; our products are flats and houses that
 guests can rent for a period of time, in many (mostly European) cities. Our
 users (guests) come from many different countries (again, mostly European), and
-can be business travelers, couples, groups of friends, or families.
+can be business travellers, couples, groups of friends, or families.
 
-Let's assume I'm planning a trip to Paris with my wife and kid for the fall
-midterm holiday. When I land on the site, I'm asked to enter a destination,
+Let's assume I'm planning a trip to Paris with my wife and kid for the Autumn
+half-term holiday. When I land on the site, I'm asked to enter a destination,
 dates, and the size of my party, all of which I diligently enter.
 
 <figure>
@@ -245,7 +245,7 @@ Coming up with a good model for \\(\phi\\) requires three things:
 
 Finding what to learn _on_, i.e. our dataset, is actually tricky.
 In our case, we're lucky enough to have harvested raw user behavioural
-information (using [KissMetrics](https://www.kissmetrics.com/)'s anonymized data
+information (using [KissMetrics](https://www.kissmetrics.com/)'s anonymised data
 dumps, and imported into [KMDB](https://github.com/HouseTrip/km-db#kmdb)). This
 contains one entry per user and per key page of our transaction funnel (per
 page, if you will).
@@ -293,9 +293,9 @@ going to be a long list of this kind of data:
 | 0.13 0.51  | 0.80 0.95 0.73 0.52  | 0.32 0.47 0.47 0.61   | -1         |
 {:.table.table-condensed}
 
-(not the real data, of course)
+(not the real data)
 
-A number of tricks are involved, of course:
+A number of tricks are involved:
 
 - attributes are normalized from 0 to 1, with an attempt to "spread" the
   possible values as much as possible. For data that's distributed in a bell
@@ -303,7 +303,7 @@ A number of tricks are involved, of course:
   95th is 1. As we'll see in part 2, transforming the data (often using a
   logarithmic scale instead of linear) is a form of [kernel
   trick](https://en.wikipedia.org/wiki/Kernel_trick) that helps machine learning
-  algorithm by linearizing the input.
+  algorithm by linearising the input.
 - category information (e.g. locale) is converted into numerical information. We
   currently serve in 6 languages, which means instead of a "locale" column in
   the dataset, we'll have 6 columns, and for each user exactly one will have the
@@ -368,7 +368,7 @@ artificial neural networks (ANNs) to fit a model to our data.
 If you're never heard of them, an Artificial neural network (ANN) is a function
 which maps a tuple of numbers to another (i.e.  in
 \\(\mathbb{R}^n\to\mathbb{R}^p\\)), can model arbitraly complex data sets with
-arbitrary precision, and has known techniques to fit the momdel to the data.
+arbitrary precision, and has known techniques to fit the model to the data.
 It's also an example of [biomimetism](https://en.wikipedia.org/wiki/Biomimetics)
 as it takes inspiration from the workings of the brain.
 
@@ -397,7 +397,7 @@ If your background is web applications and e-commerce, the green one is probably
 an easier start. If you're an engineer with a strong CS background, go for the
 red one. Both are excellent, as is (mostly) the norm with O'Reilly.
 
-While ANNs are not most state-of-the-art modeline method out there, it's still
+While ANNs are not most state-of-the-art modeling method out there, it's still
 [pretty popular](http://en.wikipedia.org/wiki/Learning_to_rank#List_of_methods),
 and importantly has been around for a while, which means:
 
@@ -484,7 +484,7 @@ The last piece of the puzzle is for us to measure how well (or poorly) our
 trained networks perform.
 
 Ours is a classification problem: for a given input \\([u,p_1,p_2]\\), we
-classiffy "negative" entries where \\(p_1\succ\_u p_2\\), and "positive" those
+classify "negative" entries where \\(p_1\succ\_u p_2\\), and "positive" those
 where \\(p_1\prec\_u p_2 \\).  The traditional way to evaluate performance of a
 classifier is to produce a [confusion
 matrix](https://en.wikipedia.org/wiki/Confusion_matrix); and to get a single
@@ -580,12 +580,12 @@ advanced techniques to building apps that work even better for consumers!
 ##### Frequently asked questions
 
 
-- _Why do you call your second set a "control set" when the litterature
+- _Why do you call your second set a "control set" when the literature
   typically says "testing set"?_ <br/>
   I wanted to emphasize that we're not training our ANN on a
   random subsample of a given data set and testing its performance on the rest;
   but rather, using two sets consecutive in time. Unlike other problems where
-  ANNs are applied, ours is more a prediction problem than a modeling problem.
+  ANNs are applied, ours is more a prediction problem than a modelling problem.
   Train on the past, control predictions on a known future.
 - _How the machine perform when you use future data but you don't apply the
   same subset function?_ <br/>
@@ -599,7 +599,7 @@ advanced techniques to building apps that work even better for consumers!
   didn't you pick them?_ <br/>
   Occam's razor, really: explore the simplest solution first. I suppose
   [SVM](https://en.wikipedia.org/wiki/Support_vector_machine) could be another
-  candidate technique (although it's not good at modeling non-linear
+  candidate technique (although it's not good at modelling non-linear
   relationships). After all, this is an engineering exercise: delivering a
   solution with reasonable effort and performance. Long story short, I knew from
   experience that ANNs could possibly help here, and `ruby-fann` was available.
