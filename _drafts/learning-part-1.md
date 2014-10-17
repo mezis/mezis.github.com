@@ -27,7 +27,7 @@ get-it-done approach to the problem.
 Jump to:
 [A simplistic ranking engine](#a-simplistic-ranking-engine) |
 [Formulating the ranking problem](#formulating-the-ranking-problem) |
-[Obtaining data](#obtaining-data) |
+[Obtaining data](#obtaining-data-to-model-relevance) |
 [Artificial neural networks](#artificial-neural-networks) |
 [Evaluating performance](#evaluating-performance) |
 [Beyond the proof-of-concept](#beyond-the-proof-of-concept) |
@@ -47,14 +47,14 @@ midterm holiday. When I land on the site, I'm asked to enter a destination,
 dates, and the size of my party, all of which I diligently enter.
 
 <figure>
-  <img src="http://cl.ly/image/01311L0U2k0q/capture%202014-10-14%20at%2009.35.05.png"/>
+  <img src="/public/2014-10-learning/search-bar.png"/>
 </figure>
 
 The search results page (SRP) shows me a nice map and a number of properties. It
 also suggests I refine my search by prompting me to open a filtering panel:
 
 <figure>
-  <img src="http://cl.ly/image/2K1p3m011B0z/capture%202014-10-14%20at%2009.32.30.png"/>
+  <img src="/public/2014-10-learning/filters.png"/>
 </figure>
 
 Wow. Now, this is powerful. But 29 filters? And a total of 1,170 available
@@ -89,13 +89,15 @@ that knowledge to tailor results for my benefit (and, well, the company's).
 
 ##### A simplistic ranking engine
 
+A first baby step towards making search results relevant to _me_ is to try
+making them more relevant to visitors in general.
 
 The very first "ranking engine" at HouseTrip was very simple. We would show
 products higher in the list if they've been booked more often---that is, sort by
 descending number of past purchases.
 
-After all, the feedback from our users was that those products "work", so why
-not? Two main issues arose over time:
+After all, the feedback from our users was that those products "work": they were
+purchased, so they're certainly relevant. Two main issues arose over time:
 
 - sellers (hosts) would game the system by listing multiple product (properties)
   as a single entry, to boost their ranking;
@@ -189,12 +191,33 @@ the attributes of the two compared properties. The operator \\(\succ_u\\),
 informally means "more relevant than, for user \\(u\\)"; defining it clearly
 will be part of the challenge.
 
-Whatever the black box \\(\phi\\) ends up being, it will have a number of other,
-data-related challenges to face:
+The good news is that we don't have to be very successful in designing
+\\(\phi\\): we just need to do better than a random sort order, and better than
+the linear score \\(S\\) does.
+
+In other words, our target is to beat this function (which ignores \\(u\\)):
+
+$$
+\phi_0(u,p_1,p_2) =  \left\{
+\begin{array}{l l}
+1, \text{if } S(p_2) > S(p_1)\\
+-1, \text{otherwise}
+\end{array}
+\right.
+$$
+
+that is, finding a \\(\phi\\) that is more "accurate" than \\(\phi_0\\) (we will
+define accuracy in detail later on).
+
+
+The less-good news, however, is that whatever the black box \\(\phi\\) ends up
+being, it will have a number of data-related challenges to face:
 
 - there is little known information about the user. In our context, we only know
   about their chosen locale, the destination they searched for, the dates at
-  which they want to travel, and the size of their party.
+  which they want to travel, and the size of their party. We don't know, for
+  instance, about their gender or age group, which we know (from market
+  research) has an important influence on their product preferences.
 - some of the information we have is continuous (e.g. the price of the
   property); some is discontinuous or discrete (e.g. the party size, number of
   photos), or even non-numerical (the locale, trip dates).
@@ -208,36 +231,17 @@ data-related challenges to face:
   sensitivity in some destination is inverted for some locales, or some periods
   in the year.
 
-That's for the bad news. Now, the _good_ news is that we don't have to be very
-successful in designing \\(\phi\\): we just need to do better than a random sort
-order, and better than the linear score \\(S\\) does.
 
-In other words, our target is to beat this function (which ignores \\(u\\)):
-
-$$
-\phi_0(u,p_1,p_2) =  \left\{
-\begin{array}{l l}
-1, \text{if } S(p_2) > S(p_1)\\
--1, \text{otherwise}
-\end{array}
-\right.
-$$
-
-that is, finding a \\(\phi\\) that is more "accurate" than \\(\phi_0\\). We'll
-define accuracy in detail later.
+##### Obtaining data to model relevance
 
 
-
-##### Obtaining data
-
-
-Coming up with a good candidate for \\(\phi\\) with a supervised machine
-learning technique requires three things:
+Coming up with a good model for \\(\phi\\) requires three things:
 
 - a "ground truth" dataset, i.e. a list of example instances of \\(u,p_1,p_2\\)
-  where the value of \\(\phi\\) is known;
+  where the value of \\(\phi\\) is known, and the space of possible values for
+  \\([u,p\_1,p\_2]\\) is well covered;
 - an optimization algorithm that generates a candidate based on "training" data;
-- a metric to determine how "good" our candidate is.
+- a metric to determine how "good" a candidate model is.
 
 Finding what to learn _on_, i.e. our dataset, is actually tricky.
 In our case, we're lucky enough to have harvested raw user behavioural
@@ -246,7 +250,7 @@ dumps, and imported into [KMDB](https://github.com/HouseTrip/km-db#kmdb)). This
 contains one entry per user and per key page of our transaction funnel (per
 page, if you will).
 
-Which point in the funnel should we learn on? Checkouts (bookings) sounds like
+Which point in the user journey should we learn on? Checkouts (bookings) sounds like
 an obvious place to find "positive" training events: if \\(u\\) has booked
 \\(p\\), we'd want \\(\phi(u,q,p)\\) to be 1 for most values of \\(q\\). But we
 wouldn't be able to select good examples for \\(q\\), because those would be the
@@ -259,7 +263,8 @@ shopping).
 Ultimately, we chose our focal point as the point of enquiry (this is where
 users ask the host to confirm availability, which is a preliminary step towards
 booking). Think of it as a shortlist: a user browses several properties and opts
-to enquire on a handful.
+to enquire on a handful. Informally, we believe this to be a good point because
+the "positive" and "negative" events are as meaningful to the user.
 
 We can now define our relevance operator more clearly:
 
@@ -356,42 +361,16 @@ We should, however, start putting this to the test.
 ##### Artificial neural networks
 
 
-To keep experimentation realistic, we'll use 1 month of data for training, and
-the following 2 weeks for control.  This isn't exactly by the book (you'd
-normally take one set, and randomly pick training and control examples), but the
-point of all this is to have _predictive_ power, i.e. use past observations to
-predict future behaviour.
-
-This is the point where you'll probably want to have read one of these two
-books, although I'll do my best to stay legible:
-
-<table>
-<tbody>
-<tr><td>
-  <img alt="Programming collective intelligence" class="img-responsive" src="http://cl.ly/image/2e3B3C353o0e/capture%202014-10-14%20at%2018.04.00.png"/>
-</td><td>
-  <img alt="Machine learning for hackers" class="img-responsive" src="http://cl.ly/image/0e3d1E0T3f23/capture%202014-10-14%20at%2018.03.07.png"/>
-</td></tr>
-</tbody>
-</table>
-
-If your background is web applications and e-commerce, the green one is probably
-an easier start. If you're an engineer with a strong CS background, go for the
-red one. Both are excellent, as is (mostly) the norm with O'Reilly.
-
 I've done my best to be algorithm agnostic so far, but the title and summary
 gave away the approach anyway, so no surprises here: we're going to use
 artificial neural networks (ANNs) to fit a model to our data.
 
-While it's not the most state-of-the-art method out there, it's still [pretty
-popular](http://en.wikipedia.org/wiki/Learning_to_rank#List_of_methods), and
-importantly has been around for a while, which means:
-
-- even non-experts will have some familiarity with the concept, unless they
-  drank their way through college;
-- there are good libraries floating around; we'll be using
-  [FANN](http://leenissen.dk/fann/wp/), which has good [Ruby
-  bindings](https://github.com/tangledpath/ruby-fann).
+If you're never heard of them, an Artificial neural network (ANN) is a function
+which maps a tuple of numbers to another (i.e.  in
+\\(\mathbb{R}^n\to\mathbb{R}^p\\)), can model arbitraly complex data sets with
+arbitrary precision, and has known techniques to fit the momdel to the data.
+It's also an example of [biomimetism](https://en.wikipedia.org/wiki/Biomimetics)
+as it takes inspiration from the workings of the brain.
 
 This [deck of
 slides](https://sites.google.com/a/iupr.com/dia-course/lectures/lecture08-classification-with-neural-networks)
@@ -400,6 +379,34 @@ conveniently free if you don't have the books. And also, it's from a place
 that's pretty close to Ramstein Airfield, which I found funny because of the
 [other Rammstein](https://en.wikipedia.org/wiki/Rammstein) (which is indeed
 named after the place!).
+
+If you're a developer or engineer, you'll probably also want to have read one of
+these two books, although I'll do my best to stay legible:
+
+<table>
+<tbody>
+<tr><td>
+  <img alt="Programming collective intelligence" class="img-responsive" src="/public/2014-10-learning/book1.png"/>
+</td><td>
+  <img alt="Machine learning for hackers" class="img-responsive" src="/public/2014-10-learning/book2.png"/>
+</td></tr>
+</tbody>
+</table>
+
+If your background is web applications and e-commerce, the green one is probably
+an easier start. If you're an engineer with a strong CS background, go for the
+red one. Both are excellent, as is (mostly) the norm with O'Reilly.
+
+While ANNs are not most state-of-the-art modeline method out there, it's still
+[pretty popular](http://en.wikipedia.org/wiki/Learning_to_rank#List_of_methods),
+and importantly has been around for a while, which means:
+
+- even non-experts will have some familiarity with the concept, unless they
+  drank their way through college;
+- there are good libraries floating around; we'll be using
+  [FANN](http://leenissen.dk/fann/wp/), which has good [Ruby
+  bindings](https://github.com/tangledpath/ruby-fann).
+
 
 Now that's out of the way and you're familiar with ANNs, we're specifically
 going to adapt (or take inspiration from) Tizano Papini's
@@ -466,6 +473,12 @@ will do all the heavy lifting for us.
 ##### Evaluating performance
 
 
+To keep experimentation realistic, we'll use 1 month of data for training, and
+the following 2 weeks for control.  This isn't exactly by the book (you'd
+normally take one set, and randomly pick training and control examples), but the
+point of all this is to have _predictive_ power, i.e. use past observations to
+predict future behaviour.
+
 
 The last piece of the puzzle is for us to measure how well (or poorly) our
 trained networks perform.
@@ -520,7 +533,7 @@ patterns do evolve).
 
 So even without further optimisation, our neural network would be a winner!
 
-A handful of performance facts:
+A handful of performance facts (on a Core i7 2.5GHz machine running OS X):
 
 - importing 2 months of data from various databases in to Redis takes roughly 30
   minutes, and consumes 700MB per month of data.
@@ -529,10 +542,10 @@ A handful of performance facts:
   that this algorithm also learns how many nodes are needed, and what their
   response function should be; not just the vertex weights).
 - the 28-node ANN I mentioned above can make about 120,000 predictions per
-  second on my machine, which means in the worst case (used as a comparator in a
-  \\(O(n^2)\\) sorting algorithm) it could sort a set of 350 properties in a
-  second. That's not going to cut it: a modern search engine should not take
-  more than 500ms to provide results, and ranking is only part of the problem.
+  second, which means in the worst case (used as a comparator in a \\(O(n^2)\\)
+  sorting algorithm) it could sort a set of 350 properties in a second. That's
+  not going to cut it: a modern search engine should not take more than 500ms to
+  provide results, and ranking is only part of the problem.
 
 
 
@@ -592,5 +605,6 @@ advanced techniques to building apps that work even better for consumers!
   experience that ANNs could possibly help here, and `ruby-fann` was available.
 
 
-
+Credits: Thanks to [Alfredo Motta](https://github.com/mottalrd) and [Andy
+Shipman](https://github.com/mrship) for their helpful review of this article.
 
