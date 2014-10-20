@@ -152,7 +152,7 @@ networks now look simpler:
 
 
 <figure>
-  <img src="/public/2014-10-learning/ann-pointwise.svg"/>
+  <img alt="Pointwise ANN" src="/public/2014-10-learning/ann-pointwise.svg"/>
 </figure>
 
 The dataset is also simpler, it is now a list of \\([u,p,o]\\) vectors,
@@ -175,7 +175,7 @@ unnecessarily large number of training iterations (known as "epochs").
 Several coffees later, the jury is back:
 
 <figure>
-  <img src="/public/2014-10-learning/accuracy-pointwise.svg"/>
+  <img alt="Pointwise accuracy" src="/public/2014-10-learning/accuracy-pointwise.svg"/>
 </figure>
 
 This confirms that, used as a pointwise classifier ("will the user enquire about
@@ -221,23 +221,144 @@ Note that while we've explored the other training algorithms provided by
 the default [iRPROP](https://en.wikipedia.org/wiki/Rprop) algorithm which
 consistenly yielded more stale results and better final RMSE.
 
-For this experiment we trained networks with 8 to 24 hidden neurons in 1 layer,
-and reported the time spent and RMSE at each epoch.
+Training a first network (1 hidden layer, 8 neurons), and reporting on RMSE at
+each epoch gives us a first hint at how it progresses:
 
-- convergence speed
-- number of epochs
-- show for 3 network sizes
+<figure>
+  <img src="/public/2014-10-learning/rmse-layout-8.svg"/>
+</figure>
 
-##### Hidden neurons
+RMSE lowers rapidly at first, then progresses much more slowly. There's a cutoff
+around the 400th epoch, then diminishing returns, and eventually stabilisation
+around the 2,000th epoch.
 
+Training a few more networks, and timing for a fixed number of training epochs
+gives us a sense of how speed degrades with network size:
 
-- effect of number of nodes
-- 1->40 nodes
-- countour plot
-- "sweet spots" with no explanation
+<figure>
+  <img src="/public/2014-10-learning/epochs-per-second.svg"/>
+</figure>
+
+By the looks of it, training speed degrades roughly linearly with number of
+hidden nodes; as a rule of thumb we'll consider that doubling the number of
+hidden neurons increases training time for 50%---for a given number of epochs.
+
+Now, our aim is to be able to train many networks in reasonable time, without
+worrying we didn't let them converge long enough.
+For this next experiment we train networks with 8 to 24 hidden neurons in 1 layer,
+and reported the time spent and RMSE at each epoch:
+
+<figure>
+  <img src="/public/2014-10-learning/rmse-epochs-multiple-layouts.svg"/>
+</figure>
+
+All networks exhibit the same "hockey stick" convergence behaviour. After 2,400
+epochs, the two smaller ones seem to have converged, but the three larger ones
+are still slowly improving.
+
+Interestingly, the three larger one also have a "dip" (around 800, 1,200, and
+2,200 epochs respectively) where convergence speed quickly improves before
+slowing down again.
+
+Looking at the same data in terms of CPU time spent on training, instead of
+number of epochs elapsed, does not help much further:
+
+<figure>
+  <img src="/public/2014-10-learning/rmse-time-multiple-layouts.svg"/>
+</figure>
+
+The only conclusion so far is that independently of the network size, we observe
+a "hockey stick" convergence pattern; hitting the first plateau takes roughtly 1
+minute for a network of size 8, and that increases by roughly 50% for each
+doubling of the network size.
+
+Differentiating those curves, and plotting the _speed_ of convergence (variation of
+RMSE per unit of time), makes the result more readable:
+
+<figure>
+  <img src="/public/2014-10-learning/training-speed-multiple-layouts.svg"/>
+</figure>
+
+XXX explain!
+
+The hockey stick does end around 60s for size 8 and 90s for size 16. The "dip"
+at size 16, around the 180s mark, is clearly visible.
+
+Unfortunately, the larger networks are still converging at the end of our time
+period; we can't easily derive for how many epochs, or for how much time, we
+should let training happen.
+
+For the rest of this exploration, we'll assume a training time of 2,400 epochs
+is "good enough" to compare results between networks, and we'll regularly
+confirm convergence by looking at the RMSE-over-time graphs
 
 
 ##### Number of hidden layers
+
+Now that we have a basic sens of how quickly iRPROP converges, we should start
+exploring for the ideal network layout. The experiments for far were with a
+single hidden layer; does adding more layers change the performance in any way?
+
+<figure>
+  <img src="/public/2014-10-learning/training-speed-multiple-layouts.svg"/>
+</figure>
+
+- second layer speeds up conversion
+- leads to instability
+- outcome isn't better
+
+
+##### Hidden neurons
+
+Given the above, we'll settle on a single hidden layer.
+
+There doesn't seem to be an agreed on way to determine the number of hidden
+neurons. Stack Overflow, being its useful self, provides a number of [rules of
+thumbs](http://stackoverflow.com/a/10568938/161487) (see [this
+answer](http://stats.stackexchange.com/a/1097) as well).
+The scientific literature isn't much more helpful.
+
+The gist seem that the emphasis should be put on experimenting, and that the
+number of input nodes, added to the number of output nodes, is generally a good
+place to start. For us, that's 21 nodes in the hidden layer.
+
+Out of curiosity (and a will to yield the best possible results, of course),
+we trial all hidden layer sizes from 1 to 40, training them for 2,400 epochs.
+
+<figure>
+  <img src="/public/2014-10-learning/accuracy-by-size.svg"/>
+</figure>
+
+The pairwise accuracy (our ultimate measure of performance) seems to overall
+increase with the size of the hidden layer. Performance for small sizes (1 to 3
+hidden nodes) is too small to be reported (between 50 and 55%).
+
+Interestingly, it would seem that some network sizes fare much better then
+other, even after sizes over 15 where performance plateaus on average.
+Sizes 16, 29, and 34 stand out; we are unable to provide a rational explanation
+for this.
+
+Let's take a closer look at how the networks were trained to make sure these
+"peaks" aren't an artifact caused by stopping at a given number of epochs.
+We plot their RMSE over epochs like above; we'll choose a different
+representation, though, as overlaying 40 curves would be quite unreadable:
+
+<figure>
+  <img src="/public/2014-10-learning/rmse-epochs-contour.png"/>
+</figure>
+
+In this contour plot, training begins at the top (2,400 epochs "left" to train) and
+ends at the bottom. We can clearly see the low-node-count ANNs at the left with
+poor RMSE in green; the graph gets lighter to the right as RMSE gets lower more
+quickly.
+This also confirms our three "magic" layer sizes at 16, 29, and 34 nodes, where
+we can see white "troughs" at the bottom of the graph, indicating the lowest
+values of RMSE across our sample of networks.
+
+While we have no explanation for these "sweet spots", they give us another clue
+on how to continue experimenting.
+
+
 
 
 
