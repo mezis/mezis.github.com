@@ -35,7 +35,7 @@ kinds of counters, tracking, priming cache, scaling uploaded images, and so
 on.
 
 In some cases the user is a developer, or a scheduler in the system, running
-some [Rake](http://rake.rubyforge.org) task but not caring to wait for the
+some [Rake](https://en.wikipedia.org/wiki/Rake_(software)) task but not caring to wait for the
 result.
 
 In all cases, to run jobs asynchronously, you will need two subsystems:
@@ -303,4 +303,7 @@ queue/run platform like Resque. But for know, we've gotten rid of the main
 pain points.
 
 Have fun with jobs!
+
+
+_Update (Oct. 2014):_ Fixes dead links.
 

@@ -18,8 +18,7 @@ summary:  |
 
 
 Brian Helmkamp of Code Climate fame
-[blogged](http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-
-fat-activerecord-models/) brilliantly about a few ways to thin down your fat
+[blogged](http://blog.codeclimate.com/blog/2012/10/17/7-ways-to-decompose-fat-activerecord-models/) brilliantly about a few ways to thin down your fat
 model & controller code.
 
 This is a slightly more detailed use case of the second point in his
@@ -33,7 +32,7 @@ Appfab intro
 EA diagram: login/user/account
 
 <figure class="dm-schematic">
-  <img src="/public/entities.svg"/>
+  <img alt="entity diagram" src="/public/entities.svg"/>
   <figcaption></figcaption>
 </figure>
 

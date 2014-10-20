@@ -47,14 +47,14 @@ half-term holiday. When I land on the site, I'm asked to enter a destination,
 dates, and the size of my party, all of which I diligently enter.
 
 <figure>
-  <img src="/public/2014-10-learning/search-bar.png"/>
+  <img alt="Search bar" src="/public/2014-10-learning/search-bar.png"/>
 </figure>
 
 The search results page (SRP) shows me a nice map and a number of properties. It
 also suggests I refine my search by prompting me to open a filtering panel:
 
 <figure>
-  <img src="/public/2014-10-learning/filters.png"/>
+  <img alt="Search filters" src="/public/2014-10-learning/filters.png"/>
 </figure>
 
 Wow. Now, this is powerful. But 29 filters? And a total of 1,170 available
@@ -418,14 +418,14 @@ above? It can be re-imagined as a trivial ANN, with no hidden layers, and where
 the output node has a linear activation function:
 
 <figure>
-  <img src="/public/2014-10-learning/nn-sqs.svg"/>
+  <img alt="ANN for SQS" src="/public/2014-10-learning/nn-sqs.svg"/>
 </figure>
 
 For comparison, the net we want to train will look like the following, with a
 number of inputs for the user and the pair of properties we want to compare:
 
 <figure>
-  <img src="/public/2014-10-learning/ann.svg"/>
+  <img alt="Pairwise fully connected ANN" src="/public/2014-10-learning/ann.svg"/>
 </figure>
 
 You've probably noted there are two outputs, but we only want one value (+1 or

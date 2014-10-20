@@ -71,6 +71,9 @@ If your team is inexperienced (or outsourced, or has a high turnover or you can'
 Agree? Disagree? This is a hot topic, bordering on flame bait... so feel free to comment!
 
 
+_Update (Oct. 2014):_ Fixed dead links, point to archive.org.
+
+
 [Sass]: http://sass-lang.com/
 [CoffeeScript]: http://coffeescript.org/
 [DSL]: http://en.wikipedia.org/wiki/Domain-specific_language
@@ -78,6 +81,6 @@ Agree? Disagree? This is a hot topic, bordering on flame bait... so feel free to
 [PHP]: http://www.php.net/
 [deeper intro]: http://rrn.dk/rubys-erb-templating-system
 [1]: http://blog.zenspider.com/blog/2009/02/tagz-vs-markaby-builder-haml-erubis.html
-[2]: http://nex-3.com/posts/87-haml-benchmark-numbers-for-2-2
+[2]: https://web.archive.org/web/20140214081934/http://nex-3.com/posts/87-haml-benchmark-numbers-for-2-2
 [Erubis]: http://www.kuwata-lab.com/erubis/
 
