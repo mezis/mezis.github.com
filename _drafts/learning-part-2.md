@@ -3,9 +3,9 @@ layout: post
 published: true
 title: Using machine learning to rank search results (part 2)
 summary: |
-  In the [previous episode](/2014/10/learning-to-rank-1/),
-  we've introduced you ANNs (artificial neural networks) could be used to
-  improve the relevance of search results in an e-commerce context.
+  In the [previous episode](/2014/10/learning-to-rank-1/), we've presented  ANNs
+  (artificial neural networks) that could be used to improve the relevance of
+  search results in an e-commerce context.
 
   We didn't go beyond the proof of concept though, and ended with more
   questions than when we begun.
@@ -18,13 +18,29 @@ summary: |
 
 ---
 
+<!-- START doctoc generated TOC please keep comment here to allow auto update -->
+<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
+Skip to
+  [Pairwise to pointwise ANNs](#pairwise-to-pointwise-anns)
+| [Validating pointwise ANNs](#validating-pointwise-anns)
+| [Training duration](#training-duration)
+| [Number of hidden layers](#number-of-hidden-layers)
+| [Hidden neurons](#hidden-neurons)
+| [Improving quality of inputs](#improving-quality-of-inputs)
+| [Removing bad inputs](#removing-bad-inputs)
+| [Specializing by user segment](#specializing-by-user-segment)
+| [Experiment wrap-up](#experiment-wrap-up)
+| [Looking in the closer future](#looking-in-the-closer-future)
+| [Conclusions & next steps](#conclusions---next-steps)
+<!-- END doctoc generated TOC please keep comment here to allow auto update -->
+
+
 Let's start by repeating the _Disclaimer_ from [part
 1](/2014/10/learning-to-rank-1/): in spite of having a diploma that hints
 otherwise, I wouldn't consider myself an expert in any of this. Proceed with
 caution (the graphs are still cute, though).
 
 Importantly, as this is not science, we'll be making making many assumptions so we can move forward. I did check that all results presented are consistent where applied to other datasets, but everything shown is run on a single, 1 month training + 1 month control dataset unless otherwise stated.
-
 
 The ANN we ended up with so far proved that we can present search results that
 can more accurately predict user engagement than random order, our our
@@ -276,10 +292,10 @@ Differentiating those curves, and plotting the _speed_ of convergence (variation
 RMSE per unit of time), makes the result more readable:
 
 <figure>
-  <img src="/public/2014-10-learning/training-speed-multiple-layouts.svg"/>
+  <img src="/public/2014-10-learning/training-speed-multiple-layouts.png"/>
 </figure>
 
-XXX explain!
+> XXX explain!
 
 The hockey stick does end around 60s for size 8 and 90s for size 16. The "dip"
 at size 16, around the 180s mark, is clearly visible.
@@ -295,18 +311,31 @@ confirm convergence by looking at the RMSE-over-time graphs
 
 ##### Number of hidden layers
 
-Now that we have a basic sens of how quickly iRPROP converges, we should start
+Now that we have a basic sense of how quickly iRPROP converges, we should start
 exploring for the ideal network layout. The experiments for far were with a
 single hidden layer; does adding more layers change the performance in any way?
 
 <figure>
-  <img src="/public/2014-10-learning/training-speed-multiple-layouts.svg"/>
+  <img src="/public/2014-10-learning/multi-layer-rmse.svg"/>
 </figure>
 
-- second layer speeds up conversion
-- leads to instability
-- outcome isn't better
+In this graph the series are named after the layout of the network: `24,8,4`
+stands for 3 hidden layers, with 24, 8 and 4 neurons respectively.
 
+The instability of training as the complexity of the
+network increases is surprising. This also seems to be independent of the training algorithm
+(similar behaviour is observed with Quickprop and Batch).
+
+Apart from that, it would seem that adding an extra layer can, at least in some
+cases (see the `24,8` example above), lead to faster training.
+
+Taking a look at the accuracy of these networks suggests we should move on:
+
+<figure>
+  <img src="/public/2014-10-learning/multi-layer-accuracy.svg"/>
+</figure>
+
+The simple, single hidden layer network outperforms the more complicated ones.
 
 ##### Hidden neurons
 
@@ -355,38 +384,186 @@ This also confirms our three "magic" layer sizes at 16, 29, and 34 nodes, where
 we can see white "troughs" at the bottom of the graph, indicating the lowest
 values of RMSE across our sample of networks.
 
+These sweet spots are highly dependent on the input. While the exact portion of
+the dataset we use seems to lead to the same sweet spots, changing the number of
+inputs (more on this below) seems to shift the position of the sweet spots
+dramaticlally.
+
 While we have no explanation for these "sweet spots", they give us another clue
-on how to continue experimenting.
+on how to continue experimenting: once we're done fiddling with inputs, we
+should run this again to confirm what the ideal network size actually is.
 
-
+_Note:_ the graphs above in this section actually correspond to our final,
+massaged inputs; specifically with 1 bad input removed, and 2 inputs rescaled to
+a logarithmic scale.
 
 
 
 ##### Improving quality of inputs
 
-- log scale
-- adding noise
+While all of our inputs are properly normalized, as is well explained in
+[comp.ai.neural-nets](http://www.faqs.org/faqs/ai-faq/neural-nets/part2/),
+some of them nor poorly _distributed_ in the inputs range (\\([0,1]\\) for us.
+
+We plot the distribution of each of the inputs of our data set; most or
+reasonably uniform, but two stand out:
+
+- _population_, the population of the city
+  where property \\(p\\) is, is heavily biased towards larger values, as most of
+  the properties in our inventory are in larger cities; and
+- _lead time_, the number of days between user's activity and their desired trip
+  date, which is heavily skewed towards small values (as with many online
+  activites, people seem to favour the last-minute purchases).
+
+We rescale both inputs using a log filter, resulting in both cases in a
+quasi-uniform distribution; we then re-train our group of networks. Finally, we
+compare the results of this experiment (X7 below) to the networks with the
+original inputs:
+
+<figure>
+  <img src="/public/2014-10-learning/log-scales.svg"/>
+</figure>
+
+The peak accuracy on the control set is indeed improved by "cleaning up" inputs.
+
 
 ##### Removing bad inputs
 
-- check-in dates
+Some of the inputs in our datasets aren't very reliable. For instance, the
+_population_ data is based on the [Geonames](http://www.geonames.org/), which is
+often quite inaccurate, and has a _lot_ of missing data. So far we've operated
+under the assumption that the information was missing for smaller cities, hence
+replaced it with zero as an approximation.
+
+We also wonder whether the user information, and the original ranking
+score, are valuable inputs (in the sense that they help make predictions).
+
+We run another series of experiments, and compare with the "base" scenario X7.
+Here's an exerpt of the results:
+
+<figure>
+  <img src="/public/2014-10-learning/without-fields.svg"/>
+</figure>
+
+It turns out that all these fields are indeed useful. Particularly, using the
+original ranking score as an input has a large impact; we believe this to be
+because it incorporates information that we did not use as inputs so far, namely
+some information about host behaviour, which we know thorugh other means to
+correlate to purchasing behaviour.
 
 
 ##### Specializing by user segment
 
+Taking a step back, training ANNs for ranking purposes is all about specialising
+search results for a particular user, in a situation when it is unrealistic to
+segment users in groups of consistent behaviour. If that were the case, we could
+use other tools like [decision
+trees](https://en.wikipedia.org/wiki/Decision_tree) to rank properties, and life
+would be boring.
+
+This said, there is one dimension along which we can segment users pretty
+efficiently: their locale. Here's an apparently reasonable hypothesis: if we
+train one network _per locale_ (in other words, splitting our training sets by
+locale), it could be easier to capture behaviour patterns. In other words,
+people speaking the same language might exhibit consistency.
+
+<figure>
+  <img src="/public/2014-10-learning/fr-only.svg"/>
+</figure>
+
+As it turns out, not really. The graph above shows that when restricting
+training to French speakers (about 25% of the overall data), accuracy _worsens_.
+In other words, knowing about the behaviour from other locales helps predict the
+behaviour of the French speakers.
+
+As a Frenchman, I wonder whether to feel like offended by this neural net
+telling me I'm not a beautiful snowflake.
+
+
+##### Experiment wrap-up
+
+Overall, we ran a few tens of experiments revolving around adding, removing, or
+transforming inputs. The graph below shows the performance of the main ones:
+
+<figure>
+  <img src="/public/2014-10-learning/accuracy-x-experiment.svg"/>
+</figure>
+
+Our conclusion at this point is that more data seems to imply better training
+results, and that [networks can't be trained on raw
+data](http://www.stuartreid.co.za/misconceptions-about-neural-networks/#prep).
+We had already filtered outliers (users making too many or too few enquiried)
+and normalized inputs; but transforming inputs so their values are well spread
+gives us an extra gain.
+
+Specializing the ANNs per segment doesn't seem to help either.
+
 
 ##### Looking in the closer future
 
-- predictive power after 1w, 2w, ... 4w
+Patterns of user behaviour evolve over time. Even more importantly, in an
+e-commerce application like [ours](http://www.housetrip.com/), the segments and
+volume of users change over time, due to both seasonality effect and marketing
+tactics (for instance: changes in SEM targeting, TV advertising campaigns, etc).
+
+This could imply that what we've learned on a given month doesn't necessarily
+apply in the far future. So far, we've trained on month \\(m\\) and controlled
+on month \\(m+1\\). Let's take a look at how the predictive power of our ANNs
+evolve over time.
+
+<figure>
+  <img src="/public/2014-10-learning/pairwise-weekwise.svg"/>
+</figure>
+
+For the first week of data in the control set (just after the training month),
+accuracy is at its highest, and we actually manage to breach the 60% mark
+occasionally.
+It then degrades afterwards, losing roughly 0.5% per week.
 
 
-##### Wrapping up
+##### Conclusions & next steps
 
+Exploring the problem space if properly designing an neural network is
+frustratingly slow, explorarory, and provides little scientific certainty.
+Experiments tend to be reproductible to an extent, but everything is hugely
+noisy. As a consequence, all of this is very imprecise; don't take our learnings
+for granted, and experiment on your own data.
 
-##### Next steps
+This being said, in _our_ scenario, a few conclusions can be drawn:
 
-applying what we learned to pairwise networks
+1. A pointwise ANN can be used as the building block of a comparator for ranking
+   purposes, and it provides a decent proxy for a pairwise, SortNet-style ANN.
+2. Training an ANN to convergence takes about 15 minutes for a 250,000 entry, 19
+   input dataset, with 24 hidden neurons, on a modern machine (as of writing).
+   Training time increases roughly linearly with the size of the dataset, number
+   of inputs, or hidden layer size.
+3. Larger, or more complex network sizes have little bearing on pairwise
+   accuracy but they do slow down training (linearly) and can induce
+   instability. The cutoff seems to be around 15 hidden neurons (roughly around
+   our input size).
+4. Networks with similar layouts can perform quite differently, so training
+   should be done on several networks (for instance, ±2 neurons).
+5. Performance is usually improved by providing more inputs, but those inputs
+   should be scaled to cover the input range as uniformly as possible
+   (typically, applying a log-scale transform to some inputs).
+6. Predictive power degrades over time. When using this in a production setting,
+   manually updating a comparator by re-training would not be very efficient; we
+   should instead re-learn as regularly as possible, on rolling datasets.
 
+After this journey into ANN handling, we feel like we have a firmer grasp on how
+they behave. We're still a long way from using them in a production setting.
 
+The next points we may want to explore include
+
+- applying what we learned to pairwise networks, and
+- experiment with stochastic learning techniques (probably a [genetic
+  algorithm](http://en.wikipedia.org/wiki/Genetic_algorithm)) to circumvent the extremely
+  slow learning of pairwise networks.
+
+Time permitting, we may publish a third part in this series!
+
+Recommended further reading: [Misconceptions about neural
+network](http://www.stuartreid.co.za/misconceptions-about-neural-networks/), and
+excellent introductory article by Stuart Reid.
 
 
