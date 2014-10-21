@@ -145,8 +145,8 @@ enquired about, 5 properties just visited).
 - For the pointwise approach, only \\( 80\cdot 10^3 \times (5+5) = 0.8 \cdot
   10^6\\) entries.
 - Instead is 28 inputs, we're down to 18: this reduces training time by a
-  further third (assuming there are as many hidden neurons; way'll probably
-  need less) and runtime by a third as well, because there is a thrid less
+  further third (assuming there are as many hidden neurons; we'll probably
+  need less) and runtime by a third as well, because there is a third less
   connections in the ANN.
 
 Overall
@@ -177,8 +177,9 @@ otherwise.
 
 To validate whether a pointwise ANN can be used for ranking purposes, we measure
 
-- Its [RMSE](https://en.wikipedia.org/wiki/Root-mean-square_deviation) (the metric use during training, which is the square root of the mean
-  of squared differences between expected and measured outputs);
+- Its [RMSE](https://en.wikipedia.org/wiki/Root-mean-square_deviation) (the
+  metric use during training, which is the square root of the mean of squared
+  differences between expected and measured outputs);
 - Its accuracy as a predictor (percentage of times the network makes a correct
   prediction about whether a user will engage with a given property, i.e.
   accuracy of \\(\phi^\*\\)),
@@ -205,7 +206,7 @@ this property?"), ANNs "work". To be specific:
 
 The last point is particularly important. The two metrics are quite different
 one is an objective quantitative measurement, the other is a count that could
-vary wildly depending on the threshold chosen to discriminate our _postive_ and
+vary wildly depending on the threshold chosen to discriminate our _positive_ and
 _negative_ classes. Fortunately, they end up aligning fairly neatly.
 
 For _pairwise_ accuracy, the
@@ -228,9 +229,9 @@ ranking.
 
 
 In the previous section, we trained numerous networks for 10,000 epochs, which
-took the better part of a day on our test machine (Core i7 2.5GHz).
-This is unreasoanbly long for the other experiments we want to run, so let's
-take a look to how quickly networks typically converge.
+took the better part of a day on our test machine (Core i7 2.5GHz).  This is
+unreasonably long for the other experiments we want to run, so let's take a look
+to how quickly networks typically converge.
 
 Note that while we've explored the other training algorithms provided by
 [FANN](http://leenissen.dk/fann) (namely "batch" and "quickprop"), we stuck with
@@ -284,21 +285,26 @@ number of epochs elapsed, does not help much further:
 </figure>
 
 The only conclusion so far is that independently of the network size, we observe
-a "hockey stick" convergence pattern; hitting the first plateau takes roughtly 1
+a "hockey stick" convergence pattern; hitting the first plateau takes roughly 1
 minute for a network of size 8, and that increases by roughly 50% for each
 doubling of the network size.
 
 Differentiating those curves, and plotting the _speed_ of convergence (variation of
-RMSE per unit of time), makes the result more readable:
+RMSE per unit of time), makes this result more readable:
 
 <figure>
   <img src="/public/2014-10-learning/training-speed-multiple-layouts.png"/>
 </figure>
 
-> XXX explain!
+Each point here is the training speed (in ∆RMSE/second) for a network and a
+given epoch. The points cluster to low, negative values on the left, as RMSE
+goes down quickly at first; the then cluster around zero while staying negative
+on average, as RMSE keeps going down, albeit more slowly. Asymtotically, the
+average speed is zero, although all networks will exhibit noise, and fluctuate
+around their optimum.
 
-The hockey stick does end around 60s for size 8 and 90s for size 16. The "dip"
-at size 16, around the 180s mark, is clearly visible.
+The hockey stick does end around 60 seconds for size 8 and 90 seconds for size
+16. The "dip" at size 16, around the 180 second mark, is clearly visible.
 
 Unfortunately, the larger networks are still converging at the end of our time
 period; we can't easily derive for how many epochs, or for how much time, we
@@ -387,7 +393,7 @@ values of RMSE across our sample of networks.
 These sweet spots are highly dependent on the input. While the exact portion of
 the dataset we use seems to lead to the same sweet spots, changing the number of
 inputs (more on this below) seems to shift the position of the sweet spots
-dramaticlally.
+dramatically.
 
 While we have no explanation for these "sweet spots", they give us another clue
 on how to continue experimenting: once we're done fiddling with inputs, we
@@ -413,11 +419,11 @@ reasonably uniform, but two stand out:
   the properties in our inventory are in larger cities; and
 - _lead time_, the number of days between user's activity and their desired trip
   date, which is heavily skewed towards small values (as with many online
-  activites, people seem to favour the last-minute purchases).
+  activities, people seem to favour the last-minute purchases).
 
 We rescale both inputs using a log filter, resulting in both cases in a
 quasi-uniform distribution; we then re-train our group of networks. Finally, we
-compare the results of this experiment (X7 below) to the networks with the
+compare the results of this experiment (_X7_ below) to the networks with the
 original inputs:
 
 <figure>
@@ -439,7 +445,7 @@ We also wonder whether the user information, and the original ranking
 score, are valuable inputs (in the sense that they help make predictions).
 
 We run another series of experiments, and compare with the "base" scenario X7.
-Here's an exerpt of the results:
+Here's an excerpt of the results:
 
 <figure>
   <img src="/public/2014-10-learning/without-fields.svg"/>
@@ -448,7 +454,7 @@ Here's an exerpt of the results:
 It turns out that all these fields are indeed useful. Particularly, using the
 original ranking score as an input has a large impact; we believe this to be
 because it incorporates information that we did not use as inputs so far, namely
-some information about host behaviour, which we know thorugh other means to
+some information about host behaviour, which we know _via_ other means, to
 correlate to purchasing behaviour.
 
 
@@ -492,7 +498,7 @@ transforming inputs. The graph below shows the performance of the main ones:
 Our conclusion at this point is that more data seems to imply better training
 results, and that [networks can't be trained on raw
 data](http://www.stuartreid.co.za/misconceptions-about-neural-networks/#prep).
-We had already filtered outliers (users making too many or too few enquiried)
+We had already filtered outliers (users making too many or too few enquired)
 and normalized inputs; but transforming inputs so their values are well spread
 gives us an extra gain.
 
@@ -504,7 +510,7 @@ Specializing the ANNs per segment doesn't seem to help either.
 Patterns of user behaviour evolve over time. Even more importantly, in an
 e-commerce application like [ours](http://www.housetrip.com/), the segments and
 volume of users change over time, due to both seasonality effect and marketing
-tactics (for instance: changes in SEM targeting, TV advertising campaigns, etc).
+tactics (for instance: changes in SEM targeting, TV advertising campaigns, etc.).
 
 This could imply that what we've learned on a given month doesn't necessarily
 apply in the far future. So far, we've trained on month \\(m\\) and controlled
@@ -524,8 +530,8 @@ It then degrades afterwards, losing roughly 0.5% per week.
 ##### Conclusions & next steps
 
 Exploring the problem space if properly designing an neural network is
-frustratingly slow, explorarory, and provides little scientific certainty.
-Experiments tend to be reproductible to an extent, but everything is hugely
+frustratingly slow, exploratory, and provides little scientific certainty.
+Experiments tend to be reproducible to an extent, but everything is hugely
 noisy. As a consequence, all of this is very imprecise; don't take our learnings
 for granted, and experiment on your own data.
 
