@@ -204,7 +204,7 @@ this property?"), ANNs "work". To be specific:
   [overfitting](https://en.wikipedia.org/wiki/Overfitting))
 - RMSE is a good predictor of accuracy.
 
-The last point is particularly important. The two metrics are quite different
+The last point is particularly important. The two metrics are quite different:
 one is an objective quantitative measurement, the other is a count that could
 vary wildly depending on the threshold chosen to discriminate our _positive_ and
 _negative_ classes. Fortunately, they end up aligning fairly neatly.
@@ -296,10 +296,10 @@ RMSE per unit of time), makes this result more readable:
   <img src="/public/2014-10-learning/training-speed-multiple-layouts.png"/>
 </figure>
 
-Each point here is the training speed (in ∆RMSE/second) for a network and a
+Each point here is the training speed (in RMSE/second) for a network and a
 given epoch. The points cluster to low, negative values on the left, as RMSE
-goes down quickly at first; the then cluster around zero while staying negative
-on average, as RMSE keeps going down, albeit more slowly. Asymtotically, the
+goes down quickly at first; they then cluster around zero while staying negative
+on average, as RMSE keeps going down, albeit more slowly. Asymptotically, the
 average speed is zero, although all networks will exhibit noise, and fluctuate
 around their optimum.
 
@@ -318,7 +318,7 @@ confirm convergence by looking at the RMSE-over-time graphs
 ##### Number of hidden layers
 
 Now that we have a basic sense of how quickly iRPROP converges, we should start
-exploring for the ideal network layout. The experiments for far were with a
+exploring for the ideal network layout. The experiments so far were with a
 single hidden layer; does adding more layers change the performance in any way?
 
 <figure>
@@ -409,7 +409,7 @@ a logarithmic scale.
 
 While all of our inputs are properly normalized, as is well explained in
 [comp.ai.neural-nets](http://www.faqs.org/faqs/ai-faq/neural-nets/part2/),
-some of them nor poorly _distributed_ in the inputs range (\\([0,1]\\) for us.
+some of them are poorly _distributed_ in the inputs range (\\([0,1]\\) for us.
 
 We plot the distribution of each of the inputs of our data set; most or
 reasonably uniform, but two stand out:
@@ -529,7 +529,7 @@ It then degrades afterwards, losing roughly 0.5% per week.
 
 ##### Conclusions & next steps
 
-Exploring the problem space if properly designing an neural network is
+Exploring the problem space if properly designing a neural network is
 frustratingly slow, exploratory, and provides little scientific certainty.
 Experiments tend to be reproducible to an extent, but everything is hugely
 noisy. As a consequence, all of this is very imprecise; don't take our learnings
