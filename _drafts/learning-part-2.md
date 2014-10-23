@@ -28,9 +28,9 @@ Skip to
 | [Hidden neurons](#hidden-neurons)
 | [Improving quality of inputs](#improving-quality-of-inputs)
 | [Removing bad inputs](#removing-bad-inputs)
-| [Specializing by user segment](#specializing-by-user-segment)
+| [Specialising by user segment](#specialising-by-user-segment)
 | [Experiment wrap-up](#experiment-wrap-up)
-| [Looking in the closer future](#looking-in-the-closer-future)
+| [Looking in the closer future](#looking-at-the-near-future)
 | [Conclusions & next steps](#conclusions---next-steps)
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -43,7 +43,7 @@ caution (the graphs are still cute, though).
 Importantly, as this is not science, we'll be making making many assumptions so we can move forward. I did check that all results presented are consistent where applied to other datasets, but everything shown is run on a single, 1 month training + 1 month control dataset unless otherwise stated.
 
 The ANN we ended up with so far proved that we can present search results that
-can more accurately predict user engagement than random order, our our
+can more accurately predict user engagement than random order, and our
 historical, heuristic ranking (55% versus 50% and 44% respectively).
 It was also really too damn slow: training it would take hours, and using it
 would take seconds in the worst case.
@@ -84,9 +84,9 @@ in proper English, we're trying to answer this question:
 > Given a user _u_ and two properties _p1_ and _p2_, which property
 > is the user most likely to engage with?
 
-We want our comparator should be being true when _u_ engages with _p1_ but not
-with _p2_, having seen both of their pages.
-We've chosen to model this comparison function:
+We want our comparator to be true when _u_ engages with _p1_ but not with _p2_,
+having seen both of their pages.  We've chosen to model this comparison
+function:
 
 $$
 \phi(u,p_1,p_2) = \left\{
@@ -144,9 +144,9 @@ enquired about, 5 properties just visited).
   10^6\\) training entries;
 - For the pointwise approach, only \\( 80\cdot 10^3 \times (5+5) = 0.8 \cdot
   10^6\\) entries.
-- Instead is 28 inputs, we're down to 18: this reduces training time by a
-  further third (assuming there are as many hidden neurons; we'll probably
-  need less) and runtime by a third as well, because there is a third less
+- Instead of 28 inputs, we're down to 19: this reduces training time by a
+  further third (assuming there are as many hidden neurons; we'll probably need
+  less) and runtime by a third as well, because there is a third fewer
   connections in the ANN.
 
 Overall
@@ -178,13 +178,13 @@ otherwise.
 To validate whether a pointwise ANN can be used for ranking purposes, we measure
 
 - Its [RMSE](https://en.wikipedia.org/wiki/Root-mean-square_deviation) (the
-  metric use during training, which is the square root of the mean of squared
+  metric used during training, which is the square root of the mean of squared
   differences between expected and measured outputs);
 - Its accuracy as a predictor (percentage of times the network makes a correct
   prediction about whether a user will engage with a given property, i.e.
   accuracy of \\(\phi^\*\\)),
 - Its accuracy as a comparator (accuracy of \\(\phi\\) as redefined based on
-  \\(\phi^\*\\).
+  \\(\phi^\*\\)).
 
 on a handful of wide set of network layouts, which we let converge for an
 unnecessarily large number of training iterations (known as "epochs").
@@ -236,7 +236,7 @@ to how quickly networks typically converge.
 Note that while we've explored the other training algorithms provided by
 [FANN](http://leenissen.dk/fann) (namely "batch" and "quickprop"), we stuck with
 the default [iRPROP](https://en.wikipedia.org/wiki/Rprop) algorithm which
-consistenly yielded more stale results and better final RMSE.
+consistently yielded more stale results and better final RMSE.
 
 Training a first network (1 hidden layer, 8 neurons), and reporting on RMSE at
 each epoch gives us a first hint at how it progresses:
@@ -349,7 +349,7 @@ Given the above, we'll settle on a single hidden layer.
 
 There doesn't seem to be an agreed on way to determine the number of hidden
 neurons. Stack Overflow, being its useful self, provides a number of [rules of
-thumbs](http://stackoverflow.com/a/10568938/161487) (see [this
+thumb](http://stackoverflow.com/a/10568938/161487) (see [this
 answer](http://stats.stackexchange.com/a/1097) as well).
 The scientific literature isn't much more helpful.
 
@@ -458,7 +458,7 @@ some information about host behaviour, which we know _via_ other means, to
 correlate to purchasing behaviour.
 
 
-##### Specializing by user segment
+##### Specialising by user segment
 
 Taking a step back, training ANNs for ranking purposes is all about specialising
 search results for a particular user, in a situation when it is unrealistic to
@@ -482,7 +482,7 @@ training to French speakers (about 25% of the overall data), accuracy _worsens_.
 In other words, knowing about the behaviour from other locales helps predict the
 behaviour of the French speakers.
 
-As a Frenchman, I wonder whether to feel like offended by this neural net
+As a Frenchman, I wonder whether I should feel like offended by this neural net
 telling me I'm not a beautiful snowflake.
 
 
@@ -502,10 +502,10 @@ We had already filtered outliers (users making too many or too few enquired)
 and normalized inputs; but transforming inputs so their values are well spread
 gives us an extra gain.
 
-Specializing the ANNs per segment doesn't seem to help either.
+Specialising the ANNs per segment doesn't seem to help either.
 
 
-##### Looking in the closer future
+##### Looking at the near future
 
 Patterns of user behaviour evolve over time. Even more importantly, in an
 e-commerce application like [ours](http://www.housetrip.com/), the segments and
@@ -529,7 +529,7 @@ It then degrades afterwards, losing roughly 0.5% per week.
 
 ##### Conclusions & next steps
 
-Exploring the problem space if properly designing a neural network is
+Exploring the problem space to properly design a neural network is
 frustratingly slow, exploratory, and provides little scientific certainty.
 Experiments tend to be reproducible to an extent, but everything is hugely
 noisy. As a consequence, all of this is very imprecise; don't take our learnings
