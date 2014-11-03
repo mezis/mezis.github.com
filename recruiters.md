@@ -12,7 +12,6 @@ years of experience in software, I'm currently preparing my next career move.
 The TL,DR is:
 
 > I'm open to a full-time **Senior Software Engineer role**<br/>
-> or a hands-on Engineering manager / VP / CTO role, <br/>
 > in a product-focused company doing **Ruby**, Go, C,
 > Node.JS or Python, <br/>
 > and is **telework-friendly**.
@@ -34,9 +33,6 @@ also get an answer.
 * Senior Software Engineer / Lead Engineer.  I’m quite happy not to be a
   “manager” in spite of my recent professional history, especially if the
   company is small or the product/environment are very exciting.
-* I'll consider VP-level roles for team sizes of 10-20, although it's not my
-  priority.  The role has to be hands-on and be 50% engineering/architecture
-  minimum.
 * I don't take pension/healthcare/equity into account when comparing offers (not
   applicable to me).
 * I can be on-site up to 20% of the time (every 5th week). I live in France,
