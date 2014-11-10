@@ -24,17 +24,18 @@ The gist of the answer is:
 
 It took me a while to wrap my head around it, but it turns out most of the
 misunderstanding stems from this: for people coming from object-oriented
-languages,
+languages, and as far as can understand,
 
 > Go packages are the closest construct to a class in other languages.
 
-To be precise, `interface`s exposed by a package are. Packages provide
-**isolation** and **abstraction** like any good class should.
+To be precise, `interface`s exposed by a package are. On one hand, packages provide
+**isolation** and **abstraction** like any good class should. On the other, they
+can't be organised into isolated units of code like an application, Ruby Gem or
+Python Egg can.
 
-
-It doesn't necessarily make sense to have one class per package; in practice I
-find myself creating a package per "tree of classes" (or rather, bags of
-`struct`s sharing a common interface. So far I'm trying to keep my packages
+It doesn't necessarily seem to make sense to have one class per package; in
+practice I find myself creating a package per "tree of classes" (or rather, bags
+of `struct`s sharing a common interface. So far I'm trying to keep my packages
 under 1,000 LOC.
 
 In practice, it seems to be commonplace to
