@@ -72,7 +72,6 @@ also get an answer.
 * Unix-based technologies (Ruby, C, Go, Python, or Node.JS ; my recent
   experience is mostly Ruby).
 * Strong adhesion to open-source, including contributing.
-* Nothing Microsoft.
 
 
 #### The way they work:
