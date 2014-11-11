@@ -20,7 +20,7 @@ The gist of the answer is:
 - Go is opinionated. Anything but the "standard" way will be painful.
 - All the source files for a Go package should reside in the same directory.
 - The source for package `github.com/dr_evil/laser` should be in
-  `$GOPATH/src/dr_evil/laser`
+  `$GOPATH/src/github.com/dr_evil/laser`
 
 It took me a while to wrap my head around it, but it turns out most of the
 misunderstanding stems from this: for people coming from object-oriented
