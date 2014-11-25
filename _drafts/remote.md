@@ -5,14 +5,14 @@ title: "Hiring remote workers: an engineering manager's perspective"
 summary: |
   A lot has been written on remote work in the software industry, most notably
   Jason Fried's [Remote](http://37signals.com/remote/).
-  Many of us were left agape by recent backlash on telecommuting by two
-  megacompanies,
-  [Yahoo](http://www.forbes.com/sites/jennagoudreau/2013/02/25/back-to-the-stone-age-new-yahoo-ceo-marissa-mayer-bans-working-from-home/)
+  But many of us were left agape by the recent backlash on telecommuting by
+  three megacompanies:
+  [Yahoo](http://www.forbes.com/sites/jennagoudreau/2013/02/25/back-to-the-stone-age-new-yahoo-ceo-marissa-mayer-bans-working-from-home/),
   then
   [Reddit](http://venturebeat.com/2014/10/01/after-raising-50m-reddit-forces-remote-workers-to-relocate-to-sf-or-get-fired/),
-  which added to the negative backdrop of
+  the final straw being
   [Google's](http://www.technologyreview.com/news/531056/google-execs-have-ideas-on-how-to-run-your-business/)
-  reactionary attitude.
+  reactionary attitude on the matter.
   <br/>
   I thought I'd share my experience as a tech lead to help spread the word: in
   spite of the fossils of 20th century management, the knowledge industry _can_
@@ -20,8 +20,8 @@ summary: |
   
   Mine is a real-world story about successfully turning a 10-person on-site team
   into a 30-person distributed team.
-  What follows are a handful of factual observations and tips from my time as
-  HouseTrip's head geek.
+  This article is a handful of factual observations, measurements, and tips from
+  my time as HouseTrip's head geek.
   
 ---
 
@@ -32,7 +32,7 @@ Even proponents of remote work seem to think that you should either have a
 distributed team from the get go, or stick to a traditional on-site team. Our
 experience shows that this is incorrect.
 
-We have gathered and present evidence that a going for a distributed team:
+In this article, we present evidence that a going for a distributed team:
 
 - can make hiring senior talent easier;
 - does not require more than 10-20% on-site time;
@@ -43,7 +43,7 @@ We have gathered and present evidence that a going for a distributed team:
 We also share a few tips on how we believe it can be made to work, including:
 
 - getting early, team-wide buy-in;
-- starting small, experiementing with policy and processes, measuring, and iterating;
+- starting small, experimenting with policy and processes, measuring, and iterating;
 - being anal about excellence of communication and media;
 - leading and trusting as opposed to managing and monitoring..
 
@@ -74,7 +74,8 @@ The lack of senior engineers caused imbalance: the team was was less productive
 than it could be, made more mistakes or hasty decisions, and was frustrated by
 the lack of people to learn from and bandwidth to experiment.
 This also took a toll on the few thinly-stretched seniors we had, namely
-[Matt](XXX), [Nas](XXX) and myself.
+[Matt](https://github.com/matthutchinson), [Nas](https://github.com/nas) and
+myself.
 
 
 ##### Seniors, Y U NO join?
@@ -85,7 +86,7 @@ per candidate). The competition also is global. Some candidates will relocate,
 but recent history has show that experienced candidates will not relocate to
 London, even for very high salaries (e.g. 80k£ pa).
 
-Jason Fried summs this up nicely in [_Remote_](XXX):
+Jason Fried sums this up nicely in [_Remote_](http://37signals.com/remote/):
 
 > Great talent is everywhere, and not everyone wants to move to San Francisco.
 
@@ -160,7 +161,7 @@ We also kept feeding our [tech blog](XXX), which didn't bring candidates in
 directly, but did leave a positive impression—thereby helping conversion.
 
 Recruiters became less effective, presumably because they're used to a more
-local search and segregate between onsite/permanent on one hand and
+local search and segregate between on-site/permanent on one hand and
 contract/remote on the other.
 
 Our *interview process* didn't change much either.
@@ -186,12 +187,11 @@ working from home, even if not in a team (e.g. contracting).
 
 I'll let the numbers speak for themselves:
 
-    XXX
-    GRAPH
-    remotes seniors 6mo before: 1 (Tadej)
-      +6 mid-level
-    after: 5 (emili, andy x2, kris, cassio)
-      +2 mid-level (remote)
+<figure>
+  <img alt="Active engineers graph" src="/public/2014-11-remote/hires.png"/>
+</figure>
+
+All but one of the hires in 2014 H1 were remote workers.
 
 Don't worry, there's a few graphs with hard data later on.
 The important for now is this: with similar effort and an unchanged recruitment
@@ -233,10 +233,10 @@ major rethink of how culture spreads and is stimulated, which we had no clue how
 to do, or get people in regularly so the rubbing off would happen.
 
 Needless to say, we opted for the latter. After some discussion we settled on
-this rythm:
+this rhythm:
 
 - For their entire 1st month, remote hire would live in London. This eased the
-  onboarding process a lot, got them immersed in the team culture, and they had
+  on-boarding process a lot, got them immersed in the team culture, and they had
   a chance to put faces on names and socialize a bit. A far as I know, they all
   loved it.
 - From there on, they'd come back from 3 consecutive days, Wednesday to Friday,
@@ -264,10 +264,10 @@ always.
 
 The brilliant folks at Buffer introduced [open
 salaries](https://open.bufferapp.com/introducing-open-salaries-at-buffer-including-our-transparent-formula-and-all-individual-salaries/)
-a while ago, cinluding for remote workers.  I think they're unfortunately
+a while ago, including for remote workers.  I think they're unfortunately
 biased, as they only seem to hire in high-cost-of-living locales. Their math is
 wrong: you get a extra flat amount per year if you're in a high-cost city,
-period. They ignore subtelties like tax systems, social security, or the local
+period. They ignore subtleties like tax systems, social security, or the local
 job market.
 
 Their formula-based system has the merit of simplicity, but it's simply not
@@ -280,8 +280,8 @@ candidate, decide how much we'd pay them in London, then run the math.
 
 The principles guiding the actual compensation were then:
 
-- The aim is to maintain comparable living standards between remote and onsite
-  workers of similar experience and seniority, based on lcoal cost-of-living
+- The aim is to maintain comparable living standards between remote and on-site
+  workers of similar experience and seniority, based on local cost-of-living
   data;
 - The local job market for equivalent positions is taken into account, with and
   aim to make offers in the 75th percentile.
@@ -295,7 +295,7 @@ Our formula would make sure the effective take-home pay, after all taxes, social
 security contributions, and health insurance costs allows for similar standards
 of living---purposedly _not_ the same absolute amount.
 
-It was gruesome work, bu we put together a spreadsheet and added cities to it as
+It was gruesome work, but we put together a spreadsheet and added cities to it as
 candidates came it. A few excellent sources of information:
 
 - [Numbeo](http://www.numbeo.com/cost-of-living/) has details on costs of living, city by city;
@@ -309,7 +309,7 @@ candidates came it. A few excellent sources of information:
   [Payscale](http://www.payscale.com) both have decent information on local
   wages.
 
-Of course workers abroad can't technically be employees, so we'd make sur to
+Of course workers abroad can't technically be employees, so we'd make sure to
 bump the compensation up a notch to account for perks they can't get---e.g. sick
 days; typically adding 5% to the total.
 
@@ -323,8 +323,8 @@ travel costs.
 
 On average, remote workers end up costing the company **20% less** than on-site
 workers. Not a bad argument when making the case to your CFO, especially if you
-point out it's lower than what most eastern european software sweatshops will
-charge you.
+point out it's lower than what most eastern European software outsourcing shops
+will charge you.
 
 
 ### Contracts and compensation caveats
@@ -342,14 +342,14 @@ This can be complicated to set up on their end; the paperwork takes up to a
 couple of months in France, but only a few days in Poland or Bulgaria.
 
 The trick here is that you do _not_ want remote workers to be sort of
-second-class employees; their contract ahs to reflect that. We chose to tiptoe
+second-class employees; their contract has to reflect that. We chose to tiptoe
 at the edges of employment law to make their contracts as close to employees as
 possible.
 
 In practice, this meant factoring sick days into their daily rate and making
 sure we'd pay their invoices at the very beginning of each month. It also meant
 the contracts were 3-months rolling (to mimic notice periods) and 2-week
-rolloing for the first quarter (to mimic the probation period).
+rolling for the first quarter (to mimic the probation period).
 
 Unfortunately, it wasn't possible to pay them a fixed amount per month, only
 days actually worked; otherwise the contract would be too problematic legally.
@@ -367,7 +367,7 @@ the market will prove me wrong.
 Conversely some companies use remote workers primarily as a means to cut costs,
 and end-up hiring only remotes from low-wage countries. There's a saying about
 peanuts and monkeys, of course. But more importantly, I think they're making
-the same mistake as companie hiring only on-site: cutting themselves from most
+the same mistake as companies hiring only on-site: cutting themselves from most
 of the global talent pool, by limiting themselves to "low cost countries".
 
 For those outside the currency zone (Sterling for us), we chose to _not_ have
@@ -411,13 +411,13 @@ Velocity is the amount of story points delivered each week. It's an
 approximation of effort delivered. We extract this data from Pivotal Tracker's
 API. This measure is dependent on team maturity (how long has the team been
 working together?), average experience (senior engineers deliver 3 to 5 times
-the work once onboarded; senior product managers and experienced lead developers
+the work once on-boarded; senior product managers and experienced lead developers
 act as a multiplier up to x2), and part of the project lifecycle. We have over
 18 months of historical data on this metric.
 
 Our execution processes when we started hiring remotes were already well-oiled,
 and we were planning to keep adapting them anyway. In particular, our
-estimation practices ("how many points for this chunk of spec'ed out work?")
+estimation practices ("how many points for this chunk of spec'd out work?")
 haven't changed much over time. 2 points is supposed to cost a day of work for a
 typical engineer, and ends up taking a bit more, so typically we'd churn through
 6 points per week, per person on average.
@@ -435,7 +435,7 @@ fairly freely) in January 2014.
 The graph above speaks for itself: **remote had no significant impact on
 velocity**.  If anything, it stabilized! The bump and trough in summer and fall
 '13 matched a lower number of people being on-boarded, then a large number of
-hires in rapid succession, taking a temporary toll on team produtivity.  No such
+hires in rapid succession, taking a temporary toll on team productivity.  No such
 thing in '14, in spite of a similar number of----senior---hires.
 
 <figure>
@@ -473,31 +473,63 @@ only happens when we're in one room". I attribute this to the lasting impact of
 our pre-Internet era heroes, the canonical example probably being Steve and Woz
 assembling the Apple I in a garage.
 
-Countless modern examples, from people assembling to fund [projects](XXX) on
-Kickstarter to the people [toppling oppressive regimes](XXX tunisia internet
-revolution) by leveraging social media. There are, of course, brilliant examples
-in the world of startups:
-[Sqwiggle](http://sqwiggle.com),
-a tool proudly supporting distributed teams, lists a few successful [tech
+Countless modern examples demonstrate the "magic" can happen without people
+meeting in person, from people assembling to fund
+[projects](https://www.kickstarter.com/projects/alexklein/kano-a-computer-anyone-can-make)
+on Kickstarter to the people [toppling oppressive
+regimes](http://www.aljazeera.com/indepth/opinion/2011/01/2011116142317498666.html)
+by leveraging social media. There are, of course, brilliant examples in the
+world of startups: [Sqwiggle](http://sqwiggle.com), a tool proudly supporting
+distributed teams, lists a few successful [tech
 companies](http://blog.sqwiggle.com/6-remote-teams-and-how-theyre-changing-the-face-of/)
 that went remote from the get go.
 
 We're in the unique situation where we can measure the impact of non-physical
-presence on a software engineering process, so let's see what happens to a team
-that _went_ remote.
+presence on a software engineering process, so let's see what happens to
+communication efficacy in a team that _went_ remote.
 
-    XXX PR latency
+<figure>
+  <img alt="PR latency" src="/public/2014-11-remote/latency.png"/>
+</figure>
 
 Another metric we harvest over time is pull request latency, i.e. the time between issuance and merge.
 If you're interested in measuring this for your team, the code's part of
 [git-heroes](https://github.com/mezis/git-heroes#git-heroes).
 We find this to be indicative of good communication and cross-team cooperation:
 pull requests are reviewed asynchronously, and conventionally merged by a different person
-thatn the issuer.
+than the issuer.
 
-The stability of PR latency over time is, in our opinion, indicative that
-**remote does not affect cross-team communication** (particularly given that
-velocity is unchanged).
+For those unfamiliar with PR-driven code reviews, we consider that barring
+exceptional circumstances, a "good" latency is between a few hours (0.1 in the
+graph above) and one day. Too low means the code hasn't been reviewed properly
+(bad engineer behaviour) or the unit of work was too small (bad requirements).
+Too high means communication broke down ("I can't be bothered to review code")
+or, again, poorly specified / overly broad requirements.
+
+Latency did, on average, increase in 2014 H1 (the period where we went full-on
+remote), but stabilized around the 8 hours mark, well within our acceptable
+range; if anything it was _better_ than before, as in 2013 pull requests tended
+to be merged hastily.
+
+Now, this first graph exhibits another trend which I'll clarify:
+
+<figure>
+  <img alt="PR latency spread" src="/public/2014-11-remote/spread.png"/>
+</figure>
+
+Roughly speaking, spread is a metric decreases as latency becomes more
+consistent across a team. It's in log scale, so linear improvements are actually
+much larger (for the stats inclined, I've defined it as the log-difference of
+the 3rd and 1st quartile of latencies of pull requests on a given week).
+
+With the team getting used to systematic code reviews over 2013, spread had
+already started to improve significantly; far from being affected by the
+presence of remotes, it steadily kept on improving in 2014.
+
+The trend of PR latency and its spread over time is, in our opinion, indicative that
+**remote stimulates consistent, asynchronous cross-team communication**. In
+other words, latency has marginally increased but throughput has remained
+constant.
 
 
 
@@ -506,7 +538,7 @@ velocity is unchanged).
 
 We're not debating that working in a distributed team is _harder_ than with a
 fully on-site team, be it for those working remotely or those on-site if any.
-Our point is that the benefits significantly outweight the difficulties.
+Our point is that the benefits significantly out-weight the difficulties.
 
 This said, we believe that understanding those difficulties is critical to make
 remote work. Here's a short list of the issues we've encountered.
@@ -518,7 +550,7 @@ problems (anything from lack of recognition to personal problems) can go
 unnoticed, and this can result in frustration from remote workers.
 We found that this can mostly be averted by re-creating a watercooler atmosphere
 (e.g. in a cheerful #random channel in Slack), and by more proactive,
-self-couscious management (more below).
+self-conscious management (more below).
 
 _Time zone differences_: we experimented with workers 9 hours ahead of us,
 therefore with minimal overlap between normal working hours. The experience was
@@ -527,10 +559,10 @@ team. We haven't found a good way to circumvent this; our conclusion is that tim
 
 We briefly considered to ask engineers to adjust their working hours to GMT,
 also known as "work all night and sleep during the day".  Some outsourcing
-companies, e.g. [Toptal](XXX), advocate this. To us, it's obvious that putting
-workers in this situation would make them less productive, stressed, unable to
-balance a healthy non-work life, and generally unhappy---the exact oppostie of
-what we're after.
+companies, e.g. [Toptal](http://www.toptal.com/developers/requirements),
+advocate this. To us, it's obvious that putting workers in this situation would
+make them less productive, stressed, unable to balance a healthy non-work life,
+and generally unhappy---the exact opposite of what we're after.
 
 _Behaviour inertia_: particularly when stress levels go up (e.g. around a
 deadline), we found that on-site workers would fall back into old habits. They'd
@@ -549,7 +581,7 @@ _Remote management_: as part of our "remote experiment", I went progressively
 remote myself. Over a quarter, I went from 100% on-site to 80% remote (on a 20
 days remote / 4 days on-site basis). <br/>
 After a brief period of cabin fever on my end and sense of abandonment from my
-team, we found a suitable rythm and communication style. One-on-one discussions
+team, we found a suitable rhythm and communication style. One-on-one discussions
 became more frequent, meetings became more focused (agendas!) albeit less
 frequent, and gathering on-site with the team became more celebratory.
 
@@ -564,95 +596,192 @@ for turning your team in
 
 ##### Read!
 
-[Remote: Office not required](http://37signals.com/remote/)
-by Jason Fried of Basecamp (née 37signal) fame
+Distributed teams are still uncommon, so you may have trouble finding a brain to
+pick in your own network. Here's a few resources we found valuable:
 
-[Ralph
-Dandrea](http://workabilityblog.com/articles/2014/making-remote-work-workable/),
-CEO of ITX (a small IT firm), has employees on 3 continents and writes about
-what makes "remote work workable".
+- [Remote: Office not required](http://37signals.com/remote/) by Jason Fried of
+  Basecamp (née 37signal) fame.
+- [Sqwiggle](http://blog.sqwiggle.com/8-ways-to-build-company-culture-in-a-distributed-team/)
+  has great tips, as they shoudl given their product supports remote teams
+  explicitely.
+- [Ralph
+  Dandrea](http://workabilityblog.com/articles/2014/making-remote-work-workable/),
+  CEO of ITX (a small IT firm), has employees on 3 continents and writes about
+  what makes "remote work workable".
+- [Zaharenia](http://blog.sugarenia.com/archives/life/how-to-work-remotely-and-live-to-tell-the-tale),
+  a UX designer at Workable, shares a personal experience.
+- [Zapier](https://zapier.com/blog/how-build-culture-remote-team/) writes about
+  how to build culture in a remote team.  Also check out their previous article
+  on a remote-oriented [hiring
+  process](https://zapier.com/blog/how-to-hire-remote-team).
+- [Rick
+  Freedman](http://www.techrepublic.com/blog/tech-decision-maker/seven-key-ideas-for-managing-distributed-teams/)
+  shares some tips specifically for leaders, on the topic of trust.
+- [Zoho](https://www.zoho.com/general/blog/what-i-learned-from-working-remotely-with-cross-cultural-teams.html)
+  shares more tips on culture, based on their Indian experience.
 
-[Zaharenia](http://blog.sugarenia.com/archives/life/how-to-work-remotely-and-live-to-tell-the-tale),
-a UX designer at workablefrom Workable
-
-[Zapier](https://zapier.com/blog/how-build-culture-remote-team/) writes about
-how to build culture in a remote team.
-Also check out their previous article on a remote-oriented [hiring
-process](https://zapier.com/blog/how-to-hire-remote-team).
-
+There's [plenty more](http://lmgtfy.com/?q=building+a+distributed+team) out
+there, just remember there isn't much maturity on the topic---other experiences
+may differ from you own (or ours!). YMMV.
 
 
 ##### Get buy-in
 
-everyone on board
-  not just management
-  the _team_ too.
-      they were asking for seniors
-      we took the risk that some would want to go remote themselves
-      be very transparent
+Convincing upper management to "go remote" is tough, but avoiding emotional
+arguments and presenting the facts should work, provided your company is
+well-led.
+
+After all, assuming you have a hiring crisis like we did, no sane manager would
+refuse an opportunity to
+
+- solve the hiring problem,
+- while lowering overall costs,
+- with demonstrable success elsewhere, and
+- low and controllable risk.
+
+The trick, in our experience, was getting everyone _else_ on board. Engineers
+and product managers alike can have an "if it's not broken, don't fix it"
+attitude towards organisational design. Even worse, some on-site workers may
+_want_ to become remote and resent the fact the opportunity would be given to
+newcomers.
+
+We took that latter risk, in the sense that we explained that (a) this all was
+an experiment, and (b) should it succeed, of course we'd consider letting people
+"go home" to the country they're from, or work part-time remotely, on a
+trialled, case-by-case basis.
+
+All things considered, what convinced the team was:
+
+- we were completely transparent about how we'd run the remote "project", to the
+  point various iterations of the draft internal policy on remote work were open
+  for comments and publicly debated;
+- the team was feeling the pain of the lack of seniors on board;
+- I personally showed commitment and confidence to the cause, and actually went
+  remote myself progressively.
+
 
 ##### Start small
+
+I've mentioned we originally ran remote as an experiment. This was made clear to
+all, including prospective hires: success was not guaranteed.
+We made the experiment manifesto public internally, and decided on
+
+- a timeframe (6 months)
+- metrics (which I've described at length above)
+- goals (improving the number of hires while maintaining productivity)
+- test and control groups (we only included remotes in 3 out of 6 product teams
+  initially).
+
+This rational and cautious approach was instrumental in convincing the powers
+that be this was worth a try.
 
 
 ##### Communication tools are crucial
 
-Magic trio for us: Skype + Slack + Screenhero
+Over the first quarter of the experiment, we highlighted two points:
 
-avoid physical artifacts
+- good tools supporting remote are absolutely fundamental.
+- the magic quatuor for us is Pivotal Tracker + Skype + Slack + Screenhero.
 
-boss insists on a Kanban board?
-put it on a screen.
+_Groupware_. To the ire of some of our designers, it quickly became obvious we'd need to get
+rid of any physical artifacts.
+Our very last physical Kanban board went the way of the dodo, as it quickly
+became useless.
 
-pair programming: Vim+Tmux kinda works ... Screenhero is much less painful
+_Face-to-face communication_. Yes, Hangouts and all of its WebRTC-based friends
+are nice and open and fun. But they just don't bloody work: they're resource
+intensive and cope poorly with degraded connections, or many participants. Plus
+their UX is far from convenient. **Skype**, as much as we loathe Microsoft
+products, is still unrivalled.
 
-solid Internet connection
-inexperienced remotes could think their 5/1 cable will work
-minimum for smooth experience: 20/2 DSL with ~50ms ping times and no
-throttling/caps
-(might be a show-stopper for most parts of the US, but achievable throughout
-Europe; I live in a town of 3,500 souls and have a 50/10 VSDL2 line)
+_Team discussion + watercooler_. I don't even know where to start with
+**[Slack](http://slack.com)**.
+They've simply nailed group chat, stepping on the shoulders of HipChat and
+Campfire. Integrations, bots, public/private rooms, cat GIFs, and a great
+mobile app. Oh, and it's free, too.
+
+
+_Pair programming_.
+[Vim+Tmux](http://pivotallabs.com/how-we-use-tmux-for-remote-pair-programming/)
+is hip. It kind of works... but it does require more setup (such as a central
+server), and can be painful to the inexperienced geek.
+**[ScreenHero](https://screenhero.com)**, while not free, just works and doesn't
+care which app/editor you're using. It also marries nicely with OmniGraffle or
+Balsamiq for UX work. For "real" (active/passive) pairing, Skype's screensharing
+is reliable and good enough.
+
+Last but not least, remotes should most of their time have a **solid Internet
+connection**.  Inexperienced remotes (and inexperienced teams) might think a
+5Mbps/1Mbps, run-off-the-mill cable connection will work.  It doesn't. The
+minimum for a smooth experience with all the tools above: a **20/2 DSL line**
+with <100ms ping times, and no traffic throttling or caps. We've found that a
+good VPN can help.  This might be a show-stopper for most parts of the US, but
+it's generally achievable throughout Europe; I live in a town of 3,500 souls and
+have a 50/10 VSDL2 line, and 70/30 on mobile 4G.
 
 
 ##### Trust your team
 
-cf. remote book chapter
+A few of the links above cover this; and _Remote_  even has this nugget:
 
-[10/11/2014 13:30:36] Meelan Radia: did you use any software to manage the time
-etc
-[10/11/2014 13:30:41] Meelan Radia: eg
-[10/11/2014 13:30:41] Meelan Radia: http://www.timedoctor.com/
-[10/11/2014 13:30:43] Meelan Radia: or
-[10/11/2014 13:30:50] Meelan Radia: http://hubstaff.com/
-[10/11/2014 14:42:14] Julien Letessier: we considered it — but we ultimately
-decided that
-- what matters are results, not time spent working, so it would be a bad message
-- we wanted a relationship based on trust in the team.
+> There's something primal about being able to see your army, about having them
+> close enough that you can shout "Now!!" like Mel Gibson did in Braveheart, and
+> watch them pick up their spears in unison.
 
-monitoring people assumes, as a default, that they're untrostworthy slackers.
+To emphasise my point, here's an excerpt from a conversation I had with a manger
+toying with the idea of hiring remote workers:
+
+> _Them_: Did you use any software to manage the time?
+> eg [TimeDoctor](http://www.timedoctor.com/) or
+> [HubStaff](http://hubstaff.com/)
+>
+> _Me_: we considered it — but we ultimately
+> decided that what matters are results, not time spent working, so it would be a
+> bad message; and  we wanted a relationship based on trust in the team.
+
+Monitoring and micro-managing people assumes, as a default, that they're
+untrustworthy slackers. This may make sense in some industries (although I doubt
+it) but certainly doesn't for knowledge workers.
+
+Even worse, imposing this kind of constraints solely on remote workers instills
+a dichotomy: trust on-site workers (they're at their desks, so they must be
+working) but not the remotes.
+
+We _did_ have issues with attendance, but only with a single person. They'd
+disappear at 3pm (actually to go pick up their kids at school).  A frank
+conversation on the matter, and laying down the rule, resolved thing easily and
+peacefully.
+
+In our experience, **remote workers are just as dedicated** as on-site workers.
+Why wouldn't they
+?
+
+###### Tool up for accountability
+
+XXX
+stand-ups
+Google snippets (for all, not just remotes!)
 
 
-we had issues with attendance (not sure that's the right word?) only with 1
-person, and it was resolved easily.
+##### Make remote meeting smooth
 
-getting meetings to happen smoothly
-paranoidly instagating a habit of including remotes in all discussions
+Too many meetings is the source of [all
+evil](https://signalvnoise.com/archives2/meetings_considered_harmful.php), but
+you do need some.
 
-if trusted, in our experience,
-remote workers are just as honest as on-site workers.
-why wouldn't they?
+Assuming your on-site meetings are already relevant, targeted, and have the
+right people and frequency, you now need to make the same magic happen with
+potentially half the attendance not physically present.
 
-##### Remote meetings can be smooth
+I've paranoidly instigated a habit of including remotes in all discussions; I'd
+get properly upset if someone called for a quick, informal team meeting and
+excluded a remote out of convenience (or habit).
 
 anecdote: presentation over 3G line
 
-good equipement
+good equipment
 £1,200 per room, no ongoing costs
 
-
-###### Accountability
-
-stand-ups
-Google snippets (for all, not just remotes!)
 
 
 ###### Communicate less but better
