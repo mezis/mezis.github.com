@@ -29,9 +29,8 @@ title: Atom Feed
     <content type="html">
       {% if post.summary %}
       {{ post.summary | markdownify | xml_escape }}
-      &lt;hr/&rt;
+      &lt;hr/&gt;
       {% endif %}
-      {{ post.content | markdownify | xml_escape }}
       {{ read_more_link | xml_escape }}
       {{ tracking_code | xml_escape }}
     </content>
