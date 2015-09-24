@@ -31,7 +31,7 @@ We had a hunch that something awry was going on in the outer layers of our
 stack, and neither New Relic nor any beautiful gem gave us any intel.
 
 <figure>
-  <img width="550" src="http://cl.ly/image/2A2y120D460U/capture%202014-03-14%20at%2016.21.26.png"/>
+  <img width="550" src="/public/2014-03-rack-timer/2A2y120D460U.png"/>
   <figcaption>The infamous green "queue time"</figcaption>
 </figure>
 
@@ -100,7 +100,7 @@ and voilà, raw data ready to be digested. Good old Excel then graphed the
 middleware timings for us:
 
 <figure>
-  <img width="550" src="http://cl.ly/image/460a3z060F3B/capture%202014-03-12%20at%2016.51.53.png"/>
+  <img width="550" src="/public/2014-03-rack-timer/460a3z060F3B.png"/>
   <figcaption>Middleware timings</figcaption>
 </figure>
 
@@ -123,7 +123,7 @@ friend to anyone serious with performance analysis, and stats in general.
 Distribution of the queueing timings used to look like this:
 
 <figure>
-  <img width="550" src="http://cl.ly/image/2D2336390628/capture%202014-03-12%20at%2013.25.43.png"/>
+  <img width="550" src="/public/2014-03-rack-timer/2D2336390628.png"/>
   <figcaption>(horizontally: log10 of the queuing time in microseconds, ie. 3 is 1ms and 6 is 1 second)</figcaption>
 </figure>
 
@@ -152,7 +152,7 @@ with th _next_ request on a particular worker.
 Removing the out-of-band garbage collection solved the issue:
 
 <figure>
-  <img width="550" src="http://cl.ly/image/3z0V40291P46/capture%202014-03-12%20at%2014.18.55.png"/>
+  <img width="550" src="/public/2014-03-rack-timer/3z0V40291P46.png"/>
 </figure>
 
 On top of that we've cut our average response time by a further 15 to 20%, and
