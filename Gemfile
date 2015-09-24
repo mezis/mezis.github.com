@@ -1,4 +1,4 @@
-source ENV.fetch('GEM_SOURCE', 'https://rubygems.org')
+source 'https://rubygems.org'
 
 gem 'github-pages'
 
