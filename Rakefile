@@ -77,7 +77,7 @@ task :css => CSS
 
 desc "Launch preview environment"
 task :preview => (HTML + CSS + [:watch_haml, :watch_sass]) do
-  system "jekyll server -w --draft"
+  system "jekyll server -w --draft --incremental"
 end
 
 

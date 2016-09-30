@@ -11,8 +11,14 @@ kramdown:
   auto_ids:      true
   use_coderay:   false
   hard_wrap:     false
+  parse_block_html: true
 
 highlighter: pygments
+
+# Plugins
+gems:
+   - jekyll-mentions
+   - jemoji
 
 # Themes are encouraged to use these universal variables
 # so be sure to set them if your theme uses them.
