@@ -60,9 +60,9 @@ so, as with Australia.
 Our current HTTP infrastructure has 3 tiers:
 
 - Client requests hit either a CDN (assets) or our reverse proxy
-  ([Nginx][nginx]).
+  (Nginx).
 - The CDN loads from the proxy on misses.
-- The proxy is backed by a [Heroku][heroku]-hosted application.
+- The proxy is backed by a Heroku-hosted application.
 
 Both the proxy and the Heroku app are hosted by AWS, in the `eu-west-1` (Dublin)
 datacenter.
