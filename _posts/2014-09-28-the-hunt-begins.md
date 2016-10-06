@@ -39,7 +39,10 @@ on to me.
 
 <figure>
   <img src='/public/2014-09-29-hunt/resumes.svg'/>
-  <figcaption>Hmm. The odds don't look so good.</figcaption>
+  
+  <figcaption>
+  Hmm. The odds don't look so good.
+  </figcaption>
 </figure>
 
 If you take this at face value, the conclusion is:
@@ -99,7 +102,9 @@ Here's what that looks like for the visually inclined:
 
 <figure>
   <img src='/public/2014-09-29-hunt/emails.svg'/>
-  <figcaption>Good for my ego. Bad for my OCD.</figcaption>
+  <figcaption>
+  Good for my ego. Bad for my OCD.
+  </figcaption>
 </figure>
 
 Attribution wise, the majority of those emails came to me through social profiles. Very
