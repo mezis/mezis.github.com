@@ -1,0 +1,15 @@
+---
+layout: default
+rss:
+title: 404 - Page not found
+permalink: /404.html
+---
+<div class='text-center'>
+  <h1>Whoops, this page doesn't exist.</h1>
+</div>
+<script>
+  var url = location.href;
+  if(url.substr(url.length - 1) === '/') {
+  window.location = url.substr(0, url.length - 1);
+  }
+</script>
